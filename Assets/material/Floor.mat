@@ -169,7 +169,7 @@ Material:
     - _DetailNormalScale: 1
     - _DetailSmoothnessScale: 1
     - _Detail_G_Intensity: 0.334
-    - _Detail_R_Intensity: 0.226
+    - _Detail_R_Intensity: 0.322
     - _DiffusionProfile: 0
     - _DiffusionProfileHash: 0
     - _DisplacementLockObjectScale: 1
@@ -209,7 +209,7 @@ Material:
     - _MetallicRemapMin: 0
     - _NormalMapSpace: 0
     - _NormalScale: 1
-    - _Normal_Scale: 0.052
+    - _Normal_Scale: 0
     - _ObjectSpaceUVMapping: 0
     - _ObjectSpaceUVMappingEmissive: 0
     - _OpaqueCullMode: 2
@@ -229,7 +229,7 @@ Material:
     - _SmoothnessRemapMin: 0
     - _Smoothness_Board: 0
     - _Smoothness_Max: 0.924
-    - _Smoothness_Min: 0.86
+    - _Smoothness_Min: 0.881
     - _Smoothness_Tape: 0
     - _SpecularAAScreenSpaceVariance: 0.1
     - _SpecularAAThreshold: 0.2
@@ -274,8 +274,8 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Detail_G_Tiling: {r: 14.6, g: 21.56, b: 0, a: 0}
-    - _Detail_R_Tiling: {r: 10.34, g: 20.13, b: 0, a: 0}
+    - _Detail_G_Tiling: {r: 10, g: 20, b: 0, a: 0}
+    - _Detail_R_Tiling: {r: 10, g: 20, b: 0, a: 0}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
