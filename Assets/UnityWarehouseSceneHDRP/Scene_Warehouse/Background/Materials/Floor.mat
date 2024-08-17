@@ -168,7 +168,7 @@ Material:
     - _DetailAlbedoScale: 1
     - _DetailNormalScale: 1
     - _DetailSmoothnessScale: 1
-    - _Detail_G_Intensity: 0.43
+    - _Detail_G_Intensity: 0.334
     - _Detail_R_Intensity: 0.322
     - _DiffusionProfile: 0
     - _DiffusionProfileHash: 0
@@ -187,6 +187,7 @@ Material:
     - _EnableFogOnTransparent: 1
     - _EnableGeometricSpecularAA: 0
     - _EnergyConservingSpecularColor: 1
+    - _ExcludeFromTUAndAA: 0
     - _HeightAmplitude: 0.02
     - _HeightCenter: 0.5
     - _HeightMapParametrization: 0
