@@ -19,22 +19,30 @@ public class AutoLabelGrandChildren : MonoBehaviour
                 sphereCollider.isTrigger = true;
 
                 // Instantiate the label at the sphere's position with a small offset
-                GameObject labelObject = Instantiate(labelPrefab, position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+                GameObject labelObject = Instantiate(labelPrefab, position + new Vector3(0, 0.25f, 0), Quaternion.Euler(90, 0, 90));
 
                 // Get the TextMeshPro component from the instantiated label object
                 TextMeshPro label = labelObject.GetComponent<TextMeshPro>();
 
                 if (label != null)
                 {
+                    // Calculate X and Y
+                    // int X = (int)((49 - position.z) / 2);
+                    // int Y = (int)((position.x + 5) / 2);
+
+                    int X = (int)((((int)position.z) +5 )/2);
+                    int Y = (int)((49- (int)position.x)/2);
+
                     // Set the label text to the sphere's coordinates
-                    label.text = $"({position.x}, {position.y}, {position.z})";
+                    label.text = $"({X}, {Y})";
+
 
                     // Optionally, make the label a child of the sphere to keep it aligned
                     label.transform.SetParent(sphere);
 
                     // Adjust the label orientation to always face the camera (optional)
-                    label.transform.LookAt(Camera.main.transform);
-                    label.transform.Rotate(0, 180, 0);
+                    //label.transform.LookAt(Camera.main.transform);
+                    //label.transform.Rotate(0, 180, 0);
                 }
                 else
                 {
