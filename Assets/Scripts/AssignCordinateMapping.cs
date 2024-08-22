@@ -30,8 +30,8 @@ public class AutoLabelGrandChildren : MonoBehaviour
                     // int X = (int)((49 - position.z) / 2);
                     // int Y = (int)((position.x + 5) / 2);
 
-                    int X = (int)((((int)position.z) +5 )/2);
-                    int Y = (int)((49- (int)position.x)/2);
+                    int X = (int)((((int)position.z) +5 )/2);   // equation is x+5/2
+                    int Y = (int)((49- (int)position.x)/2);     // equation is 49-x/2
 
                     // Set the label text to the sphere's coordinates
                     label.text = $"({X}, {Y})";
