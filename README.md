@@ -1,4 +1,4 @@
-# Digital Warehouse Unity 3D - Final Year Project
+# 5G Slciing Smart Warehouse - Final Year Project
 Semester - 7 & 8
 Project - Application of 5G Slicing using OpenSource RAN Software Stacks.
 Use Case- Smart Warehouse
