@@ -9,11 +9,14 @@ public class WeatherController : MonoBehaviour
     public int weatherUpdateTimer = 1; // Time in minutes between weather updates
     private WeatherManager weatherManager;
     private float cloudNormalized = 1.0f;
+    [SerializeField] float newExposureWeight = 1.0f; 
     public Volume globalVolumeProfile;
+    public Material skyMaterial;
     
     void Start()
     {
         weatherManager = FindObjectOfType<WeatherManager>();
+        skyMaterial.EnableKeyword("_EmissiveIntensity");
         
     }
 
@@ -29,11 +32,9 @@ public class WeatherController : MonoBehaviour
         yield return new WaitForSeconds(weatherUpdateTimer);
         cloudNormalized = weatherManager.NormalizedCloudiness;
         SetFixedExposure(cloudNormalized);
+        SetEmission(newExposureWeight);
         
-        
-
-
-        
+    
     }
 
 
@@ -51,5 +52,13 @@ public class WeatherController : MonoBehaviour
         //     exposure.fixedExposure.overrideState = true;
         //     exposure.fixedExposure.value = exposureValue;
         // }
+    }
+
+
+        private void SetEmission(float newExposureWeight)
+    {
+        //skyMaterial.SetFloat("_ExposureWeight", newExposureWeight);
+        skyMaterial.SetFloat("_EmissiveIntensity", newExposureWeight);
+
     }
 }
