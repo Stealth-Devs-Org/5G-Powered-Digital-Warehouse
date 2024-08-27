@@ -2,34 +2,73 @@ using System.Collections;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Networking;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+
+
+// Mapping between enum values and city names
 
 public class WeatherManager : MonoBehaviour
 {
-    private string apiKey = "46642be04341c1815b314eba42613bff"; // Replace with your API key
-    public string cityName = "Kalmunai,LK"; // Replace with your city name
+    private string apiKey = "46642be04341c1815b314eba42613bff"; 
     private string apiUrl;
 
     [Range(0f, 1f)] public float CloudinessNormalized;
     [Range(28f, 40f)] public float tempreature;
     [Range(0f, 1.1f)] public float SunlightNormalized;
 
-    private void Start()
-    {
-        apiUrl = $"https://api.openweathermap.org/data/2.5/weather?q={cityName}&appid={apiKey}&units=metric"; // Metric units for temperature in Celsius
-        StartCoroutine(GetWeatherData());
+    private string cityName;
 
-        Debug.Log(CloudinessNormalized);
+    public enum City
+    {
+        Kalmunai,
+        Moratuwa,
+        Kandy,
+        Colombo,
+        Ampara,
+        Galle,
+        Jaffna,
+        London
+    }
+
+    public City selectedCity = City.Kalmunai;
+
+    private string GetCityName(City city)
+    {
+        switch (city)
+        {
+            case City.Kalmunai:
+                return "Kalmunai,LK";
+            case City.Moratuwa:
+                return "Moratuwa,LK";
+            case City.Kandy:
+                return "Kandy,LK";
+            case City.Colombo:
+                return "Colombo,LK";
+            case City.Ampara:
+                return "Ampara,LK";
+            case City.Galle:
+                return "Galle,LK";
+            case City.Jaffna:
+                return "Jaffna,LK";
+            case City.London:
+                return "London,UK";
+            default:
+                return "Kalmunai,LK";
+        }
     }
 
 
     void Update()
     {
+        cityName = GetCityName(selectedCity);
+        apiUrl = $"https://api.openweathermap.org/data/2.5/weather?q={cityName}&appid={apiKey}&units=metric";
         StartCoroutine(GetWeatherData());
 
-        Debug.Log(CloudinessNormalized);
+        //Debug.Log(CloudinessNormalized);
     }
 
-    private IEnumerator GetWeatherData()
+    private IEnumerator GetWeatherData() 
     {
         using (UnityWebRequest www = UnityWebRequest.Get(apiUrl))
         {
@@ -54,7 +93,7 @@ public class WeatherManager : MonoBehaviour
                 //Debug.Log("Sunset: " + UnixTimeStampToDateTime(weatherResponse.sys.sunset).ToString("HH:mm:ss"));
 
 
-                CloudinessNormalized = weatherResponse.clouds.all/100.0f;
+                CloudinessNormalized  = weatherResponse.clouds.all/100.0f;
                 tempreature = weatherResponse.main.temp;
             
 
@@ -93,7 +132,6 @@ public class WeatherManager : MonoBehaviour
         
     }
 
-
     [System.Serializable]
     public class Clouds
     {
@@ -107,3 +145,4 @@ public class WeatherManager : MonoBehaviour
         public double sunset;
     }
 }
+
