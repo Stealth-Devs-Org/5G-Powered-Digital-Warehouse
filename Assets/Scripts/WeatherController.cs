@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.HighDefinition;
 
 public class WeatherController : MonoBehaviour
 {
-    public int weatherupdateTimer= 1;
-    WeatherManager weatherManager;
-
-    public GameObject GlobalVolume; 
+    public int weatherUpdateTimer = 1; // Time in minutes between weather updates
+    private WeatherManager weatherManager;
+    private float cloudNormalized = 1.0f;
+    public Volume globalVolumeProfile;
     
     void Start()
     {
@@ -18,17 +20,36 @@ public class WeatherController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        StartCoroutine(GetWeatherData());
         
     }
 
     IEnumerator GetWeatherData()
     {
-        yield return new WaitForSeconds(weatherupdateTimer);
-
+        yield return new WaitForSeconds(weatherUpdateTimer);
+        cloudNormalized = weatherManager.NormalizedCloudiness;
+        SetFixedExposure(cloudNormalized);
         
         
 
 
         
+    }
+
+
+    private void SetFixedExposure(float exposureValue)
+    {
+        if (globalVolumeProfile.profile.TryGet<Exposure>(out var exposure))
+        {
+            exposure.fixedExposure.overrideState = true;
+            exposure.fixedExposure.value = 11.0f- (11.0f-7.0f)*exposureValue;
+        }
+        // else
+        // {
+        //     // If Exposure override doesn't exist, add it
+        //     exposure = globalVolumeProfile.profile.Add<Exposure>();
+        //     exposure.fixedExposure.overrideState = true;
+        //     exposure.fixedExposure.value = exposureValue;
+        // }
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -8,10 +9,23 @@ public class WeatherManager : MonoBehaviour
     public string cityName = "Kalmunai,LK"; // Replace with your city name
     private string apiUrl;
 
+    public float NormalizedCloudiness;
+    public float tempreature;
+
     private void Start()
     {
         apiUrl = $"https://api.openweathermap.org/data/2.5/weather?q={cityName}&appid={apiKey}&units=metric"; // Metric units for temperature in Celsius
         StartCoroutine(GetWeatherData());
+
+        Debug.Log(NormalizedCloudiness);
+    }
+
+
+    void Update()
+    {
+        StartCoroutine(GetWeatherData());
+
+        Debug.Log(NormalizedCloudiness);
     }
 
     private IEnumerator GetWeatherData()
@@ -31,16 +45,16 @@ public class WeatherManager : MonoBehaviour
                 WeatherResponse weatherResponse = JsonUtility.FromJson<WeatherResponse>(jsonResponse);
 
                 // Display all relevant weather data
-                Debug.Log("City: " + cityName);
-                Debug.Log("Weather: " + weatherResponse.weather[0].description);
-                Debug.Log("Temperature: " + weatherResponse.main.temp + "°C");
-                Debug.Log("Cloudiness: " + weatherResponse.clouds.all + "%");
-                Debug.Log("Sunrise: " + UnixTimeStampToDateTime(weatherResponse.sys.sunrise).ToString("HH:mm:ss"));
-                Debug.Log("Sunset: " + UnixTimeStampToDateTime(weatherResponse.sys.sunset).ToString("HH:mm:ss"));
+                //Debug.Log("City: " + cityName);
+                //Debug.Log("Weather: " + weatherResponse.weather[0].description);
+                //Debug.Log("Temperature: " + weatherResponse.main.temp + "°C");
+                //Debug.Log("Cloudiness: " + weatherResponse.clouds.all + "%");
+                // Debug.Log("Sunrise: " + UnixTimeStampToDateTime(weatherResponse.sys.sunrise).ToString("HH:mm:ss"));
+                //Debug.Log("Sunset: " + UnixTimeStampToDateTime(weatherResponse.sys.sunset).ToString("HH:mm:ss"));
 
 
-                float Normalized_cloudiness = weatherResponse.clouds.all/100;
-                float tempreature = weatherResponse.main.temp;
+                NormalizedCloudiness = weatherResponse.clouds.all/100.0f;
+                tempreature = weatherResponse.main.temp;
             
 
             }
