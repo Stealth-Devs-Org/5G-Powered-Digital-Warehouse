@@ -4,7 +4,7 @@ using UnityEngine.Networking;
 
 public class WeatherManager : MonoBehaviour
 {
-    public string apiKey = "46642be04341c1815b314eba42613bff"; // Replace with your API key
+    private string apiKey = "46642be04341c1815b314eba42613bff"; // Replace with your API key
     public string cityName = "Kalmunai,LK"; // Replace with your city name
     private string apiUrl;
 
@@ -37,6 +37,12 @@ public class WeatherManager : MonoBehaviour
                 Debug.Log("Cloudiness: " + weatherResponse.clouds.all + "%");
                 Debug.Log("Sunrise: " + UnixTimeStampToDateTime(weatherResponse.sys.sunrise).ToString("HH:mm:ss"));
                 Debug.Log("Sunset: " + UnixTimeStampToDateTime(weatherResponse.sys.sunset).ToString("HH:mm:ss"));
+
+
+                float Normalized_cloudiness = weatherResponse.clouds.all/100;
+                float tempreature = weatherResponse.main.temp;
+            
+
             }
         }
     }
@@ -54,7 +60,7 @@ public class WeatherManager : MonoBehaviour
     {
         public Weather[] weather;
         public Main main;
-        public Wind wind;
+        
         public Clouds clouds;
         public Sys sys;
     }
@@ -69,19 +75,9 @@ public class WeatherManager : MonoBehaviour
     public class Main
     {
         public float temp;
-        public float feels_like;
-        public float temp_min;
-        public float temp_max;
-        public int pressure;
-        public int humidity;
+        
     }
 
-    [System.Serializable]
-    public class Wind
-    {
-        public float speed;
-        public int deg;
-    }
 
     [System.Serializable]
     public class Clouds
