@@ -1,22 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
+
+
+
 
 public class WeatherController : MonoBehaviour
 {
     public int weatherUpdateTimer = 1; // Time in minutes between weather updates
     private WeatherManager weatherManager;
     private float cloudNormalized = 1.0f;
-    [SerializeField] float newExposureWeight = 1.0f; 
+    //[SerializeField] float newExposureWeight = 1.0f; 
+
+    [Range(0f, 1.1f)] public float SunlightNormalized;
+    
+
+    
     public Volume globalVolumeProfile;
     public Material skyMaterial;
     
     void Start()
     {
         weatherManager = FindObjectOfType<WeatherManager>();
-        skyMaterial.EnableKeyword("_EmissiveIntensity");
+        
+
+        skyMaterial.EnableKeyword("_EmissiveExposureWeight");
+
+
+
         
     }
 
@@ -32,7 +46,8 @@ public class WeatherController : MonoBehaviour
         yield return new WaitForSeconds(weatherUpdateTimer);
         cloudNormalized = weatherManager.NormalizedCloudiness;
         SetFixedExposure(cloudNormalized);
-        SetEmission(newExposureWeight);
+
+        SetEmission(SunlightNormalized);
         
     
     }
@@ -55,10 +70,12 @@ public class WeatherController : MonoBehaviour
     }
 
 
-        private void SetEmission(float newExposureWeight)
+        private void SetEmission(float exposureValue)
     {
         //skyMaterial.SetFloat("_ExposureWeight", newExposureWeight);
-        skyMaterial.SetFloat("_EmissiveIntensity", newExposureWeight);
+        //skyMaterial.SetFloat("_EmissiveIntensity", newExposureWeight);
+        skyMaterial.SetFloat("_EmissiveExposureWeight", 1.1f-exposureValue);
+        
 
     }
 }
