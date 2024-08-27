@@ -15,7 +15,7 @@ public class WeatherController : MonoBehaviour
     private float cloudNormalized = 1.0f;
     //[SerializeField] float newExposureWeight = 1.0f; 
 
-    [Range(0f, 1.1f)] public float SunlightNormalized;
+    
     
 
     
@@ -44,10 +44,10 @@ public class WeatherController : MonoBehaviour
     IEnumerator GetWeatherData()
     {
         yield return new WaitForSeconds(weatherUpdateTimer);
-        cloudNormalized = weatherManager.NormalizedCloudiness;
+        cloudNormalized = weatherManager.CloudinessNormalized;
         SetFixedExposure(cloudNormalized);
 
-        SetEmission(SunlightNormalized);
+        SetEmission(weatherManager.SunlightNormalized);
         
     
     }

@@ -9,15 +9,16 @@ public class WeatherManager : MonoBehaviour
     public string cityName = "Kalmunai,LK"; // Replace with your city name
     private string apiUrl;
 
-    public float NormalizedCloudiness;
-    public float tempreature;
+    [Range(0f, 1f)] public float CloudinessNormalized;
+    [Range(28f, 40f)] public float tempreature;
+    [Range(0f, 1.1f)] public float SunlightNormalized;
 
     private void Start()
     {
         apiUrl = $"https://api.openweathermap.org/data/2.5/weather?q={cityName}&appid={apiKey}&units=metric"; // Metric units for temperature in Celsius
         StartCoroutine(GetWeatherData());
 
-        Debug.Log(NormalizedCloudiness);
+        Debug.Log(CloudinessNormalized);
     }
 
 
@@ -25,7 +26,7 @@ public class WeatherManager : MonoBehaviour
     {
         StartCoroutine(GetWeatherData());
 
-        Debug.Log(NormalizedCloudiness);
+        Debug.Log(CloudinessNormalized);
     }
 
     private IEnumerator GetWeatherData()
@@ -53,7 +54,7 @@ public class WeatherManager : MonoBehaviour
                 //Debug.Log("Sunset: " + UnixTimeStampToDateTime(weatherResponse.sys.sunset).ToString("HH:mm:ss"));
 
 
-                NormalizedCloudiness = weatherResponse.clouds.all/100.0f;
+                CloudinessNormalized = weatherResponse.clouds.all/100.0f;
                 tempreature = weatherResponse.main.temp;
             
 
