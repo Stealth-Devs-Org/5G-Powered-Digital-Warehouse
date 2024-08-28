@@ -62,14 +62,14 @@ public class WeatherManager : MonoBehaviour
     void Update()
     {
         cityName = GetCityName(selectedCity);
-        apiUrl = $"https://api.openweathermap.org/data/2.5/weather?q={cityName}&appid={apiKey}&units=metric";
         StartCoroutine(GetWeatherData());
 
         //Debug.Log(CloudinessNormalized);
     }
 
     private IEnumerator GetWeatherData() 
-    {
+    {   
+        apiUrl = $"https://api.openweathermap.org/data/2.5/weather?q={cityName}&appid={apiKey}&units=metric";
         using (UnityWebRequest www = UnityWebRequest.Get(apiUrl))
         {
             yield return www.SendWebRequest();
@@ -99,6 +99,8 @@ public class WeatherManager : MonoBehaviour
 
             }
         }
+
+        yield return new WaitForSeconds(2);
     }
 
     private System.DateTime UnixTimeStampToDateTime(double unixTimeStamp)

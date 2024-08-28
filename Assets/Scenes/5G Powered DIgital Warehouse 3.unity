@@ -671,7 +671,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weatherUpdateTimer: 1
-  cloudNormalized: 1
   globalVolumeProfile: {fileID: 1416228023}
   skyMaterial: {fileID: 2100000, guid: f9d79e55d6b9f7c49b66da0f420bd550, type: 2}
 --- !u!1 &481175381
@@ -3226,7 +3225,7 @@ MonoBehaviour:
   CloudinessNormalized: 0
   tempreature: 28
   SunlightNormalized: 0
-  selectedCity: 1
+  selectedCity: 5
 --- !u!1001 &172935048425787396
 PrefabInstance:
   m_ObjectHideFlags: 0
