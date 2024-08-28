@@ -42,7 +42,7 @@ public class WeatherController : MonoBehaviour
         if (globalVolumeProfile.profile.TryGet<Exposure>(out var exposure))
         {
             exposure.fixedExposure.overrideState = true;
-            exposure.fixedExposure.value = 11.0f- (11.0f-7.0f)*exposureValue;
+            exposure.fixedExposure.value = 11.0f- (11.0f-8.0f)*exposureValue;
         }
         // else
         // {

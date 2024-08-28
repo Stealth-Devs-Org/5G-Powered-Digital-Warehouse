@@ -28,6 +28,7 @@ public class WeatherManager : MonoBehaviour
         Ampara,
         Galle,
         Jaffna,
+        Oslo,
         London
     }
 
@@ -53,6 +54,8 @@ public class WeatherManager : MonoBehaviour
                 return "Jaffna,LK";
             case City.London:
                 return "London,UK";
+            case City.Oslo:
+                return "Oslo,NO";
             default:
                 return "Kalmunai,LK";
         }
@@ -95,12 +98,13 @@ public class WeatherManager : MonoBehaviour
 
                 CloudinessNormalized  = weatherResponse.clouds.all/100.0f;
                 tempreature = weatherResponse.main.temp;
+                Debug.Log("CloudinessNormalized: " + CloudinessNormalized);
             
 
             }
         }
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(5);
     }
 
     private System.DateTime UnixTimeStampToDateTime(double unixTimeStamp)
