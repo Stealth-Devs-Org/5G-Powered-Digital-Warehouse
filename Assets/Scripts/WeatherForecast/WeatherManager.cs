@@ -98,7 +98,7 @@ public class WeatherManager : MonoBehaviour
 
                 CloudinessNormalized  = weatherResponse.clouds.all/100.0f;
                 tempreature = weatherResponse.main.temp;
-                Debug.Log("CloudinessNormalized: " + CloudinessNormalized);
+                //Debug.Log("CloudinessNormalized: " + CloudinessNormalized);
             
 
             }
