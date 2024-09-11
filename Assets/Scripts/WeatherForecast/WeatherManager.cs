@@ -72,6 +72,8 @@ public class WeatherManager : MonoBehaviour
 
     private IEnumerator GetWeatherData() 
     {   
+
+        yield return new WaitForSeconds(3);
         apiUrl = $"https://api.openweathermap.org/data/2.5/weather?q={cityName}&appid={apiKey}&units=metric";
         using (UnityWebRequest www = UnityWebRequest.Get(apiUrl))
         {
@@ -88,10 +90,10 @@ public class WeatherManager : MonoBehaviour
                 WeatherResponse weatherResponse = JsonUtility.FromJson<WeatherResponse>(jsonResponse);
 
                 // Display all relevant weather data
-                //Debug.Log("City: " + cityName);
-                //Debug.Log("Weather: " + weatherResponse.weather[0].description);
-                //Debug.Log("Temperature: " + weatherResponse.main.temp + "°C");
-                //Debug.Log("Cloudiness: " + weatherResponse.clouds.all + "%");
+                Debug.Log("City: " + cityName);
+                Debug.Log("Weather: " + weatherResponse.weather[0].description);
+                Debug.Log("Temperature: " + weatherResponse.main.temp + "°C");
+                Debug.Log("Cloudiness: " + weatherResponse.clouds.all + "%");
                 // Debug.Log("Sunrise: " + UnixTimeStampToDateTime(weatherResponse.sys.sunrise).ToString("HH:mm:ss"));
                 //Debug.Log("Sunset: " + UnixTimeStampToDateTime(weatherResponse.sys.sunset).ToString("HH:mm:ss"));
 
@@ -104,7 +106,10 @@ public class WeatherManager : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(5);
+
+        yield return new WaitForSeconds(2);
+
+        
     }
 
     private System.DateTime UnixTimeStampToDateTime(double unixTimeStamp)
