@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 54.814346, g: 51.92466, b: 49.843895, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1621,7 +1620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea6f54fba5374e41a77b8bdfeda8718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weatherUpdateTimer: 1
+  weatherUpdateTimer: 5
   globalVolumeProfile: {fileID: 1416228023}
   skyMaterial: {fileID: 2100000, guid: f9d79e55d6b9f7c49b66da0f420bd550, type: 2}
 --- !u!1 &481175381
@@ -3282,7 +3281,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1233352688709371825, guid: 9bd5fad8804f1b44b9bf19ed559e12fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -5372,7 +5372,7 @@ MonoBehaviour:
   CloudinessNormalized: 0
   tempreature: 28
   SunlightNormalized: 0
-  selectedCity: 5
+  selectedCity: 0
 --- !u!1 &2074288552
 GameObject:
   m_ObjectHideFlags: 0
@@ -5417,7 +5417,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4d1f703847531d499f0ee737ad49331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  url: ws://localhost:8080
 --- !u!1 &2127220009
 GameObject:
   m_ObjectHideFlags: 0

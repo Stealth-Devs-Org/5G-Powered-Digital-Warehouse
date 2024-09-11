@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/5G Powered DIgital Warehouse 3.unity
+    guid: 2265b12d5ec801947a54d4205036d6b0
   m_configObjects: {}
