@@ -21,6 +21,7 @@ public class AGVMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.Translate(Vector3.forward * Time.deltaTime * speedofAGV);        
+        //gameObject.transform.Translate(Vector3.forward * Time.deltaTime * speedofAGV);  
+        gameObject.transform.Rotate(Vector3.up * Time.deltaTime * rotationSpeed);      
     }
 }
