@@ -11,18 +11,13 @@ public class WebSocketDataReceive : MonoBehaviour
 
     // Define classes to map the JSON structure
     [System.Serializable]
-    public class Location
-    {
-        public float x;
-        public float y;
-        public float z;
-    }
-
-    [System.Serializable]
     public class DataObject
     {
-        public Location location;
-        public string otherField; // In case you have other fields you need
+        public int agv_id;
+        public float[] location; // Location as an array of floats
+        public int segment;
+        public int status; // Status of AGV
+        public string timestamp;
     }
 
     private void Start()
@@ -39,11 +34,13 @@ public class WebSocketDataReceive : MonoBehaviour
             
             if (dataObject != null && dataObject.location != null)
             {
-                Debug.Log(dataObject.location);
+                //Debug.Log($"AGV ID: {dataObject.agv_id}");
+                Debug.Log($"Location: x={dataObject.location[0]}, y={dataObject.location[1]}");
+                //Debug.Log($"Segment: {dataObject.segment}, Status: {dataObject.status}, Timestamp: {dataObject.timestamp}");
             }
             else
             {
-                Debug.LogWarning("Failed to parse location data.");
+                Debug.LogWarning("Failed to parse AGV data.");
             }
         };
     }
