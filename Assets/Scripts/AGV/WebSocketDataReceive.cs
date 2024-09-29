@@ -12,10 +12,8 @@ public class WebSocketDataReceive : MonoBehaviour
     private Vector2Int AGV4Cordinate;
     WebSocket ws;
     string DataReceived;
-
-    public bool isDataReceived = false;
-    
-
+    public int numberOfAGV = 4;
+    public bool[] isDataReceivedforAGVs;
     [System.Serializable]
     public class DataObject   //own JSON
     {
@@ -28,6 +26,13 @@ public class WebSocketDataReceive : MonoBehaviour
 
     private void Start()
     {
+        isDataReceivedforAGVs = new bool[numberOfAGV];
+        for (int i = 0; i < numberOfAGV; i++)
+        {
+            isDataReceivedforAGVs[i] = false;  //initially no AGV present...
+        }
+
+
         ws = new WebSocket(url);
         ws.Connect();
         ws.OnMessage += (sender, e) =>
@@ -38,10 +43,9 @@ public class WebSocketDataReceive : MonoBehaviour
             
             if (dataObject != null && dataObject.location != null)
             {
-                isDataReceived = true;
+                isDataReceivedforAGVs[0] = true; //for now only 1 AGV
                 Debug.Log($"Location: x={dataObject.location[0]}, y={dataObject.location[1]}");
                 AGV1Cordinate = new Vector2Int((int)dataObject.location[0], (int)dataObject.location[1]);
-                
             }
             else
             {

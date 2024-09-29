@@ -7,15 +7,19 @@ public class AGVController : MonoBehaviour
 
     GetLocationOfSphere getLocationOfSphere;
     WebSocketDataReceive webSocketDataReceive;
-    public int numberOfAGV = 4;
+    private int numberOfAGV;
 
     public bool[] AGVPresent;
+
+    public GameObject agvPrefab;
     
     
 
     // Start is called before the first frame update
     void Start()
     {
+        numberOfAGV = webSocketDataReceive.numberOfAGV;
+
         getLocationOfSphere = GetComponent<GetLocationOfSphere>();
         webSocketDataReceive = GetComponent<WebSocketDataReceive>();
 
@@ -31,18 +35,36 @@ public class AGVController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (webSocketDataReceive.isDataReceived)
+        for (int i = 0; i < numberOfAGV; i++)
         {
-            //Debug.Log("Data Received");
-            for (int i = 0; i < numberOfAGV; i++)
+            if (webSocketDataReceive.isDataReceivedforAGVs[i] == true)
             {
-                AGVPresent[0] = true;
-            }
-        
-        }
-        
-      
+                if (AGVPresent[i] == false)
+                {
+                    SpawnAGVInLocation(location);
+                    AGVPresent[i] = true;
+                }
 
-        
+
+        }
+ 
+        }
+
     }
+
+
+
+    
+
+    // Method to spawn an AGV at a given location
+    void SpawnAGVInLocation(Vector2Int location)
+    {
+        // Convert Vector2Int to Vector3 for 3D space here y is Z actually all y are 0
+        Vector3 spawnPosition = new Vector3(location.x, 0, location.y);
+
+        // Spawn the AGV at the given location with no rotation (Quaternion.identity)
+        Instantiate(agvPrefab, spawnPosition, Quaternion.identity);
+    }
+
+    
 }

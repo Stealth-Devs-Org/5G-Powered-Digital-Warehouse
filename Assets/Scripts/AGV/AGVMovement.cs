@@ -9,6 +9,7 @@ public class AGVMovement : MonoBehaviour
     
     public float speedofAGV = 5.0f;
     public float rotationSpeed = 0.5f;
+    WebSocketDataReceive webSocketDataReceive;
     
 
     
@@ -22,19 +23,24 @@ public class AGVMovement : MonoBehaviour
     void Start()
     {
         AGVController = GetComponent<AGVController>();
+        webSocketDataReceive = GetComponent<WebSocketDataReceive>();
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        for (int i = 0; i < AGVController.numberOfAGV; i++)
+        for (int i = 0; i < webSocketDataReceive.numberOfAGV; i++)
         {
             if (AGVController.AGVPresent[i]==true)
             {
+
+                MoveAGV(webSocketDataReceive.AGVs[i].transform.position);
+                
+            
                 //MoveAGV(AGVController.AGVs[i].transform.position);
             }
-            
+
         }
         
 
