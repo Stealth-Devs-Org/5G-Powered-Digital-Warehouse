@@ -7,9 +7,11 @@ public class AGVMovement : MonoBehaviour
 {
     AGVController AGVController;
     public int numberOfAGV = 4;
-    public float speedofAGV =5.0f;
+    public float speedofAGV = 5.0f;
     public float rotationSpeed = 0.5f;
     private bool[] AGVPresent;
+
+    
 
     
 
@@ -19,34 +21,31 @@ public class AGVMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AGVController = GetComponent<AGVController>();
+
         AGVPresent = new bool[numberOfAGV];
         for (int i = 0; i < numberOfAGV; i++)
         {
             AGVPresent[i] = false;  //initially no AGV present...
         }
 
-        AGVController = GetComponent<AGVController>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        for (int i = 0; i < numberOfAGV; i++)
+        {
+            if (AGVPresent[i])
+            {
+                MoveAGV(AGVController.AGVs[i].transform.position);
+            }
+        }
         
-        // for (int i = 0; i < AGVPresent.Length; i++)
-        // {
-        //     if (AGVPresent[i] ==true)
-        //     {
-        //         MoveAGV(AGVController.targetPosition[i]);
-        //     }
-        //     else
-        //     {
 
-        //         AGVPresent[i] = false;
-
-        //     }
-        // }
-        //gameObject.transform.Translate(Vector3.forward * Time.deltaTime * speedofAGV);  
-        gameObject.transform.Rotate(Vector3.up * Time.deltaTime * rotationSpeed);      
+        // gameObject.transform.Translate(Vector3.forward * Time.deltaTime * speedofAGV);  
+        // gameObject.transform.Rotate(Vector3.up * Time.deltaTime * rotationSpeed);      
     }
 
 

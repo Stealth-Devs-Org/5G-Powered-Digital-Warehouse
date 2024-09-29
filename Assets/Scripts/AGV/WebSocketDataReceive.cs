@@ -13,8 +13,10 @@ public class WebSocketDataReceive : MonoBehaviour
     WebSocket ws;
     string DataReceived;
 
+    public bool isDataReceived = false;
+
     [System.Serializable]
-    public class DataObject
+    public class DataObject   //own JSON
     {
         public int agv_id;
         public float[] location;
@@ -29,13 +31,16 @@ public class WebSocketDataReceive : MonoBehaviour
         ws.Connect();
         ws.OnMessage += (sender, e) =>
         {
+            
             DataReceived = e.Data;
             DataObject dataObject = JsonUtility.FromJson<DataObject>(DataReceived);
             
             if (dataObject != null && dataObject.location != null)
             {
+                isDataReceived = true;
                 Debug.Log($"Location: x={dataObject.location[0]}, y={dataObject.location[1]}");
                 AGV1Cordinate = new Vector2Int((int)dataObject.location[0], (int)dataObject.location[1]);
+                
             }
             else
             {
@@ -48,7 +53,7 @@ public class WebSocketDataReceive : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            ws.Send("Hello");
+            ws.Send("Hello"); //Test
         }
     }
 
