@@ -66,7 +66,7 @@ public class WebSocketDataReceive : MonoBehaviour
 
     public Vector2Int ReturnAGVLocation(int id)
     {
-        if (id==1)
+        if (id==0)
         {
             return AGV1Cordinate;
         }

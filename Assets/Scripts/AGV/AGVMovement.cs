@@ -22,8 +22,8 @@ public class AGVMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AGVController = GetComponent<AGVController>();
-        webSocketDataReceive = GetComponent<WebSocketDataReceive>();
+        AGVController = FindObjectOfType<AGVController>();
+        webSocketDataReceive = FindObjectOfType<WebSocketDataReceive>();
     }
 
     // Update is called once per frame

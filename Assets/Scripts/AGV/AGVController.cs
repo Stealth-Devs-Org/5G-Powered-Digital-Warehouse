@@ -19,8 +19,9 @@ public class AGVController : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {   getLocationOfSphere = GetComponent<GetLocationOfSphere>();
-        webSocketDataReceive = GetComponent<WebSocketDataReceive>();
+    {   
+        getLocationOfSphere = FindObjectOfType<GetLocationOfSphere>();
+        webSocketDataReceive = FindObjectOfType<WebSocketDataReceive>();
 
         numberOfAGVs = webSocketDataReceive.numberOfAGV;
 
@@ -28,6 +29,12 @@ public class AGVController : MonoBehaviour
         for (int i = 0; i < numberOfAGVs;  i++)
         {
             AGVPresent[i] = false;  //initially no AGV present...
+        }
+
+        agvLocations = new Vector2Int [numberOfAGVs];
+        for (int i = 0; i < numberOfAGVs;  i++)
+        {
+            agvLocations[i] = new Vector2Int (0,0);  //initially no AGV present...
         }
 
         
