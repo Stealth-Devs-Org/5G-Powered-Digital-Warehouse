@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 
 public class AGVController : MonoBehaviour
 {
@@ -50,7 +52,7 @@ public class AGVController : MonoBehaviour
             if (webSocketDataReceive.isDataReceivedforAGVs[i] == true)
             {
                 agvLocations[i] = getLocationOfSphere.ReturnLocationCordinate(webSocketDataReceive.ReturnAGVLocation(i));
-                Debug.Log("AGV Location: " + agvLocations[i]);
+                Debug.Log("AGV"+ (i+1).ToString() + " Location: " + agvLocations[i]);
             }
         }
 
