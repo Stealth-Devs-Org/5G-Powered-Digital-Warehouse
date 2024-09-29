@@ -7,7 +7,10 @@ public class AGVController : MonoBehaviour
 
     GetLocationOfSphere getLocationOfSphere;
     WebSocketDataReceive webSocketDataReceive;
+    public int numberOfAGV = 4;
 
+    public bool[] AGVPresent;
+    
     
 
     // Start is called before the first frame update
@@ -15,6 +18,13 @@ public class AGVController : MonoBehaviour
     {
         getLocationOfSphere = GetComponent<GetLocationOfSphere>();
         webSocketDataReceive = GetComponent<WebSocketDataReceive>();
+
+        AGVPresent = new bool[numberOfAGV];
+        for (int i = 0; i < numberOfAGV; i++)
+        {
+            AGVPresent[i] = false;  //initially no AGV present...
+        }
+
         
     }
 

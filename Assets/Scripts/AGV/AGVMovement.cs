@@ -6,10 +6,10 @@ using UnityEngine;
 public class AGVMovement : MonoBehaviour
 {
     AGVController AGVController;
-    public int numberOfAGV = 4;
+    
     public float speedofAGV = 5.0f;
     public float rotationSpeed = 0.5f;
-    private bool[] AGVPresent;
+    
 
     
 
@@ -22,26 +22,19 @@ public class AGVMovement : MonoBehaviour
     void Start()
     {
         AGVController = GetComponent<AGVController>();
-
-        AGVPresent = new bool[numberOfAGV];
-        for (int i = 0; i < numberOfAGV; i++)
-        {
-            AGVPresent[i] = false;  //initially no AGV present...
-        }
-
-        
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        for (int i = 0; i < numberOfAGV; i++)
+        for (int i = 0; i < AGVController.numberOfAGV; i++)
         {
-            if (AGVPresent[i])
+            if (AGVController.AGVPresent[i]==true)
             {
                 //MoveAGV(AGVController.AGVs[i].transform.position);
             }
+            
         }
         
 
