@@ -43,7 +43,7 @@ public class WebSocketDataReceive : MonoBehaviour
             
             if (dataObject != null && dataObject.location != null)
             {
-                isDataReceivedforAGVs[0] = true; //for now only 1 AGV
+                isDataReceivedforAGVs[0] = true; //for now only 1 web server is connected
                 Debug.Log($"Location: x={dataObject.location[0]}, y={dataObject.location[1]}");
                 AGV1Cordinate = new Vector2Int((int)dataObject.location[0], (int)dataObject.location[1]);
             }
@@ -54,16 +54,16 @@ public class WebSocketDataReceive : MonoBehaviour
         };
     }
 
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            ws.Send("Hello"); //Test
-        }
-    }
+    // private void Update()
+    // {
+    //     if (Input.GetKey(KeyCode.Space))
+    //     {
+    //         ws.Send("Hello"); //Test
+    //     }
+    // }
 
 
-    Vector2Int ReturnAGVLocation(int id)
+    public Vector2Int ReturnAGVLocation(int id)
     {
         if (id==1)
         {

@@ -11,6 +11,8 @@ public class AGVController : MonoBehaviour
 
     public bool[] AGVPresent;
 
+    public Vector2Int[] agvLocations;
+
     public GameObject agvPrefab;
     
     
@@ -35,13 +37,28 @@ public class AGVController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+        for (int i=0; i<numberOfAGV; i++)
+        {
+            if (webSocketDataReceive.isDataReceivedforAGVs[i] == true)
+            {
+                agvLocations[i] = getLocationOfSphere.ReturnLocationCordinate(webSocketDataReceive.ReturnAGVLocation(i));
+                Debug.Log("AGV Location: " + agvLocations[i]);
+            }
+        }
+
+
+
+
+
         for (int i = 0; i < numberOfAGV; i++)
         {
             if (webSocketDataReceive.isDataReceivedforAGVs[i] == true)
             {
                 if (AGVPresent[i] == false)
                 {
-                    SpawnAGVInLocation(location);
+                    //SpawnAGVInLocation(location);
                     AGVPresent[i] = true;
                 }
 
@@ -66,5 +83,5 @@ public class AGVController : MonoBehaviour
         Instantiate(agvPrefab, spawnPosition, Quaternion.identity);
     }
 
-    
+
 }

@@ -11,11 +11,11 @@ public class GetLocationOfSphere : MonoBehaviour
 
     void Update()
     {
-        location = ReturnLocationCordinate(spherelocation);
-        Debug.Log("Location: " + location);
+        //location = ReturnLocationCordinate(spherelocation);
+        //Debug.Log("Location: " + location);
     }
 
-    Vector2Int ReturnLocationCordinate(Vector2Int spherelocation) //Return real location of shpere by giving coordinate (0,-1)
+    public Vector2Int ReturnLocationCordinate(Vector2Int spherelocation) //Return real location of shpere by giving coordinate (0,-1)
     {
         foreach (Transform parent in grandParent)
         {

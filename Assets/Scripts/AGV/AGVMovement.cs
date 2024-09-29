@@ -35,7 +35,7 @@ public class AGVMovement : MonoBehaviour
             if (AGVController.AGVPresent[i]==true)
             {
 
-                MoveAGV(webSocketDataReceive.AGVs[i].transform.position);
+                //MoveAGV();
                 
             
                 //MoveAGV(AGVController.AGVs[i].transform.position);
