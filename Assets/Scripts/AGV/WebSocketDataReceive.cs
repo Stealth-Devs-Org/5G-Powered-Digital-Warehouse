@@ -14,6 +14,7 @@ public class WebSocketDataReceive : MonoBehaviour
     string DataReceived;
 
     public bool isDataReceived = false;
+    
 
     [System.Serializable]
     public class DataObject   //own JSON

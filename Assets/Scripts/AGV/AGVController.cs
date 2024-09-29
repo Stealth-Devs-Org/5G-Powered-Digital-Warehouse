@@ -21,8 +21,8 @@ public class AGVController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        webSocketDataReceive. 
-        getLocationOfSphere.GetLocation();
+        
+      
 
         
     }

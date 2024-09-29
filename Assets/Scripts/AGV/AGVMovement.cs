@@ -35,11 +35,12 @@ public class AGVMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         for (int i = 0; i < numberOfAGV; i++)
         {
             if (AGVPresent[i])
             {
-                MoveAGV(AGVController.AGVs[i].transform.position);
+                //MoveAGV(AGVController.AGVs[i].transform.position);
             }
         }
         
