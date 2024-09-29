@@ -31,6 +31,15 @@ public class AGVController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (webSocketDataReceive.isDataReceived)
+        {
+            //Debug.Log("Data Received");
+            for (int i = 0; i < numberOfAGV; i++)
+            {
+                AGVPresent[0] = true;
+            }
+        
+        }
         
       
 
