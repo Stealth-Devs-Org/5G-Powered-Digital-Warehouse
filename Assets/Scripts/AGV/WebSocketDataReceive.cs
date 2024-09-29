@@ -6,13 +6,14 @@ using System.Numerics;
 public class WebSocketDataReceive : MonoBehaviour
 {
     public string url;
+    public int numberOfAGV = 4;
     private Vector2Int AGV1Cordinate;
     private Vector2Int AGV2Cordinate;
     private Vector2Int AGV3Cordinate;
     private Vector2Int AGV4Cordinate;
     WebSocket ws;
     string DataReceived;
-    public int numberOfAGV = 4;
+    
     public bool[] isDataReceivedforAGVs;
     [System.Serializable]
     public class DataObject   //own JSON
@@ -44,7 +45,7 @@ public class WebSocketDataReceive : MonoBehaviour
             if (dataObject != null && dataObject.location != null)
             {
                 isDataReceivedforAGVs[0] = true; //for now only 1 web server is connected
-                Debug.Log($"Location: x={dataObject.location[0]}, y={dataObject.location[1]}");
+                //Debug.Log($"Location: x={dataObject.location[0]}, y={dataObject.location[1]}");
                 AGV1Cordinate = new Vector2Int((int)dataObject.location[0], (int)dataObject.location[1]);
             }
             else

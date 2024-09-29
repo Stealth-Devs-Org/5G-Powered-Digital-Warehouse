@@ -30,18 +30,18 @@ public class AGVMovement : MonoBehaviour
     void Update()
     {
         
-        for (int i = 0; i < webSocketDataReceive.numberOfAGV; i++)
-        {
-            if (AGVController.AGVPresent[i]==true)
-            {
+        // for (int i = 0; i < webSocketDataReceive.numberOfAGV; i++)
+        // {
+        //     if (AGVController.AGVPresent[i]==true)
+        //     {
 
-                //MoveAGV();
+        //         //MoveAGV();
                 
             
-                //MoveAGV(AGVController.AGVs[i].transform.position);
-            }
+        //         //MoveAGV(AGVController.AGVs[i].transform.position);
+        //     }
 
-        }
+        // }
         
 
         // gameObject.transform.Translate(Vector3.forward * Time.deltaTime * speedofAGV);  
