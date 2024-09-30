@@ -4306,7 +4306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b1b4f2eaa364f547b6f0ac43ad56b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  url: ws://localhost:8080
+  url: ws://10.10.4.139:8080/AGV1
   numberOfAGV: 4
   isDataReceivedforAGVs: 
 --- !u!1 &1510215203 stripped
