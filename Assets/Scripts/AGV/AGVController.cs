@@ -52,7 +52,8 @@ public class AGVController : MonoBehaviour
             if (webSocketDataReceive.isDataReceivedforAGVs[i] == true)
             {
                 agvLocations[i] = getLocationOfSphere.ReturnLocationCordinate(webSocketDataReceive.ReturnAGVLocation(i));
-                Debug.Log("AGV"+ (i+1).ToString() + " Location: " + agvLocations[i]);
+                //Debug.Log("AGV"+ (i+1).ToString() + " Location: " + agvLocations[i]);
+                Debug.Log("Test");
             }
         }
 

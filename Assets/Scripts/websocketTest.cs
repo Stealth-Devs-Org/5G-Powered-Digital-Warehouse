@@ -16,7 +16,7 @@ public class WebSocketWorker : MonoBehaviour
         ws.OnMessage += (sender, e) =>
         {
             DataReceived = e.Data;
-            Debug.Log(DataReceived);
+            //Debug.Log(DataReceived);
         };
     }
 
