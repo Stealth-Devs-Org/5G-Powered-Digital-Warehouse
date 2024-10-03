@@ -15,13 +15,18 @@ public class WebSocketDataReceive : MonoBehaviour
     string DataReceived;
     
     public bool[] isDataReceivedforAGVs;
+    public int AGV1Status;
+
+    public int AGV1ID=1;
     [System.Serializable]
     public class DataObject   //own JSON
     {
-        public int agv_id;
+        //public int[] agvIDs;
         public float[] location;
         public int segment;
         public int status;
+
+        
         public string timestamp;
     }
 
@@ -41,13 +46,16 @@ public class WebSocketDataReceive : MonoBehaviour
             
             DataReceived = e.Data;
             DataObject dataObject = JsonUtility.FromJson<DataObject>(DataReceived);
+            //Debug.Log("Status: " + dataObject.status);
             
             if (dataObject != null && dataObject.location != null)
             {
                 
                 isDataReceivedforAGVs[0] = true; //for now only 1 web server is connected
                 //Debug.Log($"Location: x={dataObject.location[0]}, y={dataObject.location[1]}");
+                AGV1ID = 1 ; //for now only 1 AGV is connected
                 AGV1Cordinate = new Vector2Int((int)dataObject.location[0], (int)dataObject.location[1]);
+                AGV1Status = dataObject.status;
             }
             else
             {
@@ -75,6 +83,20 @@ public class WebSocketDataReceive : MonoBehaviour
         else
         {
             return new Vector2Int(0, 0);
+        }
+        
+    }
+
+
+        public int ReturnAGVStatus(int id)
+    {
+        if (id==0)
+        {
+            return AGV1Status;
+        }
+        else
+        {
+            return 0;
         }
         
     }

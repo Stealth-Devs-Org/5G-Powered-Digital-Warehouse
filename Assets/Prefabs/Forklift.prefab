@@ -184,6 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedofAGV: 5
   rotationSpeed: 50
+  ID: 100
 --- !u!1 &382706229767617926
 GameObject:
   m_ObjectHideFlags: 0

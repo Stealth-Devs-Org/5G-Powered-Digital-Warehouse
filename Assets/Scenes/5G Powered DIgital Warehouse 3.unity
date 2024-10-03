@@ -4201,7 +4201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b1b4f2eaa364f547b6f0ac43ad56b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  url: ws://192.168.43.181:8765/agv
+  url: ws://127.0.0.1:8765/agv
   numberOfAGV: 4
   isDataReceivedforAGVs: 
 --- !u!1 &1510215203 stripped
@@ -10473,9 +10473,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8332473677070508444, guid: b54b90764a3597c47949ec2c0b565105, type: 3}
-    - {fileID: 3887287735224736687, guid: b54b90764a3597c47949ec2c0b565105, type: 3}
+    - target: {fileID: 8332473677070508444, guid: b54b90764a3597c47949ec2c0b565105, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
