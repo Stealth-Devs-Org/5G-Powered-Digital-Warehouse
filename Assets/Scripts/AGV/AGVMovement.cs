@@ -33,80 +33,81 @@ public class AGVMovement : MonoBehaviour
         ID = AGVController.agvID[0];
 
         //gameObject.name = "AGV" + ID.ToString();
-        StartCoroutine(AGVCoroutine());
+    
     }
 
     // Update is called once per frame
     void Update()
     {   
-        // if (isrenamed==false && ID<100)
-        //     {
-        //     gameObject.name = "AGV" + ID.ToString();
-        //     isrenamed = true;
-        //     }
+        if (isrenamed==false && ID<100)
+            {
+            gameObject.name = "AGV" + ID.ToString();
+            isrenamed = true;
+            }
 
 
-        // //Debug.Log("AGV ID: " + ID);
+        //Debug.Log("AGV ID: " + ID);
 
-        // if (ID<100) 
-        // {
+        if (ID<100) 
+        {
             
 
-        //     //0: idle, 1: moving forward, 2: Loading, 3: Unloading, 4: Charging, 5:Turning Right, 6:Turning Left, 7:Turning Back, 8:Turning Completed,
+            //0: idle, 1: moving forward, 2: Loading, 3: Unloading, 4: Charging, 5:Turning Right, 6:Turning Left, 7:Turning Back, 8:Turning Completed,
 
-        // if (AGVController.AGVPresent[ID-1] == true)
-        // {
-        //     if (AGVController.agvStatus[ID-1] == 0) 
-        //     {
+        if (AGVController.AGVPresent[ID-1] == true)
+        {
+            if (AGVController.agvStatus[ID-1] == 0) 
+            {
                
-        //     }
-        //     else if (AGVController.agvStatus[ID-1] == 1) // AGV moving forward
-        //     {
-        //         MoveAGVForwardBackward(AGVController.agvLocations[ID-1]);
-        //     }
-        //     else if (AGVController.agvStatus[ID-1] == 2) 
-        //     {
+            }
+            else if (AGVController.agvStatus[ID-1] == 1) // AGV moving forward
+            {
+                MoveAGVForwardBackward(AGVController.agvLocations[ID-1]);
+            }
+            else if (AGVController.agvStatus[ID-1] == 2) 
+            {
                 
-        //     }
-        //     else if (AGVController.agvStatus[ID-1] == 3) 
-        //     {
+            }
+            else if (AGVController.agvStatus[ID-1] == 3) 
+            {
                 
-        //     }
-        //     else if (AGVController.agvStatus[ID-1] == 4) // Charging
-        //     {
-        //         // Handle charging case
-        //     }
-        //     else if (AGVController.agvStatus[ID-1] == 5) // Turning Right
-        //     {
-        //         TurnAGVRight();
+            }
+            else if (AGVController.agvStatus[ID-1] == 4) // Charging
+            {
+                // Handle charging case
+            }
+            else if (AGVController.agvStatus[ID-1] == 5) // Turning Right
+            {
+                TurnAGVRight();
                 
-        //     }
-        //     else if (AGVController.agvStatus[ID-1] == 6) // Turning Left
-        //     {
-        //         TurnAGVLeft();
+            }
+            else if (AGVController.agvStatus[ID-1] == 6) // Turning Left
+            {
+                TurnAGVLeft();
                 
-        //     }
-        //     else if (AGVController.agvStatus[ID-1] == 7) // Turning Back
-        //     {
-        //         TurnAGVRight();
-        //     }
-        //     else if (AGVController.agvStatus[ID-1] == 8) // Turning Completed
-        //     {
+            }
+            else if (AGVController.agvStatus[ID-1] == 7) // Turning Back
+            {
+                TurnAGVRight();
+            }
+            else if (AGVController.agvStatus[ID-1] == 8) // Turning Completed
+            {
                
-        //     }
-        //     else if (AGVController.agvStatus[ID-1] == 9) // Any other stop condition
-        //     {
-        
-        //     }
-        //     else
-        //     {
+            }
+            else if (AGVController.agvStatus[ID-1] == 9) // Any other stop condition
+            {
                 
-        //     }
-        // }
+            }
+            else
+            {
+                
+            }
+        }
 
 
   
-        // }
+        }
+
 
     }
 
@@ -163,70 +164,6 @@ public class AGVMovement : MonoBehaviour
 
 
 
-    }
-
-
-
-
-    private IEnumerator AGVCoroutine()
-    {
-        yield return new WaitForSeconds(1);
-        
-        if (isrenamed == false && ID < 100)
-        {
-            gameObject.name = "AGV" + ID.ToString();
-            isrenamed = true;
-        }
-
-        // Debug.Log("AGV ID: " + ID);
-
-        while (ID < 100)
-        {
-            // Check if the AGV is present
-            if (AGVController.AGVPresent[ID - 1] == true)
-            {
-                // Handle the AGV status
-                switch (AGVController.agvStatus[ID - 1])
-                {
-                    case 0:
-                        // Idle state
-                        break;
-                    case 1: // AGV moving forward
-                        MoveAGVForwardBackward(AGVController.agvLocations[ID - 1]);
-                        break;
-                    case 2:
-                        // Loading state
-                        break;
-                    case 3:
-                        // Unloading state
-                        break;
-                    case 4: // Charging
-                        // Handle charging case
-                        break;
-                    case 5: // Turning Right
-                        TurnAGVRight();
-                        break;
-                    case 6: // Turning Left
-                        TurnAGVLeft();
-                        break;
-                    case 7: // Turning Back
-                        TurnAGVLeft(); // Assuming you have a method for turning back
-                        break;
-                    case 8: // Turning Completed
-                        // Handle completed turning
-                        break;
-                    case 9: // Any other stop condition
-                        // Handle stop condition
-                        break;
-                    default:
-                        // Handle unexpected status
-                        break;
-                }
-            }
-
-            // Wait for the next frame before checking again
-            yield return null;
-        }
     }
 
 

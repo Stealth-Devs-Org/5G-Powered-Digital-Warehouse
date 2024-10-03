@@ -59,42 +59,42 @@ public class AGVController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // for (int i = 0; i < numberOfAGVs; i++)
-        // {
-        //     if (webSocketDataReceive.isDataReceivedforAGVs[i] == true)
-        //     {
-        //         if (AGVPresent[i] == false)
-        //         {
-        //             SpawnAGVInLocation(agvLocations[i]);    // Spawn AGV at the given location
-        //             AGVPresent[i] = true;
-        //         }
+        for (int i = 0; i < numberOfAGVs; i++)
+        {
+            if (webSocketDataReceive.isDataReceivedforAGVs[i] == true)
+            {
+                if (AGVPresent[i] == false)
+                {
+                    SpawnAGVInLocation(agvLocations[i]);    // Spawn AGV at the given location
+                    AGVPresent[i] = true;
+                }
 
 
-        //     }
+            }
 
-        //     else 
-        //     {
-        //         // show red alerts connection lost
-        //     }
+            else 
+            {
+                // show red alerts connection lost
+            }
  
-        // }
+        }
 
 
 
-        // agvID [0]= webSocketDataReceive.AGV1ID;
+        agvID [0]= webSocketDataReceive.AGV1ID;
        
 
         
-        // for (int i=0; i<numberOfAGVs; i++)
-        // {
-        //     if (webSocketDataReceive.isDataReceivedforAGVs[i] == true)
-        //     {
-        //         agvLocations[i] = getLocationOfSphere.ReturnLocationCordinate(webSocketDataReceive.ReturnAGVLocation(i));
-        //         agvStatus[i]= webSocketDataReceive.ReturnAGVStatus(i);
-        //         //Debug.Log("AGV"+ (i+1).ToString() + " Location: " + agvLocations[i]);  // WORLD COORDINATE OF AGV
-        //         //Debug.Log("Test");
-        //     }
-        // }
+        for (int i=0; i<numberOfAGVs; i++)
+        {
+            if (webSocketDataReceive.isDataReceivedforAGVs[i] == true)
+            {
+                agvLocations[i] = getLocationOfSphere.ReturnLocationCordinate(webSocketDataReceive.ReturnAGVLocation(i));
+                agvStatus[i]= webSocketDataReceive.ReturnAGVStatus(i);
+                //Debug.Log("AGV"+ (i+1).ToString() + " Location: " + agvLocations[i]);  // WORLD COORDINATE OF AGV
+                //Debug.Log("Test");
+            }
+        }
 
 
     }
@@ -114,40 +114,6 @@ public class AGVController : MonoBehaviour
         Instantiate(agvPrefab, spawnPosition, Quaternion.identity);
     }
 
-
-
-
-    private IEnumerator UpdateAGVsCoroutine()
-    {
-        yield return new WaitForSeconds(0.6f);
-        while (true) // Run indefinitely; you can add a condition to break this loop if needed
-        {
-            // Update AGVs based on received WebSocket data
-            for (int i = 0; i < numberOfAGVs; i++)
-            {
-                if (webSocketDataReceive.isDataReceivedforAGVs[i])
-                {
-                    if (!AGVPresent[i])
-                    {
-                        SpawnAGVInLocation(agvLocations[i]); // Spawn AGV at the given location
-                        AGVPresent[i] = true;
-                    }
-
-                    // Update AGV location and status
-                    agvLocations[i] = getLocationOfSphere.ReturnLocationCordinate(webSocketDataReceive.ReturnAGVLocation(i));
-                    agvStatus[i] = webSocketDataReceive.ReturnAGVStatus(i);
-                }
-                else
-                {
-                    // Show red alerts for connection lost
-                    ShowConnectionLostAlert(i);
-                }
-            }
-
-            // Optional: Add a delay to avoid overloading with updates
-            
-        }
-    }
 
 
 }
