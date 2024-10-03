@@ -32,6 +32,7 @@ public class WebSocketDataReceive : MonoBehaviour
 
     private void Start()
     {
+        numberOfAGV = 4;
         isDataReceivedforAGVs = new bool[numberOfAGV];
         for (int i = 0; i < numberOfAGV; i++)
         {

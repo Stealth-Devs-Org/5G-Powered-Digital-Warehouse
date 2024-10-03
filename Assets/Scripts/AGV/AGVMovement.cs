@@ -10,7 +10,7 @@ public class AGVMovement : MonoBehaviour
     AGVController AGVController;
     
     public float speedofAGV = 1.5f;
-    public float rotationSpeed = 0.5f;
+    public float rotationSpeed = 150f;
     //WebSocketDataReceive webSocketDataReceive;
     
     public int ID = 100;  // not assigned yet...
@@ -38,7 +38,8 @@ public class AGVMovement : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   
+    {  
+        Debug.Log(ID);
         if (isrenamed==false && ID<100)
             {
             gameObject.name = "AGV" + ID.ToString();
@@ -48,7 +49,7 @@ public class AGVMovement : MonoBehaviour
 
         //Debug.Log("AGV ID: " + ID);
 
-        if (ID<100) 
+        if (ID<100 && ID>0) 
         {
             
 

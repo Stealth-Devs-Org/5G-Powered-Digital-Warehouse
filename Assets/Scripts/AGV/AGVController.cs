@@ -23,7 +23,7 @@ public class AGVController : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {   
+    {   numberOfAGVs = 4;
         getLocationOfSphere = FindObjectOfType<GetLocationOfSphere>();
         webSocketDataReceive = FindObjectOfType<WebSocketDataReceive>();
 
