@@ -2245,7 +2245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfAGVs: 4
   AGVPresent: 00000000
-  agvID: 00000000000000000000000000000000
+  agvID: 01000000000000000000000000000000
   agvLocations:
   - {x: 0, y: 0}
   - {x: 0, y: 0}
@@ -10505,10 +10505,6 @@ PrefabInstance:
     - target: {fileID: 3221307035905404788, guid: b54b90764a3597c47949ec2c0b565105, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8332473677070508444, guid: b54b90764a3597c47949ec2c0b565105, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

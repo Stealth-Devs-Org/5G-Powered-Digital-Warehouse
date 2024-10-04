@@ -17,6 +17,8 @@ public class AGVMovement : MonoBehaviour
 
     private bool isrenamed = false;
 
+    private Animator anim;
+
     
 
     
@@ -28,6 +30,7 @@ public class AGVMovement : MonoBehaviour
     void Start()
     {
         AGVController = FindObjectOfType<AGVController>();
+        anim = GetComponent<Animator>();
         //webSocketDataReceive = FindObjectOfType<WebSocketDataReceive>();
         Debug.Log("AGV ID: " + AGVController.agvID[0]);
         ID = AGVController.agvID[0];
@@ -59,48 +62,57 @@ public class AGVMovement : MonoBehaviour
         {
             if (AGVController.agvStatus[ID-1] == 0) 
             {
-               
+                anim.SetBool("idle", true);
             }
             else if (AGVController.agvStatus[ID-1] == 1) // AGV moving forward
             {
+                anim.SetBool("moving", true);
                 MoveAGVForwardBackward(AGVController.agvLocations[ID-1]);
             }
             else if (AGVController.agvStatus[ID-1] == 2) 
             {
                 
-            }
-            else if (AGVController.agvStatus[ID-1] == 3) 
-            {
+                anim.SetBool("Load&Unload1st", true);
                 
             }
-            else if (AGVController.agvStatus[ID-1] == 4) // Charging
-            {
-                // Handle charging case
-            }
+            // else if (AGVController.agvStatus[ID-1] == 3) 
+            // {
+
+
+                
+            // }
+            // else if (AGVController.agvStatus[ID-1] == 4) // Charging
+            // {
+            //     // Handle charging case
+            // }
             else if (AGVController.agvStatus[ID-1] == 5) // Turning Right
             {
                 TurnAGVRight();
+                anim.SetBool("turning", true);
                 
             }
             else if (AGVController.agvStatus[ID-1] == 6) // Turning Left
             {
                 TurnAGVLeft();
+                anim.SetBool("turning", true);
                 
             }
             else if (AGVController.agvStatus[ID-1] == 7) // Turning Back
             {
                 TurnAGVRight();
-            }
-            else if (AGVController.agvStatus[ID-1] == 8) // Turning Completed
-            {
-               
-            }
-            else if (AGVController.agvStatus[ID-1] == 9) // Any other stop condition
-            {
+                anim.SetBool("turning", true);
+
                 
+
             }
+            // else if (AGVController.agvStatus[ID-1] == 8) // Turning Completed
+            // {
+               
+            // }
+
             else
             {
+                anim.SetBool("idle", true);
                 
             }
         }
