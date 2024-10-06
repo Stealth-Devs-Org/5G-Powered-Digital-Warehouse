@@ -2,6 +2,7 @@ using WebSocketSharp;
 using System.Collections;
 using UnityEngine;
 using System.Numerics;
+using Unity.VisualScripting;
 
 public class WebSocketDataReceive : MonoBehaviour
 {
@@ -11,13 +12,17 @@ public class WebSocketDataReceive : MonoBehaviour
     private Vector2Int AGV2Cordinate;
     private Vector2Int AGV3Cordinate;
     private Vector2Int AGV4Cordinate;
+    
     WebSocket ws;
     string DataReceived;
+
     
     public bool[] isDataReceivedforAGVs;
     public int AGV1Status;
 
     public int AGV1ID=1;
+
+    public bool receivedNextData = false;
     [System.Serializable]
     public class DataObject   //own JSON
     {
@@ -26,8 +31,13 @@ public class WebSocketDataReceive : MonoBehaviour
         public int segment;
         public int status;
 
+
+
         
         public string timestamp;
+
+
+        
     }
 
     private void Start()
@@ -57,12 +67,17 @@ public class WebSocketDataReceive : MonoBehaviour
                 AGV1ID = 1 ; //for now only 1 AGV is connected
                 AGV1Cordinate = new Vector2Int((int)dataObject.location[0], (int)dataObject.location[1]);
                 AGV1Status = dataObject.status;
+                //Debug.Log(AGV1Cordinate);
+                receivedNextData = true;
+                
+
             }
             else
             {
                 
                 Debug.LogWarning("Failed to parse AGV data.");
             }
+            
         };
     }
 

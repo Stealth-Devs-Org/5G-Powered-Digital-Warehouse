@@ -19,6 +19,15 @@ public class AGVMovement : MonoBehaviour
 
     private Animator anim;
 
+
+
+
+    // for turning
+    private float currentRotationAngle = 0f; // Tracks the current rotation angle
+    private bool isTurningLeft = false;      // Keeps track of whether AGV is turning left
+    private bool isTurningRight = false;     // Keeps track of whether AGV is turning right
+    private const float targetRotationAngle = 90f;  // The angle we want to rotate by
+
     
 
     
@@ -147,25 +156,51 @@ public class AGVMovement : MonoBehaviour
 
 
 
-    public void TurnAGVLeft()
+public void TurnAGVLeft()
+{
+    if (!isTurningLeft)
     {
-        
-        Vector3 targetDirection = Quaternion.Euler(0, -rotationSpeed * Time.deltaTime, 0) * transform.forward;
-
-        
-        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, rotationSpeed * Time.deltaTime, 0.0f);
-        transform.rotation = Quaternion.LookRotation(newDirection);
+        currentRotationAngle = 0f; // Reset angle tracking when starting to turn
+        isTurningLeft = true; // Mark as turning
     }
 
-    public void TurnAGVRight()
+    if (currentRotationAngle < targetRotationAngle)
     {
+        float step = rotationSpeed * Time.deltaTime;
+        float angle = Mathf.Min(step, targetRotationAngle - currentRotationAngle);  // Ensure we don't overshoot 90 degrees
         
-        Vector3 targetDirection = Quaternion.Euler(0, rotationSpeed * Time.deltaTime, 0) * transform.forward;
+        transform.Rotate(Vector3.up, -angle);  // Rotate to the left (negative angle)
 
-       
-        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, rotationSpeed * Time.deltaTime, 0.0f);
-        transform.rotation = Quaternion.LookRotation(newDirection);
+        currentRotationAngle += angle;  // Accumulate rotated angle
     }
+    else
+    {
+        isTurningLeft = false; // Turn completed
+    }
+}
+
+public void TurnAGVRight()
+{
+    if (!isTurningRight)
+    {
+        currentRotationAngle = 0f; // Reset angle tracking when starting to turn
+        isTurningRight = true; // Mark as turning
+    }
+
+    if (currentRotationAngle < targetRotationAngle)
+    {
+        float step = rotationSpeed * Time.deltaTime;
+        float angle = Mathf.Min(step, targetRotationAngle - currentRotationAngle);  // Ensure we don't overshoot 90 degrees
+        
+        transform.Rotate(Vector3.up, angle);  // Rotate to the right (positive angle)
+
+        currentRotationAngle += angle;  // Accumulate rotated angle
+    }
+    else
+    {
+        isTurningRight = false; // Turn completed
+    }
+}
 
 
 

@@ -59,41 +59,49 @@ public class AGVController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < numberOfAGVs; i++)
+        if (webSocketDataReceive.receivedNextData)
         {
-            if (webSocketDataReceive.isDataReceivedforAGVs[i] == true)
+            for (int i = 0; i < numberOfAGVs; i++)
             {
-                if (AGVPresent[i] == false)
+                if (webSocketDataReceive.isDataReceivedforAGVs[i] == true)
                 {
-                    SpawnAGVInLocation(agvLocations[i]);    // Spawn AGV at the given location
-                    AGVPresent[i] = true;
+                    if (AGVPresent[i] == false)
+                    {
+                        SpawnAGVInLocation(agvLocations[i]);    // Spawn AGV at the given location
+                        AGVPresent[i] = true;
+                    }
+
+
                 }
 
-
+                else 
+                {
+                    // show red alerts connection lost
+                }
+    
             }
 
-            else 
-            {
-                // show red alerts connection lost
-            }
- 
-        }
 
 
-
-        agvID [0]= webSocketDataReceive.AGV1ID;
-       
-
+            agvID [0]= webSocketDataReceive.AGV1ID;
         
-        for (int i=0; i<numberOfAGVs; i++)
-        {
-            if (webSocketDataReceive.isDataReceivedforAGVs[i] == true)
+
+            
+            for (int i=0; i<numberOfAGVs; i++)
             {
-                agvLocations[i] = getLocationOfSphere.ReturnLocationCordinate(webSocketDataReceive.ReturnAGVLocation(i));
-                agvStatus[i]= webSocketDataReceive.ReturnAGVStatus(i);
-                //Debug.Log("AGV"+ (i+1).ToString() + " Location: " + agvLocations[i]);  // WORLD COORDINATE OF AGV
-                //Debug.Log("Test");
+                if (webSocketDataReceive.isDataReceivedforAGVs[i] == true)
+                {
+                    Vector2Int receirvedCordinate = webSocketDataReceive.ReturnAGVLocation(i);
+                    agvLocations[i] = getLocationOfSphere.ReturnLocationCordinate(receirvedCordinate);
+                    agvStatus[i]= webSocketDataReceive.ReturnAGVStatus(i);
+                    Debug.Log("AGV"+ (i+1).ToString() + " Cordinate: " + receirvedCordinate.ToString() +" World Location: " + agvLocations[i]);  // WORLD COORDINATE OF AGV
+                    //Debug.Log("Test");
+                }
             }
+
+            webSocketDataReceive.receivedNextData = false;
+
+
         }
 
 

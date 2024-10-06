@@ -4233,6 +4233,7 @@ MonoBehaviour:
   isDataReceivedforAGVs: 00000000
   AGV1Status: 0
   AGV1ID: 1
+  receivedNextData: 0
 --- !u!1 &1510215203 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5931887da0c568c4bbf1af8d8e318b19, type: 3}
@@ -10505,6 +10506,14 @@ PrefabInstance:
     - target: {fileID: 3221307035905404788, guid: b54b90764a3597c47949ec2c0b565105, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8332473677070508444, guid: b54b90764a3597c47949ec2c0b565105, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8332473677070508444, guid: b54b90764a3597c47949ec2c0b565105, type: 3}
+      propertyPath: speedofAGV
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
