@@ -45,13 +45,16 @@ public class AGVMovement : MonoBehaviour
         ID = AGVController.agvID[0];
 
         //gameObject.name = "AGV" + ID.ToString();
+
+
+        
     
     }
 
     // Update is called once per frame
     void Update()
     {  
-        Debug.Log(ID);
+        //Debug.Log(ID);
         if (isrenamed==false && ID<100)
             {
             gameObject.name = "AGV" + ID.ToString();
@@ -121,7 +124,7 @@ public class AGVMovement : MonoBehaviour
 
             else
             {
-                anim.SetBool("idle", true);
+                //anim.SetBool("idle", true);
                 
             }
         }

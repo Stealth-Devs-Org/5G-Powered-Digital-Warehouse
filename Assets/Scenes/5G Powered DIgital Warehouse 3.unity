@@ -127,6 +127,23 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 293818481557989643, guid: b54b90764a3597c47949ec2c0b565105, type: 3}
   m_PrefabInstance: {fileID: 5720386629900922198}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &31077343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31077338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ececf4080bde464ea10f6f57d332935, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedofAGV: 50
+  rotationSpeed: 150
+  ID: 100
+  url: ws://127.0.0.1:8765/agv
+  AGV1Status: 0
 --- !u!1 &33468107
 GameObject:
   m_ObjectHideFlags: 0
@@ -2238,7 +2255,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676307063}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a062ef0644c2a924892fa982f9106974, type: 3}
   m_Name: 
@@ -4215,7 +4232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c092a0e6d446d0741a298ea8fa240bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  url: ws://192.168.43.181:8765/agv
+  url: ws://127.0.0.1:8765/agv
 --- !u!114 &1500565344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4223,12 +4240,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1500565340}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b1b4f2eaa364f547b6f0ac43ad56b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  url: ws://127.0.0.1:8765/agv
+  url: 
   numberOfAGV: 4
   isDataReceivedforAGVs: 00000000
   AGV1Status: 0
@@ -10507,9 +10524,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3887287735224736687, guid: b54b90764a3597c47949ec2c0b565105, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8332473677070508444, guid: b54b90764a3597c47949ec2c0b565105, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8332473677070508444, guid: b54b90764a3597c47949ec2c0b565105, type: 3}
       propertyPath: speedofAGV
@@ -10518,7 +10539,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 293818481557989643, guid: b54b90764a3597c47949ec2c0b565105, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 31077343}
   m_SourcePrefab: {fileID: 100100000, guid: b54b90764a3597c47949ec2c0b565105, type: 3}
 --- !u!1001 &6100881277091024383
 PrefabInstance:

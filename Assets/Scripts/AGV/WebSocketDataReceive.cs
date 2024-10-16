@@ -9,14 +9,8 @@ public class WebSocketDataReceive : MonoBehaviour
     public string url;
     public int numberOfAGV = 4;
     private Vector2Int AGV1Cordinate;
-    private Vector2Int AGV2Cordinate;
-    private Vector2Int AGV3Cordinate;
-    private Vector2Int AGV4Cordinate;
-    
     WebSocket ws;
     string DataReceived;
-
-    
     public bool[] isDataReceivedforAGVs;
     public int AGV1Status;
 
@@ -30,14 +24,7 @@ public class WebSocketDataReceive : MonoBehaviour
         public float[] location;
         public int segment;
         public int status;
-
-
-
-        
         public string timestamp;
-
-
-        
     }
 
     private void Start()
@@ -67,10 +54,8 @@ public class WebSocketDataReceive : MonoBehaviour
                 AGV1ID = 1 ; //for now only 1 AGV is connected
                 AGV1Cordinate = new Vector2Int((int)dataObject.location[0], (int)dataObject.location[1]);
                 AGV1Status = dataObject.status;
-                //Debug.Log(AGV1Cordinate);
+                Debug.Log(AGV1Cordinate);
                 receivedNextData = true;
-                
-
             }
             else
             {
@@ -81,13 +66,6 @@ public class WebSocketDataReceive : MonoBehaviour
         };
     }
 
-    // private void Update()
-    // {
-    //     if (Input.GetKey(KeyCode.Space))
-    //     {
-    //         ws.Send("Hello"); //Test
-    //     }
-    // }
 
 
     public Vector2Int ReturnAGVLocation(int id)
