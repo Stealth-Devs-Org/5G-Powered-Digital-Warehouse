@@ -1,32 +1,32 @@
-using WebSocketSharp;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+// using WebSocketSharp;
+// using System.Collections;
+// using System.Collections.Generic;
+// using UnityEngine;
 
-public class WebSocketWorker : MonoBehaviour
-{
-    public string url;
-    WebSocket ws;
-    string DataReceived;
+// public class WebSocketWorker : MonoBehaviour
+// {
+//     public string url;
+//     WebSocket ws;
+//     string DataReceived;
 
-    private void Start()
-    {
-        ws = new WebSocket(url);
-        ws.Connect();
-        ws.OnMessage += (sender, e) =>
-        {
-            DataReceived = e.Data;
-            //Debug.Log(DataReceived);
-        };
-    }
+//     private void Start()
+//     {
+//         ws = new WebSocket(url);
+//         ws.Connect();
+//         ws.OnMessage += (sender, e) =>
+//         {
+//             DataReceived = e.Data;
+//             //Debug.Log(DataReceived);
+//         };
+//     }
 
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            Debug.Log("Space key was pressed.");
-            ws.Send("Hello");
+//     private void Update()
+//     {
+//         if (Input.GetKey(KeyCode.Space))
+//         {
+//             Debug.Log("Space key was pressed.");
+//             ws.Send("Hello");
 
-        }
-    }
-}
+//         }
+//     }
+// }

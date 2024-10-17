@@ -127,14 +127,14 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 293818481557989643, guid: b54b90764a3597c47949ec2c0b565105, type: 3}
   m_PrefabInstance: {fileID: 5720386629900922198}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &31077343
+--- !u!114 &31077339
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 31077338}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ececf4080bde464ea10f6f57d332935, type: 3}
   m_Name: 
@@ -142,7 +142,7 @@ MonoBehaviour:
   speedofAGV: 50
   rotationSpeed: 150
   ID: 100
-  url: ws://127.0.0.1:8765/agv
+  url: ws://localhost:8765
   AGV1Status: 0
 --- !u!1 &33468107
 GameObject:
@@ -2261,15 +2261,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfAGVs: 4
-  AGVPresent: 00000000
-  agvID: 01000000000000000000000000000000
-  agvLocations:
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  agvStatus: 00000000000000000000000000000000
-  agvPrefab: {fileID: 31077338}
+  AGVPresent: 
+  agvID: 64000000640000006400000064000000
+  agvLocations: []
+  agvStatus: 
+  agvPrefab: {fileID: 0}
 --- !u!4 &676307065
 Transform:
   m_ObjectHideFlags: 0
@@ -4198,6 +4194,7 @@ GameObject:
   - component: {fileID: 1500565342}
   - component: {fileID: 1500565343}
   - component: {fileID: 1500565344}
+  - component: {fileID: 1500565345}
   m_Layer: 0
   m_Name: Websocket
   m_TagString: Untagged
@@ -4232,7 +4229,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c092a0e6d446d0741a298ea8fa240bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  url: ws://127.0.0.1:8765/agv
 --- !u!114 &1500565344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4240,17 +4236,29 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1500565340}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b1b4f2eaa364f547b6f0ac43ad56b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  url: 
+  url: ws://localhost:8765
   numberOfAGV: 4
-  isDataReceivedforAGVs: 00000000
+  isDataReceivedforAGVs: 
   AGV1Status: 0
   AGV1ID: 1
   receivedNextData: 0
+--- !u!114 &1500565345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500565340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d34428cdecad9fd41b02f2a510e5653c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1510215203 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5931887da0c568c4bbf1af8d8e318b19, type: 3}
@@ -10526,7 +10534,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3887287735224736687, guid: b54b90764a3597c47949ec2c0b565105, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8332473677070508444, guid: b54b90764a3597c47949ec2c0b565105, type: 3}
       propertyPath: m_Enabled
@@ -10542,7 +10550,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 293818481557989643, guid: b54b90764a3597c47949ec2c0b565105, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 31077343}
+      addedObject: {fileID: 31077339}
   m_SourcePrefab: {fileID: 100100000, guid: b54b90764a3597c47949ec2c0b565105, type: 3}
 --- !u!1001 &6100881277091024383
 PrefabInstance:

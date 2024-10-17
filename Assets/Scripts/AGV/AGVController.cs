@@ -91,10 +91,10 @@ public class AGVController : MonoBehaviour
             {
                 if (webSocketDataReceive.isDataReceivedforAGVs[i] == true)
                 {
-                    Vector2Int receirvedCordinate = webSocketDataReceive.ReturnAGVLocation(i);
-                    agvLocations[i] = getLocationOfSphere.ReturnLocationCordinate(receirvedCordinate);
+                    Vector2Int receivedCordinate = webSocketDataReceive.ReturnAGVLocation(i);
+                    agvLocations[i] = getLocationOfSphere.ReturnLocationCordinate(receivedCordinate);
                     agvStatus[i]= webSocketDataReceive.ReturnAGVStatus(i);
-                    Debug.Log("AGV"+ (i+1).ToString() + " Cordinate: " + receirvedCordinate.ToString() +" World Location: " + agvLocations[i]);  // WORLD COORDINATE OF AGV
+                    Debug.Log("AGV"+ (i+1).ToString() + " Cordinate: " + receivedCordinate.ToString() +" World Location: " + agvLocations[i]);  // WORLD COORDINATE OF AGV
                     //Debug.Log("Test");
                 }
             }
