@@ -408,7 +408,8 @@ public class AGVMovementTest : MonoBehaviour
         {
             DataObject dataObject = JsonUtility.FromJson<DataObject>(data);
             Vector2Int receivedCordinate = new Vector2Int((int)dataObject.location[0], (int)dataObject.location[1]);
-            AGV1Cordinate = getLocationOfSphere.ReturnLocationCordinate(receivedCordinate);
+            // AGV1Cordinate = getLocationOfSphere.ReturnLocationCordinate(receivedCordinate);
+            AGV1Cordinate = receivedCordinate;
             AGV1Status = dataObject.status;
             Debug.Log(AGV1Cordinate);
 
@@ -420,15 +421,32 @@ public class AGVMovementTest : MonoBehaviour
     }
 
 
-    private void MoveAGVForwardBackward(Vector2Int targetPosition)
+    // private void MoveAGVForwardBackward(Vector2Int targetPosition)
+    // {
+    //     Vector3 currentPosition = new Vector3(transform.position.x, transform.position.y,transform.position.z); // Get current position of the AGV
+    //     Vector3 targetPos = new Vector3(targetPosition.x,transform.position.y, targetPosition.y); // Convert the target position to Vector2
+
+    //     // Move the AGV towards the target position
+    //     transform.position = Vector3.MoveTowards(currentPosition, targetPos, Time.deltaTime * speedofAGV);
+    // }
+
+    public void MoveAGVForwardBackward(Vector2Int targetPosition)
     {
-        Vector3 currentPosition = new Vector3(transform.position.x, transform.position.y,transform.position.z); // Get current position of the AGV
-        Vector3 targetPos = new Vector3(targetPosition.x,transform.position.y, targetPosition.y); // Convert the target position to Vector2
 
-        // Move the AGV towards the target position
-        transform.position = Vector3.MoveTowards(currentPosition, targetPos, Time.deltaTime * speedofAGV);
+        Vector3 direction = new Vector3 (targetPosition.x,0,targetPosition.y) - transform.position;
+        float angle = Vector3.Angle(direction, transform.forward);
+        float distance = direction.magnitude;
+
+        if (angle > 1.0f)
+        {
+            Vector3 newDirection = Vector3.RotateTowards(transform.forward, direction, 100 * Time.deltaTime, 0.0f); //100 is the rotation speed
+            transform.rotation = Quaternion.LookRotation(newDirection);
+        }
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3 (targetPosition.x,0,targetPosition.y), speedofAGV * Time.deltaTime);
+        }
     }
-
 
 
 
