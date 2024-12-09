@@ -222,7 +222,140 @@
 
 
 
-// AGV toward direction
+// // AGV toward direction
+
+
+// using System.Collections;
+// using System.Collections.Generic;
+// using UnityEngine;
+// using System;
+
+// [Serializable]
+// public class AGVMessage
+// {
+//     public string agv_id;       // AGV ID
+//     public int[] location;      // Location [x, y]
+//     public List<int[]> segment; // Segment (list of points [[x1, y1], [x2, y2], ...])
+//     public int status;          // Status code
+//     public string timestamp;    // Timestamp
+// }
+
+// public class AGVController : MonoBehaviour
+// {
+//     WebSocketClient webSocketClient;
+//     public string agv1Message;
+
+//     public GameObject agvPrefab;      // Prefab of the AGV
+//     private GameObject agvObject;     // Instance of the AGV
+//     private Queue<Vector3> locationQueue = new Queue<Vector3>(2); // Stores the last two locations
+
+//     void Start()
+//     {
+//         webSocketClient = FindObjectOfType<WebSocketClient>();
+
+//         if (webSocketClient == null)
+//         {
+//             Debug.LogError("WebSocketClient not found in the scene!");
+//         }
+//     }
+
+//     void Update()
+//     {
+//         if (webSocketClient != null && webSocketClient.agv1Message != null && webSocketClient.newmessageArrvied)
+//         {
+//             webSocketClient.newmessageArrvied = false;
+//             agv1Message = webSocketClient.agv1Message;
+
+//             // Parse the JSON message
+//             AGVMessage message = JsonUtility.FromJson<AGVMessage>(agv1Message);
+
+//             Debug.Log($"AGV ID: {message.agv_id}");
+//             Debug.Log($"Location: X = {message.location[0]}, Y = {message.location[1]}");
+//             Debug.Log($"Status: {message.status}");
+//             Debug.Log($"Timestamp: {message.timestamp}");
+
+//             // Apply the reverse equations to get the Unity world coordinates
+//             float positionZ = 2 * message.location[0] - 22;
+//             float positionX = 55 - 2 * message.location[1];
+//             Vector3 newLocation = new Vector3(positionX, 0, positionZ);
+
+//             // Add the new location to the queue
+//             UpdateLocationQueue(newLocation);
+
+//             // Spawn the AGV object if it doesn't exist yet
+//             if (agvObject == null)
+//             {
+//                 agvObject = Instantiate(agvPrefab, newLocation, Quaternion.identity);
+//             }
+//             else if (locationQueue.Count == 2)
+//             {
+//                 // Move the AGV between the last two locations
+//                 Vector3 previousLocation = locationQueue.ToArray()[0]; // Get the first location in the queue
+//                 StartCoroutine(MoveAndRotateAGV(previousLocation, newLocation));
+//             }
+//         }
+//     }
+
+//     // Updates the queue with the last two locations
+//     private void UpdateLocationQueue(Vector3 newLocation)
+//     {
+//         if (locationQueue.Count == 2)
+//         {
+//             locationQueue.Dequeue(); // Remove the oldest location
+//         }
+//         locationQueue.Enqueue(newLocation); // Add the new location
+//     }
+
+//     // Smoothly moves and rotates the AGV between two positions
+//     private IEnumerator MoveAndRotateAGV(Vector3 startPos, Vector3 targetPos)
+//     {
+//         float speed = 29.0f; // Movement speed
+//         float rotationSpeed = 15.0f; // Rotation speed
+
+//         // Calculate the direction vector
+//         Vector3 direction = (targetPos - startPos).normalized;
+
+//         // Calculate the target rotation
+//         Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+//         // Rotate the AGV to face the target direction
+//         while (Quaternion.Angle(agvObject.transform.rotation, targetRotation) > 0.1f)
+//         {
+//             agvObject.transform.rotation = Quaternion.Slerp(
+//                 agvObject.transform.rotation,
+//                 targetRotation,
+//                 rotationSpeed * Time.deltaTime
+//             );
+//             yield return null;
+//         }
+
+//         // Smoothly move the AGV from startPos to targetPos
+//         while (Vector3.Distance(agvObject.transform.position, targetPos) > 0.01f)
+//         {
+//             agvObject.transform.position = Vector3.MoveTowards(
+//                 agvObject.transform.position,
+//                 targetPos,
+//                 speed * Time.deltaTime
+//             );
+//             yield return null;
+//         }
+
+//         // Ensure the AGV is at the target position
+//         agvObject.transform.position = targetPos;
+//     }
+// }
+
+
+
+
+
+
+
+
+
+
+
+// // rotate 90 degree only 
 
 
 using System.Collections;
@@ -274,10 +407,8 @@ public class AGVController : MonoBehaviour
             Debug.Log($"Status: {message.status}");
             Debug.Log($"Timestamp: {message.timestamp}");
 
-            // Apply the reverse equations to get the Unity world coordinates
-            float positionZ = 2 * message.location[0] - 22;
-            float positionX = 55 - 2 * message.location[1];
-            Vector3 newLocation = new Vector3(positionX, 0, positionZ);
+            // Reverse equation to transform received coordinates
+            Vector3 newLocation = ReverseEquationToPosition(message.location);
 
             // Add the new location to the queue
             UpdateLocationQueue(newLocation);
@@ -296,6 +427,14 @@ public class AGVController : MonoBehaviour
         }
     }
 
+    // Reverse the equation to transform JSON coordinates to Unity world coordinates
+    private Vector3 ReverseEquationToPosition(int[] location)
+    {
+        float x = 49 - (2 * location[1]) + 6 ; // Reverse Y equation
+        float z = (2 * location[0]) - 22 +2 ;    // Reverse X equation
+        return new Vector3(x, 0, z);        // Y is set to 0 for ground level
+    }
+
     // Updates the queue with the last two locations
     private void UpdateLocationQueue(Vector3 newLocation)
     {
@@ -306,30 +445,39 @@ public class AGVController : MonoBehaviour
         locationQueue.Enqueue(newLocation); // Add the new location
     }
 
-    // Smoothly moves and rotates the AGV between two positions
+    // Smoothly moves the AGV between two positions and rotates it 90 degrees in the direction of movement
     private IEnumerator MoveAndRotateAGV(Vector3 startPos, Vector3 targetPos)
     {
         float speed = 29.0f; // Movement speed
-        float rotationSpeed = 15.0f; // Rotation speed
+        float distance = Vector3.Distance(startPos, targetPos);
 
-        // Calculate the direction vector
+        // Calculate the direction to face
         Vector3 direction = (targetPos - startPos).normalized;
-
-        // Calculate the target rotation
         Quaternion targetRotation = Quaternion.LookRotation(direction);
 
-        // Rotate the AGV to face the target direction
-        while (Quaternion.Angle(agvObject.transform.rotation, targetRotation) > 0.1f)
+        // Ensure the rotation is limited to 90-degree increments
+        float angle = Quaternion.Angle(agvObject.transform.rotation, targetRotation);
+        if (angle > 90)
         {
-            agvObject.transform.rotation = Quaternion.Slerp(
+            targetRotation = Quaternion.RotateTowards(
                 agvObject.transform.rotation,
                 targetRotation,
-                rotationSpeed * Time.deltaTime
+                90
+            );
+        }
+
+        // Rotate the AGV to face the new direction
+        while (Quaternion.Angle(agvObject.transform.rotation, targetRotation) > 0.01f)
+        {
+            agvObject.transform.rotation = Quaternion.RotateTowards(
+                agvObject.transform.rotation,
+                targetRotation,
+                speed * 25 * Time.deltaTime // Rotation speed
             );
             yield return null;
         }
 
-        // Smoothly move the AGV from startPos to targetPos
+        // Move the AGV to the new position
         while (Vector3.Distance(agvObject.transform.position, targetPos) > 0.01f)
         {
             agvObject.transform.position = Vector3.MoveTowards(
