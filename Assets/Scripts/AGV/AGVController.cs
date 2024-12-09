@@ -1,123 +1,47 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
+[Serializable]
+public class AGVMessage
+{
+    public string agv_id;       // AGV ID
+    public int[] location;      // Location [x, y]
+    public List<int[]> segment; // Segment (list of points [[x1, y1], [x2, y2], ...])
+    public int status;          // Status code
+    public string timestamp;    // Timestamp
+}
 
 public class AGVController : MonoBehaviour
 {
+    WebSocketClient webSocketClient;
+    public string agv1Message;
 
-    GetLocationOfSphere getLocationOfSphere;
-    WebSocketDataReceive webSocketDataReceive;
-    public int numberOfAGVs = 4;
-
-    public bool[] AGVPresent;
-
-    public int[] agvID = new [] {100, 100, 100, 100};  // not assigned yet...
-    public Vector2Int[] agvLocations;
-    public int[] agvStatus;
-
-    public GameObject agvPrefab;
-    
-    
-
-    // Start is called before the first frame update
     void Start()
-    {   numberOfAGVs = 4;
-        getLocationOfSphere = FindObjectOfType<GetLocationOfSphere>();
-        webSocketDataReceive = FindObjectOfType<WebSocketDataReceive>();
+    {
+        webSocketClient = FindObjectOfType<WebSocketClient>();
 
-        numberOfAGVs = webSocketDataReceive.numberOfAGV;
-
-        //agvID = new int [numberOfAGVs];
-        for (int i = 0; i < numberOfAGVs;  i++)
+        if (webSocketClient == null)
         {
-            agvID[i] = 100;  //initially no AGV ID...
+            Debug.LogError("WebSocketClient not found in the scene!");
         }
-
-        AGVPresent = new bool[numberOfAGVs];
-        for (int i = 0; i < numberOfAGVs;  i++)
-        {
-            AGVPresent[i] = false;  //initially no AGV present...
-        }
-
-        agvLocations = new Vector2Int [numberOfAGVs];
-        for (int i = 0; i < numberOfAGVs;  i++)
-        {
-            agvLocations[i] = new Vector2Int (0,0);  //initially no AGV present...
-        }
-
-        agvStatus = new int [numberOfAGVs];
-        for (int i = 0; i < numberOfAGVs;  i++)
-        {
-            agvStatus[i] = 0;  //initially no AGV present...
-        }
-
-        
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (webSocketDataReceive.receivedNextData)
+        if (webSocketClient != null && webSocketClient.agv1Message != null && webSocketClient.newmessageArrvied)
         {
-            for (int i = 0; i < numberOfAGVs; i++)
-            {
-                if (webSocketDataReceive.isDataReceivedforAGVs[i] == true)
-                {
-                    if (AGVPresent[i] == false)
-                    {
-                        SpawnAGVInLocation(agvLocations[i]);    // Spawn AGV at the given location
-                        AGVPresent[i] = true;
-                    }
+            webSocketClient.newmessageArrvied = false;
+            agv1Message = webSocketClient.agv1Message;
+            // Parse the JSON message
+            AGVMessage message = JsonUtility.FromJson<AGVMessage>(agv1Message);
 
-
-                }
-
-                else 
-                {
-                    // show red alerts connection lost
-                }
-    
-            }
-
-
-
-            agvID [0]= webSocketDataReceive.AGV1ID;
-        
-
+            Debug.Log($"AGV ID: {message.agv_id}");
+            Debug.Log($"Location: X = {message.location[0]}, Y = {message.location[1]}");
+            Debug.Log($"Status: {message.status}");
+            Debug.Log($"Timestamp: {message.timestamp}");
             
-            for (int i=0; i<numberOfAGVs; i++)
-            {
-                if (webSocketDataReceive.isDataReceivedforAGVs[i] == true)
-                {
-                    Vector2Int receivedCordinate = webSocketDataReceive.ReturnAGVLocation(i);
-                    agvLocations[i] = getLocationOfSphere.ReturnLocationCordinate(receivedCordinate);
-                    agvStatus[i]= webSocketDataReceive.ReturnAGVStatus(i);
-                    Debug.Log("AGV"+ (i+1).ToString() + " Cordinate: " + receivedCordinate.ToString() +" World Location: " + agvLocations[i]);  // WORLD COORDINATE OF AGV
-                    //Debug.Log("Test");
-                }
-            }
-
-            webSocketDataReceive.receivedNextData = false;
-
-
         }
-
-
     }
-
-
-
-    
-
-    void SpawnAGVInLocation(Vector2Int location)
-    {
-        // Convert Vector2Int to Vector3 for 3D space here y is Z actually all y are 0
-        Vector3 spawnPosition = new Vector3(location.x, 0, location.y);
-        // Spawn the AGV at the given location with no rotation (Quaternion.identity)
-        Instantiate(agvPrefab, spawnPosition, Quaternion.identity);
-    }
-
-
 }
