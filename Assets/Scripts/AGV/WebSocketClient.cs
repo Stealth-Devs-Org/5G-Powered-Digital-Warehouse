@@ -46,7 +46,7 @@ public class WebSocketClient : MonoBehaviour
         _connection.DesiredConfig = new WebSocketConfig
         {
             Url = _url,
-            PingInterval = TimeSpan.FromSeconds(30), // Optional: Ping every 30 seconds
+            PingInterval = TimeSpan.FromSeconds(3), // Optional: Ping every 3 seconds
             PingMessage = new WebSocketMessage("ping") // Optional: Custom ping message
         };
 
