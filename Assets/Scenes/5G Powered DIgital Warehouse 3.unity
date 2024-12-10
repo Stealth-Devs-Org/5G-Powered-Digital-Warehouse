@@ -2218,10 +2218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a062ef0644c2a924892fa982f9106974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agv0Prefab: {fileID: 31077338}
-  agv1Prefab: {fileID: 31077338}
-  agv2Prefab: {fileID: 31077338}
-  agv3Prefab: {fileID: 31077338}
+  agv1Message: 
+  agvPrefab: {fileID: 31077338}
 --- !u!1001 &681911373
 PrefabInstance:
   m_ObjectHideFlags: 0
