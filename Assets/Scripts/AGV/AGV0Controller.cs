@@ -517,7 +517,7 @@ public class AGV0Controller : MonoBehaviour
     {
         if (webSocketClient != null && webSocketClient.agv0Message != null && webSocketClient.newmessageArrviedAGV1)  // dont use this code
         {
-            webSocketClient.newmessageArrvied = false;
+            webSocketClient.newmessageArrviedAGV1 = false;
             agv0Message = webSocketClient.agv0Message;
 
             // Parse the JSON message
