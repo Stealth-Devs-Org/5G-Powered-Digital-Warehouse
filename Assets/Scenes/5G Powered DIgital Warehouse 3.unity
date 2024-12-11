@@ -2185,6 +2185,8 @@ GameObject:
   - component: {fileID: 676307065}
   - component: {fileID: 676307066}
   - component: {fileID: 676307067}
+  - component: {fileID: 676307069}
+  - component: {fileID: 676307068}
   m_Layer: 0
   m_Name: AGVControllers
   m_TagString: Untagged
@@ -2230,6 +2232,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d634f6c7af1e29942a3cb302ef08a356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agvPrefab: {fileID: 31077338}
+--- !u!114 &676307068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676307063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88aeac01e548ef44eb2a6d5846116146, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agvPrefab: {fileID: 31077338}
+--- !u!114 &676307069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676307063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7736803c11a474d4c9c4849fc6b2a422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   agvPrefab: {fileID: 31077338}
