@@ -28,6 +28,7 @@ public class WebSocketClient : MonoBehaviour
     public string agv1Message;
     public string agv2Message;
     public string agv3Message;
+    public string agv4Message;
 
     // URL of the WebSocket server
     public string _url = "ws://localhost:8765/agv"; // Replace with your WebSocket server URL
@@ -88,24 +89,24 @@ public class WebSocketClient : MonoBehaviour
         Debug.Log($"Message received: {message.String}");
         //agv0Message = message.String;
         MSGTest = JsonUtility.FromJson<AGVMessage>(message.String);
-        if (MSGTest.agv_id == "agv0")
-        {
-            agv0Message = message.String;
-            newmessageArrviedAGV1 = true;
-        }
-        else if (MSGTest.agv_id == "agv1")
+        if (MSGTest.agv_id == "agv1")
         {
             agv1Message = message.String;
-            newmessageArrviedAGV2 = true;
+            newmessageArrviedAGV1 = true;
         }
         else if (MSGTest.agv_id == "agv2")
         {
             agv2Message = message.String;
-            newmessageArrviedAGV3 = true;
+            newmessageArrviedAGV2 = true;
         }
         else if (MSGTest.agv_id == "agv3")
         {
             agv3Message = message.String;
+            newmessageArrviedAGV3 = true;
+        }
+        else if (MSGTest.agv_id == "agv4")
+        {
+            agv4Message = message.String;
             newmessageArrviedAGV4 = true;
         }
 

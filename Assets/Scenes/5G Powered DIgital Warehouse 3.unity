@@ -2184,8 +2184,9 @@ GameObject:
   m_Component:
   - component: {fileID: 676307065}
   - component: {fileID: 676307066}
+  - component: {fileID: 676307067}
   m_Layer: 0
-  m_Name: AGVController
+  m_Name: AGVControllers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2215,10 +2216,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 676307063}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a062ef0644c2a924892fa982f9106974, type: 3}
+  m_Script: {fileID: 11500000, guid: ec1e74b1d32bb1c44a50f3b8945850b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agv1Message: 
+  agvPrefab: {fileID: 31077338}
+--- !u!114 &676307067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676307063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d634f6c7af1e29942a3cb302ef08a356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   agvPrefab: {fileID: 31077338}
 --- !u!1001 &681911373
 PrefabInstance:
@@ -4226,8 +4239,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _connection: {fileID: 0}
+  newmessageArrviedAGV1: 0
+  newmessageArrviedAGV2: 0
+  newmessageArrviedAGV3: 0
+  newmessageArrviedAGV4: 0
+  agv0Message: 
   agv1Message: 
-  newmessageArrvied: 0
+  agv2Message: 
+  agv3Message: 
+  agv4Message: 
   _url: ws://localhost:8765/agv
 --- !u!1 &1510215203 stripped
 GameObject:
