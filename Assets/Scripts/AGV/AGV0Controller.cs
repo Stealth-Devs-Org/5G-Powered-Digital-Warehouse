@@ -537,6 +537,7 @@ public class AGV0Controller : MonoBehaviour
             if (agvObject == null)
             {
                 agvObject = Instantiate(agvPrefab, newLocation, Quaternion.identity);
+                agvObject.name = "AGV0";
                 targetPosition = newLocation; // Set initial target position
                 isMoving = true; // Start moving
                 StartCoroutine(MoveAGV(targetPosition));
