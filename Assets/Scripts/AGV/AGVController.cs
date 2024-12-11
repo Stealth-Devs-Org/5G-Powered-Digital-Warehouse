@@ -491,7 +491,7 @@ public class AGVMessage
 public class AGVController : MonoBehaviour
 {
     WebSocketClient webSocketClient;
-    public string agv1Message;
+    public string agv0Message;
 
     public GameObject agvPrefab;      // Prefab of the AGV
     private GameObject agvObject;     // Instance of the AGV
@@ -511,13 +511,13 @@ public class AGVController : MonoBehaviour
 
     void Update()
     {
-        if (webSocketClient != null && webSocketClient.agv1Message != null && webSocketClient.newmessageArrvied)
+        if (webSocketClient != null && webSocketClient.agv0Message != null && webSocketClient.newmessageArrvied)
         {
             webSocketClient.newmessageArrvied = false;
-            agv1Message = webSocketClient.agv1Message;
+            agv0Message = webSocketClient.agv0Message;
 
             // Parse the JSON message
-            AGVMessage message = JsonUtility.FromJson<AGVMessage>(agv1Message);
+            AGVMessage message = JsonUtility.FromJson<AGVMessage>(agv0Message);
 
             Debug.Log($"AGV ID: {message.agv_id}");
             Debug.Log($"Location: X = {message.location[0]}, Y = {message.location[1]}");

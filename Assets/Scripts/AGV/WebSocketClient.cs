@@ -7,7 +7,7 @@ public class WebSocketClient : MonoBehaviour
 {
     // Reference to the WebSocketConnection component
     public WebSocketConnection _connection;
-    public string agv1Message;
+    public string agv0Message;
     public bool newmessageArrvied = false;
 
     // URL of the WebSocket server
@@ -66,7 +66,7 @@ public class WebSocketClient : MonoBehaviour
     private void OnMessageReceived(WebSocketConnection connection, WebSocketMessage message)
     {
         //Debug.Log($"Message received: {message.String}");
-        agv1Message = message.String;
+        agv0Message = message.String;
         newmessageArrvied = true;
     }
 
