@@ -1,7 +1,8 @@
 using System;
-using System.Collections;
 using UnityEngine;
 using MikeSchweitzer.WebSocket;
+using System.Collections.Generic;
+
 
 public class WebSocketClient : MonoBehaviour
 {
@@ -12,6 +13,17 @@ public class WebSocketClient : MonoBehaviour
 
     // URL of the WebSocket server
     public string _url = "ws://localhost:8765/agv"; // Replace with your WebSocket server URL
+
+
+    [Serializable]
+        public class AGVMessage
+        {
+            public string agv_id;       // AGV ID
+            public int[] location;      // Location [x, y]
+            public List<int[]> segment; // Segment (list of points [[x1, y1], [x2, y2], ...])
+            public int status;          // Status code
+            public string timestamp;    // Timestamp
+        }
 
     private void Awake()
     {

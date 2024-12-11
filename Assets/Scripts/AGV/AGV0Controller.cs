@@ -13,7 +13,7 @@
 //     public string timestamp;    // Timestamp
 // }
 
-// public class AGVController : MonoBehaviour
+// public class AGV0Controller : MonoBehaviour
 // {
 //     WebSocketClient webSocketClient;
 //     public string agv1Message;
@@ -122,7 +122,7 @@
 //     public string timestamp;    // Timestamp
 // }
 
-// public class AGVController : MonoBehaviour
+// public class AGV0Controller : MonoBehaviour
 // {
 //     WebSocketClient webSocketClient;
 //     public string agv1Message;
@@ -235,7 +235,7 @@
 //     public string timestamp;    // Timestamp
 // }
 
-// public class AGVController : MonoBehaviour
+// public class AGV0Controller : MonoBehaviour
 // {
 //     WebSocketClient webSocketClient;
 //     public string agv1Message;
@@ -359,7 +359,7 @@
 //     public string timestamp;    // Timestamp
 // }
 
-// public class AGVController : MonoBehaviour
+// public class AGV0Controller : MonoBehaviour
 // {
 //     WebSocketClient webSocketClient;
 //     public string agv1Message;
@@ -476,19 +476,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-[Serializable]
-public class AGVMessage
-{
-    public string agv_id;       // AGV ID
-    public int[] location;      // Location [x, y]
-    public List<int[]> segment; // Segment (list of points [[x1, y1], [x2, y2], ...])
-    public int status;          // Status code
-    public string timestamp;    // Timestamp
-}
 
-public class AGVController : MonoBehaviour
+public class AGV0Controller : MonoBehaviour
 {
     WebSocketClient webSocketClient;
     public string agv0Message;
