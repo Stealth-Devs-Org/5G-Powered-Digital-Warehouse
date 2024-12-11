@@ -8,12 +8,26 @@ public class WebSocketClient : MonoBehaviour
 {
     // Reference to the WebSocketConnection component
     public WebSocketConnection _connection;
+
+    public bool newmessageArrviedAGV1 = false;
+    public bool newmessageArrviedAGV2 = false;
+    public bool newmessageArrviedAGV3 = false;
+    public bool newmessageArrviedAGV4 = false;
+
+    public class AGVMessage
+    {
+        public string agv_id;       // AGV ID
+        public int[] location;      // Location [x, y]
+        public List<int[]> segment; // Segment (list of points [[x1, y1], [x2, y2], ...])
+        public int status;          // Status code
+        public string timestamp;    // Timestamp
+    }
+
+    private AGVMessage MSGTest;
     public string agv0Message;
     public string agv1Message;
     public string agv2Message;
     public string agv3Message;
-
-    public bool newmessageArrvied = false;
 
     // URL of the WebSocket server
     public string _url = "ws://localhost:8765/agv"; // Replace with your WebSocket server URL
@@ -71,10 +85,35 @@ public class WebSocketClient : MonoBehaviour
     // Handle incoming messages
     private void OnMessageReceived(WebSocketConnection connection, WebSocketMessage message)
     {
-        //Debug.Log($"Message received: {message.String}");
-        agv0Message = message.String;
-        newmessageArrvied = true;
+        Debug.Log($"Message received: {message.String}");
+        //agv0Message = message.String;
+        MSGTest = JsonUtility.FromJson<AGVMessage>(message.String);
+        if (MSGTest.agv_id == "agv0")
+        {
+            agv0Message = message.String;
+            newmessageArrviedAGV1 = true;
+        }
+        else if (MSGTest.agv_id == "agv1")
+        {
+            agv1Message = message.String;
+            newmessageArrviedAGV2 = true;
+        }
+        else if (MSGTest.agv_id == "agv2")
+        {
+            agv2Message = message.String;
+            newmessageArrviedAGV3 = true;
+        }
+        else if (MSGTest.agv_id == "agv3")
+        {
+            agv3Message = message.String;
+            newmessageArrviedAGV4 = true;
+        }
+
+        
+
+       
     }
+
 
     // Handle errors
     private void OnErrorMessageReceived(WebSocketConnection connection, string errorMessage)

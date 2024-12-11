@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class AGV1Controller : MonoBehaviour
+public class AGV2Controller : MonoBehaviour
 {
     WebSocketClient webSocketClient;
     
@@ -24,7 +24,7 @@ public class AGV1Controller : MonoBehaviour
         public string timestamp;    // Timestamp
     }
 
-    private string agv1Message;
+    private string agv2Message;
 
 
     void Start()
@@ -40,18 +40,18 @@ public class AGV1Controller : MonoBehaviour
 
     void Update()
     {
-        if (webSocketClient != null && webSocketClient.agv1Message != null && webSocketClient.newmessageArrviedAGV1)
+        if (webSocketClient != null && webSocketClient.agv2Message != null && webSocketClient.newmessageArrviedAGV2)
         {
-            webSocketClient.newmessageArrviedAGV1 = false;
-            agv1Message = webSocketClient.agv1Message;
+            webSocketClient.newmessageArrviedAGV2 = false;
+            agv2Message = webSocketClient.agv2Message;
 
             // Parse the JSON message
-            AGVMessage message = JsonUtility.FromJson<AGVMessage>(agv1Message);
+            AGVMessage message = JsonUtility.FromJson<AGVMessage>(agv2Message);
 
-            Debug.Log($"AGV1 ID: {message.agv_id}");
-            Debug.Log($"Location AGV1: X = {message.location[0]}, Y = {message.location[1]}");
-            //Debug.Log($"Status AGV1: {message.status}");
-            //Debug.Log($"Timestamp AGV1: {message.timestamp}");
+            Debug.Log($"AGV2 ID: {message.agv_id}");
+            Debug.Log($"Location AGV2: X = {message.location[0]}, Y = {message.location[1]}");
+            //Debug.Log($"Status AGV2: {message.status}");
+            //Debug.Log($"Timestamp AGV2: {message.timestamp}");
 
             // Apply the reverse equations to get the Unity world coordinates
             int positionZ = (int)(2 * message.location[0] - 22 + 2);
@@ -65,7 +65,7 @@ public class AGV1Controller : MonoBehaviour
             if (agvObject == null)
             {
                 agvObject = Instantiate(agvPrefab, newLocation, Quaternion.identity);
-                agvObject.name = "AGV1";
+                agvObject.name = "AGV2";
                 targetPosition = newLocation; // Set initial target position
                 isMoving = true; // Start moving
                 StartCoroutine(MoveAGV(targetPosition));

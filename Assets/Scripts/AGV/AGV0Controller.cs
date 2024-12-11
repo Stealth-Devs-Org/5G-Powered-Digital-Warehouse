@@ -471,7 +471,7 @@
 
 
 
-// // AGV dynamic distance speed movment Interpolation
+// // AGV dynamic distance speed movment Interpolation      dont use this code new mewssage arived issue
 
 using System.Collections;
 using System.Collections.Generic;
@@ -481,7 +481,7 @@ using UnityEngine;
 public class AGV0Controller : MonoBehaviour
 {
     WebSocketClient webSocketClient;
-    public string agv0Message;
+    
 
     public GameObject agvPrefab;      // Prefab of the AGV
     private GameObject agvObject;     // Instance of the AGV
@@ -490,7 +490,7 @@ public class AGV0Controller : MonoBehaviour
     private bool isMoving;             // Indicates if the AGV is currently moving
 
         
-   private class AGVMessage
+    private class AGVMessage
     {
         public string agv_id;       // AGV ID
         public int[] location;      // Location [x, y]
@@ -498,6 +498,9 @@ public class AGV0Controller : MonoBehaviour
         public int status;          // Status code
         public string timestamp;    // Timestamp
     }
+
+    private string agv0Message;
+
 
     void Start()
     {
@@ -512,7 +515,7 @@ public class AGV0Controller : MonoBehaviour
 
     void Update()
     {
-        if (webSocketClient != null && webSocketClient.agv0Message != null && webSocketClient.newmessageArrvied)
+        if (webSocketClient != null && webSocketClient.agv0Message != null && webSocketClient.newmessageArrviedAGV1)  // dont use this code
         {
             webSocketClient.newmessageArrvied = false;
             agv0Message = webSocketClient.agv0Message;
@@ -522,8 +525,8 @@ public class AGV0Controller : MonoBehaviour
 
             Debug.Log($"AGV0 ID: {message.agv_id}");
             Debug.Log($"Location AGV0: X = {message.location[0]}, Y = {message.location[1]}");
-            Debug.Log($"Status AGV0: {message.status}");
-            Debug.Log($"Timestamp AGV0: {message.timestamp}");
+            //Debug.Log($"Status AGV0: {message.status}");
+            //Debug.Log($"Timestamp AGV0: {message.timestamp}");
 
             // Apply the reverse equations to get the Unity world coordinates
             int positionZ = (int)(2 * message.location[0] - 22 + 2);
