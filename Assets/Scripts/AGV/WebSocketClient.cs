@@ -9,21 +9,15 @@ public class WebSocketClient : MonoBehaviour
     // Reference to the WebSocketConnection component
     public WebSocketConnection _connection;
     public string agv0Message;
+    public string agv1Message;
+    public string agv2Message;
+    public string agv3Message;
+
     public bool newmessageArrvied = false;
 
     // URL of the WebSocket server
     public string _url = "ws://localhost:8765/agv"; // Replace with your WebSocket server URL
 
-
-    [Serializable]
-        public class AGVMessage
-        {
-            public string agv_id;       // AGV ID
-            public int[] location;      // Location [x, y]
-            public List<int[]> segment; // Segment (list of points [[x1, y1], [x2, y2], ...])
-            public int status;          // Status code
-            public string timestamp;    // Timestamp
-        }
 
     private void Awake()
     {
@@ -94,7 +88,7 @@ public class WebSocketClient : MonoBehaviour
         Debug.Log($"WebSocket state changed from {oldState} to {newState}");
     }
 
-    // // Example: Sending a message to the WebSocket server                  ##SAIRISAN EDITED##
+    // // Example: Sending a message to the WebSocket server                  // //SAIRISAN EDITED ----------------
     // public void SendMessageToServer(string message)
     // {
     //     if (_connection.State == WebSocketState.Connected)

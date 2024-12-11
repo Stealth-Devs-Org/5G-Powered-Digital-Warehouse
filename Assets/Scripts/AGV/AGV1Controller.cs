@@ -16,6 +16,16 @@ public class AGV1Controller : MonoBehaviour
     private Vector3 targetPosition;    // Target position for the AGV
     private bool isMoving;             // Indicates if the AGV is currently moving
 
+        
+    private class AGVMessage
+    {
+        public string agv_id;       // AGV ID
+        public int[] location;      // Location [x, y]
+        public List<int[]> segment; // Segment (list of points [[x1, y1], [x2, y2], ...])
+        public int status;          // Status code
+        public string timestamp;    // Timestamp
+    }
+
     void Start()
     {
         webSocketClient = FindObjectOfType<WebSocketClient>();
@@ -28,18 +38,18 @@ public class AGV1Controller : MonoBehaviour
 
     void Update()
     {
-        if (webSocketClient != null && webSocketClient.agv0Message != null && webSocketClient.newmessageArrvied)
+        if (webSocketClient != null && webSocketClient.agv1Message != null && webSocketClient.newmessageArrvied)
         {
             webSocketClient.newmessageArrvied = false;
-            agv1Message = webSocketClient.agv0Message;
+            agv1Message = webSocketClient.agv1Message;
 
             // Parse the JSON message
             AGVMessage message = JsonUtility.FromJson<AGVMessage>(agv1Message);
 
-            Debug.Log($"AGV ID: {message.agv_id}");
-            Debug.Log($"Location: X = {message.location[0]}, Y = {message.location[1]}");
-            Debug.Log($"Status: {message.status}");
-            Debug.Log($"Timestamp: {message.timestamp}");
+            Debug.Log($"AGV1 ID: {message.agv_id}");
+            Debug.Log($"Location AGV1: X = {message.location[0]}, Y = {message.location[1]}");
+            Debug.Log($"Status AGV1: {message.status}");
+            Debug.Log($"Timestamp AGV1: {message.timestamp}");
 
             // Apply the reverse equations to get the Unity world coordinates
             int positionZ = (int)(2 * message.location[0] - 22 + 2);
