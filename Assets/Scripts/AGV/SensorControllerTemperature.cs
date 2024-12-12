@@ -2,37 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class SensorControllerTemperature : MonoBehaviour
 {
     WebSocketClientSensor webSocketClientSensor;
     
-
     public GameObject TempSensorPrefab;     
     private GameObject agvObject;     
     private Queue<Vector3> locationQueue = new Queue<Vector3>(2); // Stores the last two locations
     private Vector3 targetPosition;    // Target position for the AGV
-    // private bool isMoving;             // Indicates if the AGV is currently moving
 
-        
     public class SensorMessage
     {
         public string sensor_type;      
         public string sensor_id;       
         public int partition_id;
-        public int[] sensor_location;      // Location [x, y]
-        public double reading;      // Reading
-        public int status;          // Status code
- 
+        public string sensor_location; // Location in the format "(x,y)"
+        public double reading;         // Reading
+        public int status;             // Status code
     }
 
     private string sensorMessage;
 
-
     void Start()
     {
         webSocketClientSensor = FindObjectOfType<WebSocketClientSensor>();
-
 
         if (webSocketClientSensor == null)
         {
@@ -50,19 +43,19 @@ public class SensorControllerTemperature : MonoBehaviour
             // Parse the JSON message
             SensorMessage message = JsonUtility.FromJson<SensorMessage>(sensorMessage);
 
-            Debug.Log($"Sensor Type: {message.sensor_type}");
-            Debug.Log($"Sensor ID: {message.sensor_id}");
-            Debug.Log($"Partition ID: {message.partition_id}");
-            Debug.Log($"Location Sensor: X = {message.sensor_location[0]}, Y = {message.sensor_location[1]}");
-            
-            // Apply the reverse equations to get the Unity world coordinates
-            int positionZ = (int)(2 * message.sensor_location[0] - 22 + 2);
-            int positionX = (int)(55 - 2 * message.sensor_location[1]);
+            // Debug.Log($"Sensor Type: {message.sensor_type}");
+            // Debug.Log($"Sensor ID: {message.sensor_id}");
+            // Debug.Log($"Partition ID: {message.partition_id}");
+            // Debug.Log($"Location Sensor: {message.sensor_location}");
+
+            // Extract coordinates from sensor_location string
+            Vector2 sensorCoords = ParseCoordinates(message.sensor_location);
+            int positionZ = (int)(2 * sensorCoords.x - 22 + 2);
+            int positionX = (int)(55 - 2 * sensorCoords.y);
             Vector3 newLocation = new Vector3(positionX, 0, positionZ);
 
-            Debug.Log($"Reading: {message.reading}");
-            Debug.Log($"Status: {message.status}");
-
+            // Debug.Log($"Reading: {message.reading}");
+            // Debug.Log($"Status: {message.status}");
 
             // Add the new location to the queue
             UpdateLocationQueue(newLocation);
@@ -73,7 +66,6 @@ public class SensorControllerTemperature : MonoBehaviour
                 agvObject = Instantiate(TempSensorPrefab, newLocation, Quaternion.identity);
                 agvObject.name = "AGV1";
                 targetPosition = newLocation; // Set initial target position
-                // isMoving = true; // Start moving
                 StartCoroutine(MoveAGV(targetPosition));
             }
             else if (locationQueue.Count == 2)
@@ -83,6 +75,20 @@ public class SensorControllerTemperature : MonoBehaviour
                 StartCoroutine(MoveAGV(targetPosition)); // Start moving to the new location
             }
         }
+    }
+
+    // Parses the coordinates from the sensor_location string
+    private Vector2 ParseCoordinates(string coordinates)
+    {
+        // Remove parentheses and split by comma
+        coordinates = coordinates.Trim('(', ')');
+        string[] parts = coordinates.Split(',');
+
+        // Parse x and y as floats
+        float x = float.Parse(parts[0]);
+        float y = float.Parse(parts[1]);
+
+        return new Vector2(x, y);
     }
 
     // Updates the queue with the last two locations
@@ -98,7 +104,6 @@ public class SensorControllerTemperature : MonoBehaviour
     // Smoothly moves the AGV towards the target position
     private IEnumerator MoveAGV(Vector3 targetPos)
     {
-        // isMoving = true; // Mark as moving
         float minSpeed = 1f; // Minimum speed
         float maxSpeed = 12.0f; // Maximum speed
         float maxDistance = 15.0f; // Distance at which max speed is reached
@@ -124,6 +129,5 @@ public class SensorControllerTemperature : MonoBehaviour
 
         // Ensure the AGV is at the target position
         agvObject.transform.position = targetPos;
-        // isMoving = false; // Mark as not moving
     }
 }
