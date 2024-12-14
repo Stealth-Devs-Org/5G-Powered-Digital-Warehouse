@@ -128,7 +128,7 @@ public class WebSocketClient : MonoBehaviour
         Debug.Log($"WebSocket state changed from {oldState} to {newState}");
     }
 
-    // // Example: Sending a message to the WebSocket server                  // //SAIRISAN EDITED ----------------
+    // // Example: Sending a message to the WebSocket server                  
     // public void SendMessageToServer(string message)
     // {
     //     if (_connection.State == WebSocketState.Connected)

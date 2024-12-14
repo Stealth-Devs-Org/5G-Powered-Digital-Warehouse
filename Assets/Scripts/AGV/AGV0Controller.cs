@@ -565,7 +565,7 @@ public class AGV0Controller : MonoBehaviour
     }
 
     // Smoothly moves the AGV towards the target position
-    private IEnumerator MoveAGV(Vector3 targetPos)
+        private IEnumerator MoveAGV(Vector3 targetPos)
     {
         isMoving = true; // Mark as moving
         float minSpeed = 1f; // Minimum speed
@@ -581,18 +581,36 @@ public class AGV0Controller : MonoBehaviour
             // Map distance to speed
             float speed = Mathf.Lerp(minSpeed, maxSpeed, Mathf.Clamp01(distance / maxDistance));
 
-            // Move the AGV towards the target position using interpolation for smoother movement
-            agvObject.transform.position = Vector3.MoveTowards(
+            // Determine the next position
+            Vector3 nextPosition = Vector3.MoveTowards(
                 agvObject.transform.position,
                 targetPos,
                 speed * Time.deltaTime
             );
+
+            // Calculate the direction to the next position
+            Vector3 direction = nextPosition - agvObject.transform.position;
+
+            if (direction != Vector3.zero) // Ensure direction is valid
+            {
+                // Smoothly rotate the AGV to face the moving direction
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                agvObject.transform.rotation = Quaternion.Slerp(
+                    agvObject.transform.rotation,
+                    targetRotation,
+                    Time.deltaTime * 10.0f // Adjust rotation speed as needed
+                );
+            }
+
+            // Move the AGV towards the target position
+            agvObject.transform.position = nextPosition;
 
             yield return null; // Wait for the next frame
         }
 
         // Ensure the AGV is at the target position
         agvObject.transform.position = targetPos;
+
         isMoving = false; // Mark as not moving
     }
 }
