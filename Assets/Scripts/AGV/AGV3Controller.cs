@@ -13,6 +13,7 @@ public class AGV3Controller : MonoBehaviour
     private Queue<Vector3> locationQueue = new Queue<Vector3>(2); // Stores the last two locations
     private Vector3 targetPosition;    // Target position for the AGV
     private bool isMoving;             // Indicates if the AGV is currently moving
+    public int currentStatus = 0;
 
         
     private class AGVMessage
@@ -52,6 +53,7 @@ public class AGV3Controller : MonoBehaviour
             Debug.Log($"Location AGV3: X = {message.location[0]}, Y = {message.location[1]}");
             //Debug.Log($"Status AGV3: {message.status}");
             //Debug.Log($"Timestamp AGV3: {message.timestamp}");
+            currentStatus = message.status;
 
             // Apply the reverse equations to get the Unity world coordinates
             int positionZ = (int)(2 * message.location[0] - 22 + 2);
