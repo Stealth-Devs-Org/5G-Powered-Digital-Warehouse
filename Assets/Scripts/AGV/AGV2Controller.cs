@@ -138,4 +138,5 @@ public class AGV2Controller : MonoBehaviour
 
         isMoving = false; // Mark as not moving
     }
+
 }

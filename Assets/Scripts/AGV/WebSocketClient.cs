@@ -88,7 +88,7 @@ public class WebSocketClient : MonoBehaviour
     {
         Debug.Log($"Message received: {message.String}");
         //agv0Message = message.String;
-        MSGTest = JsonUtility.FromJson<AGVMessage>(message.String);
+        MSGTest = JsonUtility.FromJson<AGVMessage>(message.String);   // string to json
         if (MSGTest.agv_id == "agv1")
         {
             agv1Message = message.String;
