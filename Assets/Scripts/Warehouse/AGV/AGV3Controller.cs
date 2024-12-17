@@ -125,7 +125,7 @@ public class AGV3Controller : MonoBehaviour
                 agvObject.transform.rotation = Quaternion.Slerp(
                     agvObject.transform.rotation,
                     targetRotation,
-                    Time.deltaTime * 10.0f // Adjust rotation speed as needed
+                    Time.deltaTime * 7.0f // Adjust rotation speed as needed
                 );
             }
 

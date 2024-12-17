@@ -86,7 +86,7 @@ public class WebSocketClient : MonoBehaviour
     // Handle incoming messages
     private void OnMessageReceived(WebSocketConnection connection, WebSocketMessage message)
     {
-        Debug.Log($"Message received: {message.String}");
+        //Debug.Log($"Message received: {message.String}");
         //agv0Message = message.String;
         MSGTest = JsonUtility.FromJson<AGVMessage>(message.String);   // string to json
         if (MSGTest.agv_id == "agv1")
@@ -119,13 +119,13 @@ public class WebSocketClient : MonoBehaviour
     // Handle errors
     private void OnErrorMessageReceived(WebSocketConnection connection, string errorMessage)
     {
-        Debug.LogError($"WebSocket error: {errorMessage}");
+        //Debug.LogError($"WebSocket error: {errorMessage}");
     }
 
     // Handle state changes (e.g., connected, disconnected)
     private void OnStateChanged(WebSocketConnection connection, WebSocketState oldState, WebSocketState newState)
     {
-        Debug.Log($"WebSocket state changed from {oldState} to {newState}");
+        //Debug.Log($"WebSocket state changed from {oldState} to {newState}");
     }
 
     // // Example: Sending a message to the WebSocket server                  

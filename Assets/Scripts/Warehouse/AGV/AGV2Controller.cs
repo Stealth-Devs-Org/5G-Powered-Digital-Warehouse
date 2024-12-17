@@ -50,8 +50,8 @@ public class AGV2Controller : MonoBehaviour
             // Parse the JSON message
             AGVMessage message = JsonUtility.FromJson<AGVMessage>(agv2Message);
 
-            Debug.Log($"AGV2 ID: {message.agv_id}");
-            Debug.Log($"Location AGV2: X = {message.location[0]}, Y = {message.location[1]}");
+            //Debug.Log($"AGV2 ID: {message.agv_id}");
+            //Debug.Log($"Location AGV2: X = {message.location[0]}, Y = {message.location[1]}");
             //Debug.Log($"Status AGV2: {message.status}");
             //Debug.Log($"Timestamp AGV2: {message.timestamp}");
             currentStatus = message.status;
@@ -126,7 +126,7 @@ public class AGV2Controller : MonoBehaviour
                 agvObject.transform.rotation = Quaternion.Slerp(
                     agvObject.transform.rotation,
                     targetRotation,
-                    Time.deltaTime * 10.0f // Adjust rotation speed as needed
+                    Time.deltaTime * 7.0f // Adjust rotation speed as needed
                 );
             }
 

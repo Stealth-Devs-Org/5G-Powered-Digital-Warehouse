@@ -86,7 +86,7 @@ public class WebSocketClientSensor : MonoBehaviour
     // Handle incoming messages
     private void OnMessageReceived(WebSocketConnection connection, WebSocketMessage message)
     {
-        Debug.Log($"Message received: {message.String}");
+        //Debug.Log($"Message received: {message.String}");
         //sensorMessage = message.String;
         MSGTest = JsonUtility.FromJson<SensorMessage>(message.String);
         if (MSGTest.sensor_type == "Temperature")
@@ -128,7 +128,7 @@ public class WebSocketClientSensor : MonoBehaviour
     // Handle state changes (e.g., connected, disconnected)
     private void OnStateChanged(WebSocketConnection connection, WebSocketState oldState, WebSocketState newState)
     {
-        Debug.Log($"WebSocket state changed from {oldState} to {newState}");
+        //Debug.Log($"WebSocket state changed from {oldState} to {newState}");
     }
 
     // // Example: Sending a message to the WebSocket server                  // //SAIRISAN EDITED ----------------

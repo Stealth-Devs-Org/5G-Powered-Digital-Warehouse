@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 3887287735224736687}
   - component: {fileID: 5464194300754363813}
   - component: {fileID: 8249014579553031137}
+  - component: {fileID: 7481702628396190027}
   m_Layer: 0
   m_Name: Forklift
   m_TagString: Untagged
@@ -208,7 +209,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 625858cf5983ff347a9af495894e920f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -217,6 +218,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7481702628396190027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293818481557989643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae4450dc797d4942b8b5ca8b1c66f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoadPrefab: {fileID: 7764066820991501855, guid: ca7ec88991429bb43aa8e0cdf16f1e16, type: 3}
+  currentStatus: 0
 --- !u!1 &382706229767617926
 GameObject:
   m_ObjectHideFlags: 0
