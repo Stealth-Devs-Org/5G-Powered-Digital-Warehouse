@@ -5652,8 +5652,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2001503327}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3719906, y: -0.56516874, z: 0.31613296, w: 0.6650318}
-  m_LocalPosition: {x: 51.6, y: 24, z: 20.9}
+  m_LocalRotation: {x: 0.41984248, y: -0.5073314, z: 0.31076983, w: 0.68539715}
+  m_LocalPosition: {x: 49, y: 25.456833, z: 16.828087}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5676,6 +5676,8 @@ MonoBehaviour:
   scrollSpeedMultiplier: 20
   minSpeed: 1
   maxSpeed: 50
+  fixedPosition: {x: 49, y: 25.456, z: 16.8}
+  fixedRotation: {x: 62.9, y: -73.018, z: 0}
 --- !u!1001 &2028182904
 PrefabInstance:
   m_ObjectHideFlags: 0
