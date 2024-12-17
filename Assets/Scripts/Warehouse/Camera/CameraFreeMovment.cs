@@ -5,7 +5,7 @@ public class FreeCameraMovement : MonoBehaviour
     [Header("Movement Settings")]
     public float movementSpeed = 10f;       
     public float lookSpeed = 2f;            
-    public float scrollSpeedMultiplier = 2f; 
+    public float scrollSpeedMultiplier = 20f; 
     public float minSpeed = 1f;           
     public float maxSpeed = 50f;           
 
