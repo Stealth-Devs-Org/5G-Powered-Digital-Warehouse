@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class AnimateAGV : MonoBehaviour
@@ -12,12 +11,13 @@ public class AnimateAGV : MonoBehaviour
     AGV3Controller aGV3Controller;
     AGV4Controller aGV4Controller;
 
-    
     private Animator animator;
 
     public GameObject LoadPrefab;
 
     public int currentStatus = 0;
+
+    private GameObject currentLoad;
 
     private class AGVMessage
     {
@@ -36,79 +36,73 @@ public class AnimateAGV : MonoBehaviour
         aGV4Controller = FindObjectOfType<AGV4Controller>();
 
         animator = GetComponent<Animator>();
-
     }
 
     void Update()
     {
-        // if name is AGV1, use agv1Message, otherwise use agv2Message
         if (gameObject.name == "AGV1")
-            {
-                currentStatus= aGV1Controller.currentStatus;
-
-            }
-
-        else if (gameObject.name == "AGV2")
-            {
-                currentStatus= aGV2Controller.currentStatus;
-            }
-
-        else if (gameObject.name == "AGV3")
-            {
-                currentStatus= aGV3Controller.currentStatus;
-            }
-
-        else if (gameObject.name == "AGV4")
-            {
-                currentStatus= aGV4Controller.currentStatus;
-            }
-
-       
-
-
-            UpdateAnimation();
-
+        {
+            currentStatus = aGV1Controller.currentStatus;
         }
-    
+        else if (gameObject.name == "AGV2")
+        {
+            currentStatus = aGV2Controller.currentStatus;
+        }
+        else if (gameObject.name == "AGV3")
+        {
+            currentStatus = aGV3Controller.currentStatus;
+        }
+        else if (gameObject.name == "AGV4")
+        {
+            currentStatus = aGV4Controller.currentStatus;
+        }
+
+        UpdateAnimation();
+    }
 
     private void UpdateAnimation()
     {
-        if (currentStatus == 3)
+        if (currentStatus == 2) 
         {
             animator.SetBool("idle", false);
             animator.SetBool("loading", true);
-            
-            Transform rigMast = transform.Find("Rig_root/Lift_mast_2/Rig_mast_2"); 
-            GameObject load = Instantiate(LoadPrefab, rigMast.position, rigMast.rotation);
-            load.transform.SetParent(rigMast, true);
-        }
 
-        else if (currentStatus == 4)
-        {
-            animator.SetBool("idle", false);
-            animator.SetBool("loading", true);
-            // remove the only load only  in chuile of rigmast
-                // Find the Rig_mast_2 object in the hierarchy
-            Transform rigMast = transform.Find("Rig_root/Lift_mast_2/Rig_mast_2");
-            foreach (Transform child in rigMast)
+            if (currentLoad == null)
             {
-                
-                if (child.CompareTag("Load")) 
+                Transform rigMast = transform.Find("Rig_root/Lift_mast_2/Rig_mast_2");
+                if (rigMast != null)
                 {
-                    Destroy(child.gameObject); 
-                    break;
+                    currentLoad = Instantiate(LoadPrefab, rigMast.position, rigMast.rotation);
+                    currentLoad.transform.SetParent(rigMast, true);
+                    currentLoad.tag = "Load"; 
                 }
             }
-
         }
+        else if (currentStatus == 3) 
+        {
+            Debug.Log("Unloading");
+            animator.SetBool("idle", false);
+            animator.SetBool("loading", true);
 
-
+            if (currentLoad != null)
+            {
+                
+                StartCoroutine(DestroyLoadAfterDelay(1.0f)); 
+            }
+        }
         else
         {
             animator.SetBool("idle", true);
             animator.SetBool("loading", false);
         }
     }
+
+    private IEnumerator DestroyLoadAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay); 
+
+        
+        Destroy(currentLoad);
+        currentLoad = null; 
+    }
 }
-
-

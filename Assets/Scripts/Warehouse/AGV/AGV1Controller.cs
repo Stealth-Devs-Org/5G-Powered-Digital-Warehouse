@@ -379,7 +379,6 @@ public class AGV1Controller : MonoBehaviour
             if (direction != Vector3.zero) // Ensure direction is valid
             {
                 // Smoothly rotate the AGV to face the moving direction
-                Debug.Log("Turning....................................");
                 Quaternion targetRotation = Quaternion.LookRotation(direction);
                 agvObject.transform.rotation = Quaternion.Slerp(
                     agvObject.transform.rotation,
