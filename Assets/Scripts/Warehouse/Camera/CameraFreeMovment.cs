@@ -84,4 +84,7 @@ public class FreeCameraMovement : MonoBehaviour
             movementSpeed = Mathf.Clamp(movementSpeed, minSpeed, maxSpeed); // Keep speed in bounds
         }
     }
+
+
+    
 }
