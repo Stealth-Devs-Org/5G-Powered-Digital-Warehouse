@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 386850720224223914}
   m_Layer: 0
   m_Name: Sensor
-  m_TagString: Untagged
+  m_TagString: TempSensor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
