@@ -122,9 +122,9 @@ public class AGVAnimate : MonoBehaviour
         }
         else if (reachedTarget && isRotating) // Loading/Rotating state
         {
-            anim.SetBool("loading", true);
-            anim.SetBool("moving", false);
+            anim.SetBool("moving", true);
             anim.SetBool("idle", false);
+            anim.SetBool("loading", false);
         }
         else // After rotation, moving forward
         {

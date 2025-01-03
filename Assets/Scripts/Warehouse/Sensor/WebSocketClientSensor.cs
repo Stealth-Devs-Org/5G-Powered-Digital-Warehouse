@@ -20,7 +20,7 @@ public class WebSocketClientSensor : MonoBehaviour
         public string sensor_type;      
         public string sensor_id;       
         public int partition_id;
-        public int[] sensor_location;      // Location [x, y]
+        public string sensor_location;      // Location [x, y]
         public double reading;      // Reading
         public int status;          // Status code
  
@@ -89,10 +89,18 @@ public class WebSocketClientSensor : MonoBehaviour
         //Debug.Log($"Message received: {message.String}");
         //sensorMessage = message.String;
         MSGTest = JsonUtility.FromJson<SensorMessage>(message.String);
+
+        // Debug.Log($"Sensor Type: {MSGTest.sensor_type}");
+
+
+
+
         if (MSGTest.sensor_type == "Temperature")
         {
             sensorMessage = message.String;
             newmessageArrviedforSensorTemp = true;
+            //Debug.Log($"Message received: {message.String}");
+            
             
         }
         else if (MSGTest.sensor_type == "AirQuality")
@@ -145,3 +153,37 @@ public class WebSocketClientSensor : MonoBehaviour
     //     }
     // }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
