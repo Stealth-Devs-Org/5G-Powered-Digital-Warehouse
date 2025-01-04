@@ -235,36 +235,79 @@ public class SensorView : MonoBehaviour
         }
 
         // Retrieve and display sensor details
-        string sensorJson = GetSensorDetailsAsJson(sensor); 
-        detailsText.text = FormatJsonForDisplay(sensorJson);
+        //string sensorJson = GetSensorDetailsAsJson(sensor); 
+        detailsText.text = FormatJsonForDisplay(sensor);
     }
 
 
 
-    private string GetSensorDetailsAsJson(GameObject sensor)
-    {
-        // Example: Simulating JSON data. 
-        // return "{\n  \"SensorID\": \"12345\",\n  \"Temperature\": \"28°C\",\n  \"Location\": \"Room A\",\n  \"Status\": \"Active\"\n}";
-        SensorData sensorData = sensor.GetComponent<SensorData>();
+    // private string GetSensorDetailsAsJson(GameObject sensor)
+    // {
+    //     // Example: Simulating JSON data. 
+    //     // return "{\n  \"SensorID\": \"12345\",\n  \"Temperature\": \"28°C\",\n  \"Location\": \"Room A\",\n  \"Status\": \"Active\"\n}";
+    //     SensorData sensorData = sensor.GetComponent<SensorData>();
 
-        // search for respective sensor data under temp sensor object
-        if (sensorData != null)
-        {
-            return sensorData.GetSensorData();
-        }
-        else
-        {
-            Debug.LogError("SensorData script not found in the sensor object!");
-            return "";
-        }
+    //     // search for respective sensor data under temp sensor object
+    //     if (sensorData != null)
+    //     {
+    //         return sensorData.GetSensorData();
+    //     }
+    //     else
+    //     {
+    //         Debug.LogError("SensorData script not found in the sensor object!");
+    //         return "";
+    //     }
 
+    // }
+
+
+    // i have 6 data fields in the sensor data class
+    // i will display them in a formatted way
+    private string FormatJsonForDisplay(GameObject sensor)
+    {       
+           
+            
+            SensorData sensorData = sensor.GetComponent<SensorData>();
+
+            // // search for respective sensor data under temp sensor object
+            // if (sensorData != null)
+            // {
+            //     return sensorData.GetSensorData();
+            // }
+            // else
+            // {
+            //     Debug.LogError("SensorData script not found in the sensor object!");
+                
+            // }
+
+            SensorData.SensorMessage message = JsonUtility.FromJson<SensorData.SensorMessage>(sensorData.GetSensorData());
+            // Extract message fields
+            string sensorType = message.sensor_type;
+            string sensorId = message.sensor_id;
+            string partitionId = message.partition_id.ToString();
+            string sensorLocation = message.sensor_location;
+            string reading = message.reading.ToString();
+            string status = message.status.ToString();
+
+            // Format the text
+            string formattedText = $"Sensor Type: {sensorType}\n\n" +
+                                   $"Sensor ID: {sensorId}\n\n" +
+                                   $"Partition ID: {partitionId}\n\n" +
+                                   $"Location: {sensorLocation}\n\n" +
+                                   $"Reading: {reading}\n\n" +
+                                   $"Status: {status}";
+
+            return formattedText;
     }
 
-    private string FormatJsonForDisplay(string json)
-    {
-        // Optional: Format JSON  readability
-        return json.Replace(",", "\n").Replace("{", "").Replace("}", "").Replace("\"", "").Trim();
-    }
+
+
+    // private string FormatJsonForDisplay(string json)
+    // {
+    //     // Optional: Format JSON string for better readability
+    //     return json.Replace(",", "\n").Replace("{", "").Replace("}", "").Replace("\"", "").Trim();
+    // }
+
 
 }
 
