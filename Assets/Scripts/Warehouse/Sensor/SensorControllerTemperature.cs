@@ -58,7 +58,7 @@ public class SensorControllerTemperature : MonoBehaviour
             int positionX = (int)(55 - 2 * sensorCoords.y);
             Vector3 newLocation = new Vector3(positionX, 13, positionZ);
 
-            Debug.Log($"New Location: {newLocation}");
+            //Debug.Log($"New Location: {newLocation}");
 
             // Debug.Log($"Reading: {message.reading}");
             // Debug.Log($"Status: {message.status}");
@@ -106,7 +106,7 @@ public class SensorControllerTemperature : MonoBehaviour
             {
                 // If the sensor exists, use it
                 SensorObject = existingSensor;
-                Debug.Log($"Found existing sensor: {sensorName}");
+                //Debug.Log($"Found existing sensor: {sensorName}");
             }
 
             // Set or update the target position
