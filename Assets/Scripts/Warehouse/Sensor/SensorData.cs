@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 
 public class SensorData : MonoBehaviour
@@ -12,7 +13,7 @@ public class SensorData : MonoBehaviour
     public int object_status;
 
         
-
+    string sensorMessage;
 
     
     public class SensorMessage
@@ -34,10 +35,11 @@ public class SensorData : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         
     }
 
-    // assign json data to the SensorMessage object
+    //assign json data to the SensorMessage object
     public void AssignJsonData(string sensorMessage)
     {
         SensorMessage message = JsonUtility.FromJson<SensorMessage>(sensorMessage);
@@ -66,5 +68,9 @@ public class SensorData : MonoBehaviour
 
         return JsonUtility.ToJson(message);
     }
+
+
+
+
 
 }
