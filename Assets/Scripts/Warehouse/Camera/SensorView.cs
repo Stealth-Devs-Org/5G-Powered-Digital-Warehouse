@@ -104,6 +104,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro; // Add this to use TextMesh Pro
 
 public class SensorView : MonoBehaviour
 {
@@ -132,18 +133,15 @@ public class SensorView : MonoBehaviour
 
     void Update()
     {
-        // Dynamically update the list of TempSensor objects
+        
         UpdateSensorList();
-
-        // Log a warning if no sensors are found
         if (tempSensors.Count == 0)
         {
             Debug.LogWarning("No TempSensor objects found in the scene!");
             return;
         }
 
-        // Switch to the next sensor when '2' is pressed
-        if (Input.GetKeyDown(KeyCode.Alpha2) && tempSensors.Count > 0)
+        if (Input.GetKeyDown(KeyCode.Alpha2) && tempSensors.Count > 0)  // swtich when 2 is pressed
         {
             // Move to the next sensor in the list
             currentSensorIndex = (currentSensorIndex + 1) % tempSensors.Count;
@@ -154,17 +152,17 @@ public class SensorView : MonoBehaviour
                 StopCoroutine(currentFocusCoroutine);
             }
 
-            // Start focusing the camera on the selected sensor
+            // Start focusing the camera 
             currentFocusCoroutine = StartCoroutine(FocusOnSensor(tempSensors[currentSensorIndex].transform));
         }
     }
 
     private void UpdateSensorList()
     {
-        // Find all objects tagged as TempSensor in the scene
+       
         GameObject[] allSensors = GameObject.FindGameObjectsWithTag("TempSensor");
 
-        // Add new sensors to the list, avoiding duplicates
+        
         foreach (GameObject sensor in allSensors)
         {
             if (!tempSensors.Contains(sensor))
@@ -173,13 +171,12 @@ public class SensorView : MonoBehaviour
             }
         }
 
-        // Remove null entries (in case sensors are destroyed)
         tempSensors.RemoveAll(sensor => sensor == null);
     }
 
     private IEnumerator FocusOnSensor(Transform sensorTransform)
     {
-        // Smoothly move the camera to the sensor's position
+        
         Vector3 targetPosition = sensorTransform.position + sensorTransform.forward * -5 + Vector3.up * 2; // Adjust offset as needed
         while (Vector3.Distance(mainCamera.transform.position, targetPosition) > 0.1f)
         {
@@ -188,13 +185,47 @@ public class SensorView : MonoBehaviour
             yield return null;
         }
 
-        // Ensure the camera is correctly positioned at the end
         mainCamera.transform.position = targetPosition;
         mainCamera.transform.LookAt(sensorTransform.position);
 
         // Display the sensor detail UI
         ShowSensorDetails(sensorTransform.gameObject);
     }
+
+    // private void ShowSensorDetails(GameObject sensor)
+    // {
+    //     // Destroy the current UI if it exists
+    //     if (currentSensorDetailUI != null)
+    //     {
+    //         Destroy(currentSensorDetailUI);
+    //     }
+
+    //     // Find the GUICanva object in the scene
+    //     GameObject guiCanva = GameObject.Find("GUICanva");
+    //     if (guiCanva == null)
+    //     {
+    //         Debug.LogError("GUICanva object not found in the scene!");
+    //         return;
+    //     }
+
+    //     currentSensorDetailUI = Instantiate(sensorDetailPrefab, guiCanva.transform);
+
+    //     // Position the UI in front of the camera and rotate to face of cam..........
+    //     currentSensorDetailUI.transform.position = mainCamera.transform.position + mainCamera.transform.forward * 4;
+    //     currentSensorDetailUI.transform.rotation = Quaternion.LookRotation(mainCamera.transform.forward);
+
+    //     // go to gameobject and get the textmesh pro component with tag name "Details" and set the text to the sensor details
+    //     // TMP_Text detailsText = currentSensorDetailUI.transform.Find("Details").GetComponent<TMP_Text>();
+    //     // string sensorJson = GetSensorDetailsAsJson(sensor);
+    //     // detailsText.text = FormatJsonForDisplay(sensorJson);
+
+
+
+    // }
+
+
+
+
 
     private void ShowSensorDetails(GameObject sensor)
     {
@@ -212,18 +243,50 @@ public class SensorView : MonoBehaviour
             return;
         }
 
-        // Instantiate the new sensor detail UI prefab as a child of GUICanva
-        currentSensorDetailUI = Instantiate(sensorDetailPrefab, guiCanva.transform);
+        // Find the child of grandchild 'Details' under 'GUICanva'
+        Transform detailsTransform = guiCanva.transform.Find("SF Window/Details");
+        if (detailsTransform == null)
+        {
+            Debug.LogError("Details object not found as a child of grandchild under GUICanva!");
+            return;
+        }
 
-        // Position the UI in front of the camera
-        currentSensorDetailUI.transform.position = mainCamera.transform.position + mainCamera.transform.forward * 4;
+        // Get the TextMesh Pro component on the Details object
+        TMP_Text detailsText = detailsTransform.GetComponent<TMP_Text>();
+        if (detailsText == null)
+        {
+            Debug.LogError("Details object does not contain a TextMesh Pro component!");
+            return;
+        }
 
-        // Rotate the UI to face the camera
-        currentSensorDetailUI.transform.rotation = Quaternion.LookRotation(mainCamera.transform.forward);
+        // Instantiate the sensor detail prefab and attach it to the GUI canvas
+        if (sensorDetailPrefab != null)
+        {
+            // Instantiate the prefab as a child of GUICanva
+            currentSensorDetailUI = Instantiate(sensorDetailPrefab, guiCanva.transform);
 
-        // Optionally, you can set any additional information or details on the UI here
-        // For example, if the prefab has a script to display details, you can access it:
-        // currentSensorDetailUI.GetComponent<SensorDetailsUI>().SetDetails(sensor);
+            // Position and rotate the prefab so it faces the camera
+            currentSensorDetailUI.transform.position = mainCamera.transform.position + mainCamera.transform.forward * 4;
+            currentSensorDetailUI.transform.rotation = Quaternion.LookRotation(mainCamera.transform.forward);
+        }
+
+        // Retrieve and display sensor details
+        string sensorJson = GetSensorDetailsAsJson(sensor); // Replace with your logic to fetch sensor data as JSON
+        detailsText.text = FormatJsonForDisplay(sensorJson);
+    }
+
+
+
+    private string GetSensorDetailsAsJson(GameObject sensor)
+    {
+        // Example: Simulating JSON data. 
+        return "{\n  \"SensorID\": \"12345\",\n  \"Temperature\": \"28°C\",\n  \"Location\": \"Room A\",\n  \"Status\": \"Active\"\n}";
+    }
+
+    private string FormatJsonForDisplay(string json)
+    {
+        // Optional: Format JSON  readability
+        return json.Replace(",", "\n").Replace("{", "").Replace("}", "").Replace("\"", "").Trim();
     }
 
 }
