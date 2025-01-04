@@ -5,6 +5,8 @@ using UnityEngine;
 public class SensorControllerTemperature : MonoBehaviour
 {
     WebSocketClientSensor webSocketClientSensor;
+
+    // SensorData sensorData;
     
     public GameObject TempSensorPrefab;     
     private GameObject SensorObject;     
@@ -78,8 +80,6 @@ public class SensorControllerTemperature : MonoBehaviour
             // }
 
             string sensorName = "TempSensor" + message.sensor_id;
-
-            // Search for the sensor in the scene by name
             GameObject existingSensor = GameObject.Find(sensorName);
 
             if (existingSensor == null) // If no sensor exists with this name
@@ -87,6 +87,20 @@ public class SensorControllerTemperature : MonoBehaviour
                 // Instantiate a new sensor object
                 SensorObject = Instantiate(TempSensorPrefab, newLocation, Quaternion.identity);
                 SensorObject.name = sensorName;
+                //Asign it JSON data to the sensor object's script under this object
+
+                SensorData sensorData = SensorObject.GetComponent<SensorData>();
+                if (sensorData != null)
+                {
+                    sensorData.AssignJsonData(sensorMessage);
+                }
+                else
+                {
+                    Debug.LogError("SensorData script not found in the sensor object!");
+                }
+
+            
+
             }
             else
             {

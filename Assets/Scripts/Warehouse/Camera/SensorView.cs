@@ -229,13 +229,11 @@ public class SensorView : MonoBehaviour
 
     private void ShowSensorDetails(GameObject sensor)
     {
-        // Destroy the current UI if it exists
         if (currentSensorDetailUI != null)
         {
             Destroy(currentSensorDetailUI);
         }
 
-        // Find the GUICanva object in the scene
         GameObject guiCanva = GameObject.Find("GUICanva");
         if (guiCanva == null)
         {
@@ -243,7 +241,6 @@ public class SensorView : MonoBehaviour
             return;
         }
 
-        // Find the child of grandchild 'Details' under 'GUICanva'
         Transform detailsTransform = guiCanva.transform.Find("SF Window/Details");
         if (detailsTransform == null)
         {
@@ -251,7 +248,6 @@ public class SensorView : MonoBehaviour
             return;
         }
 
-        // Get the TextMesh Pro component on the Details object
         TMP_Text detailsText = detailsTransform.GetComponent<TMP_Text>();
         if (detailsText == null)
         {
@@ -259,7 +255,6 @@ public class SensorView : MonoBehaviour
             return;
         }
 
-        // Instantiate the sensor detail prefab and attach it to the GUI canvas
         if (sensorDetailPrefab != null)
         {
             // Instantiate the prefab as a child of GUICanva
@@ -271,7 +266,7 @@ public class SensorView : MonoBehaviour
         }
 
         // Retrieve and display sensor details
-        string sensorJson = GetSensorDetailsAsJson(sensor); // Replace with your logic to fetch sensor data as JSON
+        string sensorJson = GetSensorDetailsAsJson(sensor); 
         detailsText.text = FormatJsonForDisplay(sensorJson);
     }
 

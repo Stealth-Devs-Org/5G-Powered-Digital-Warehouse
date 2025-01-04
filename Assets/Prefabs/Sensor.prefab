@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5008181545581665977}
   - component: {fileID: 8478333340461224073}
   - component: {fileID: 386850720224223914}
+  - component: {fileID: 4829677961820963817}
   m_Layer: 0
   m_Name: Sensor
   m_TagString: TempSensor
@@ -108,3 +109,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4829677961820963817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6936889791018317288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 629cc0e4af3c29449b7bfb578ea42bf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensor_type: 
+  sensor_id: 
+  partition_id: 0
+  sensor_location: 
+  reading: 0
+  status: 0
