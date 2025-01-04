@@ -133,4 +133,6 @@ public class SensorControllerTemperature : MonoBehaviour
         return new Vector2(x, y);
     }
 
+
+
 }

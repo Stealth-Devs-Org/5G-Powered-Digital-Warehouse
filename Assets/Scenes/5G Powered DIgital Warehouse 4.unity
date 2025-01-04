@@ -6381,6 +6381,30 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2580692922518026725, guid: b4c4c9e5506b8b845b521b715e80901b, type: 3}
+      propertyPath: m_TagString
+      value: Details
+      objectReference: {fileID: 0}
+    - target: {fileID: 3036013906437889437, guid: b4c4c9e5506b8b845b521b715e80901b, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3036013906437889437, guid: b4c4c9e5506b8b845b521b715e80901b, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.99818844
+      objectReference: {fileID: 0}
+    - target: {fileID: 3036013906437889437, guid: b4c4c9e5506b8b845b521b715e80901b, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3036013906437889437, guid: b4c4c9e5506b8b845b521b715e80901b, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.043396115
+      objectReference: {fileID: 0}
+    - target: {fileID: 3036013906437889437, guid: b4c4c9e5506b8b845b521b715e80901b, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967051
+      objectReference: {fileID: 0}
     - target: {fileID: 4263593813699334788, guid: b4c4c9e5506b8b845b521b715e80901b, type: 3}
       propertyPath: m_text
       value: Sensor
@@ -6395,15 +6419,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4263593813699334788, guid: b4c4c9e5506b8b845b521b715e80901b, type: 3}
       propertyPath: m_fontColor.b
-      value: 1
+      value: 0.8756182
       objectReference: {fileID: 0}
     - target: {fileID: 4263593813699334788, guid: b4c4c9e5506b8b845b521b715e80901b, type: 3}
       propertyPath: m_fontColor.g
-      value: 0.7815908
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4263593813699334788, guid: b4c4c9e5506b8b845b521b715e80901b, type: 3}
       propertyPath: m_fontColor.r
-      value: 0.5566037
+      value: 0.028301716
       objectReference: {fileID: 0}
     - target: {fileID: 4263593813699334788, guid: b4c4c9e5506b8b845b521b715e80901b, type: 3}
       propertyPath: m_fontSizeBase
@@ -6415,7 +6439,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4263593813699334788, guid: b4c4c9e5506b8b845b521b715e80901b, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4294952846
+      value: 4292869895
       objectReference: {fileID: 0}
     - target: {fileID: 4263593813699334788, guid: b4c4c9e5506b8b845b521b715e80901b, type: 3}
       propertyPath: m_TextStyleHashCode
@@ -6431,7 +6455,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6217189814350244007, guid: b4c4c9e5506b8b845b521b715e80901b, type: 3}
       propertyPath: m_fontSize
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6217189814350244007, guid: b4c4c9e5506b8b845b521b715e80901b, type: 3}
       propertyPath: m_fontStyle
@@ -6451,7 +6475,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6217189814350244007, guid: b4c4c9e5506b8b845b521b715e80901b, type: 3}
       propertyPath: m_fontSizeBase
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6217189814350244007, guid: b4c4c9e5506b8b845b521b715e80901b, type: 3}
       propertyPath: m_overflowMode
@@ -6467,7 +6491,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6217189814350244007, guid: b4c4c9e5506b8b845b521b715e80901b, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4294835709
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6217189814350244007, guid: b4c4c9e5506b8b845b521b715e80901b, type: 3}
       propertyPath: m_overrideHtmlColors
@@ -11298,10 +11322,6 @@ PrefabInstance:
     - target: {fileID: 6936889791018317288, guid: 72959092c03871f4f9c944656d626358, type: 3}
       propertyPath: m_Name
       value: Sensor
-      objectReference: {fileID: 0}
-    - target: {fileID: 6936889791018317288, guid: 72959092c03871f4f9c944656d626358, type: 3}
-      propertyPath: m_TagString
-      value: TempSensor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

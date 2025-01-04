@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Load
   - TempSensor
+  - Details
   layers:
   - Default
   - TransparentFX

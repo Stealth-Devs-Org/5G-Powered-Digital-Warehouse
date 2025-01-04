@@ -192,37 +192,6 @@ public class SensorView : MonoBehaviour
         ShowSensorDetails(sensorTransform.gameObject);
     }
 
-    // private void ShowSensorDetails(GameObject sensor)
-    // {
-    //     // Destroy the current UI if it exists
-    //     if (currentSensorDetailUI != null)
-    //     {
-    //         Destroy(currentSensorDetailUI);
-    //     }
-
-    //     // Find the GUICanva object in the scene
-    //     GameObject guiCanva = GameObject.Find("GUICanva");
-    //     if (guiCanva == null)
-    //     {
-    //         Debug.LogError("GUICanva object not found in the scene!");
-    //         return;
-    //     }
-
-    //     currentSensorDetailUI = Instantiate(sensorDetailPrefab, guiCanva.transform);
-
-    //     // Position the UI in front of the camera and rotate to face of cam..........
-    //     currentSensorDetailUI.transform.position = mainCamera.transform.position + mainCamera.transform.forward * 4;
-    //     currentSensorDetailUI.transform.rotation = Quaternion.LookRotation(mainCamera.transform.forward);
-
-    //     // go to gameobject and get the textmesh pro component with tag name "Details" and set the text to the sensor details
-    //     // TMP_Text detailsText = currentSensorDetailUI.transform.Find("Details").GetComponent<TMP_Text>();
-    //     // string sensorJson = GetSensorDetailsAsJson(sensor);
-    //     // detailsText.text = FormatJsonForDisplay(sensorJson);
-
-
-
-    // }
-
 
 
 
@@ -275,7 +244,20 @@ public class SensorView : MonoBehaviour
     private string GetSensorDetailsAsJson(GameObject sensor)
     {
         // Example: Simulating JSON data. 
-        return "{\n  \"SensorID\": \"12345\",\n  \"Temperature\": \"28°C\",\n  \"Location\": \"Room A\",\n  \"Status\": \"Active\"\n}";
+        // return "{\n  \"SensorID\": \"12345\",\n  \"Temperature\": \"28°C\",\n  \"Location\": \"Room A\",\n  \"Status\": \"Active\"\n}";
+        SensorData sensorData = sensor.GetComponent<SensorData>();
+
+        // search for respective sensor data under temp sensor object
+        if (sensorData != null)
+        {
+            return sensorData.GetSensorData();
+        }
+        else
+        {
+            Debug.LogError("SensorData script not found in the sensor object!");
+            return "";
+        }
+
     }
 
     private string FormatJsonForDisplay(string json)
