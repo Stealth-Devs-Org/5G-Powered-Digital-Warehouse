@@ -16,14 +16,16 @@ public class SensorData : MonoBehaviour
     string sensorMessage;
 
     
+
     public class SensorMessage
     {
         public string sensor_type;      
         public string sensor_id;       
         public int partition_id;
-        public string sensor_location; // Location in the format "(x,y)"
-        public double reading;         // Reading
-        public int status;             // Status code
+        public string sensor_location;      // Location [x, y]
+        public double reading;      // Reading
+        public int current_status;          // Status code
+ 
     }
 
 
@@ -48,7 +50,7 @@ public class SensorData : MonoBehaviour
         object_partition_id = message.partition_id;
         object_sensor_location = message.sensor_location;
         object_reading = message.reading;
-        object_status = message.status;
+        object_status = message.current_status;
 
     }
 
@@ -61,7 +63,7 @@ public class SensorData : MonoBehaviour
         message.partition_id = object_partition_id;
         message.sensor_location = object_sensor_location;
         message.reading = object_reading;
-        message.status = object_status;
+        message.current_status = object_status;
         
 
        

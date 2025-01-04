@@ -204,10 +204,13 @@ public class SensorControllerTemperature : MonoBehaviour
     {
         if (webSocketClientSensor != null && webSocketClientSensor.sensorMessage != null && webSocketClientSensor.newmessageArrviedforSensorTemp)
         {
+            
             webSocketClientSensor.newmessageArrviedforSensorTemp = false;
             sensorMessage = webSocketClientSensor.sensorMessage;
 
             SensorMessage message = JsonUtility.FromJson<SensorMessage>(sensorMessage);
+
+            //Debug.Log($"Sensor Location: {message.status}");
 
             Vector2 sensorCoords = ParseCoordinates(message.sensor_location);
             int positionZ = (int)(2 * sensorCoords.x - 22 + 2);

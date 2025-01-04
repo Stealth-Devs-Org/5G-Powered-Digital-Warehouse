@@ -713,7 +713,7 @@ public class SensorView : MonoBehaviour
                                $"Partition ID: {message.partition_id}\n\n" +
                                $"Location: {message.sensor_location}\n\n" +
                                $"Reading: {message.reading}\n\n" +
-                               $"Status: {message.status}";
+                               $"Status: {message.current_status}";
 
         return formattedText;
     }

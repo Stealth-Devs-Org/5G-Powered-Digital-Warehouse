@@ -22,7 +22,7 @@ public class WebSocketClientSensor : MonoBehaviour
         public int partition_id;
         public string sensor_location;      // Location [x, y]
         public double reading;      // Reading
-        public int status;          // Status code
+        public int current_status;          // Status code
  
     }
 
@@ -90,7 +90,7 @@ public class WebSocketClientSensor : MonoBehaviour
         //sensorMessage = message.String;
         MSGTest = JsonUtility.FromJson<SensorMessage>(message.String);
 
-        // Debug.Log($"Sensor Type: {MSGTest.sensor_type}");
+        Debug.Log($"Sensor Type: {MSGTest.current_status}");
 
 
 
