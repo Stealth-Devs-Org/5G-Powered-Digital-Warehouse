@@ -599,7 +599,7 @@ public class SensorView : MonoBehaviour
         }
 
         // Switch to the next sensor when '2' is pressed
-        if (Input.GetKeyDown(KeyCode.Alpha2) && tempSensors.Count > 0)
+        if (Input.GetKeyDown(KeyCode.Alpha2) && tempSensors.Count > 0  && !Input.GetKeyDown(KeyCode.Space) && !Input.GetKeyDown(KeyCode.Alpha3))
         {
             currentSensorIndex = (currentSensorIndex + 1) % tempSensors.Count;
 
@@ -611,6 +611,15 @@ public class SensorView : MonoBehaviour
 
             // Start focusing the camera on the selected sensor
             currentFocusCoroutine = StartCoroutine(FocusOnSensor(tempSensors[currentSensorIndex].transform));
+        }
+
+
+                
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            // Stop focusing the camera
+            StopFocusing(mainCamera.transform.position);
+            // StopFocusing();
         }
     }
 
@@ -716,6 +725,24 @@ public class SensorView : MonoBehaviour
                                $"Status: {message.current_status}";
 
         return formattedText;
+    }
+
+
+
+
+    private void StopFocusing(Vector3 currentCameraPosition)
+    {
+        isFocusing = false;
+
+        // Destroy the AGV detail UI if it's displayed
+        if (currentSensorDetailUI != null)
+        {
+            Destroy(currentSensorDetailUI);
+            currentSensorDetailUI = null;
+        }
+
+        mainCamera.transform.position = currentCameraPosition;  
+        mainCamera.transform.LookAt(Vector3.zero); 
     }
 }
 

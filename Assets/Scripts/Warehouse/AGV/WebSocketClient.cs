@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using MikeSchweitzer.WebSocket;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 
 public class WebSocketClient : MonoBehaviour
@@ -13,6 +14,8 @@ public class WebSocketClient : MonoBehaviour
     public bool newmessageArrviedAGV2 = false;
     public bool newmessageArrviedAGV3 = false;
     public bool newmessageArrviedAGV4 = false;
+
+    AgvData agvData;
 
     public class AGVMessage
     {
@@ -32,6 +35,16 @@ public class WebSocketClient : MonoBehaviour
 
     // URL of the WebSocket server
     public string _url = "ws://localhost:8765/agv"; // Replace with your WebSocket server URL
+
+    private void start()
+    {
+        agvData = FindObjectOfType<AgvData>();
+
+        if (agvData == null)
+        {
+            Debug.LogError("AgvData not found in the scene!");
+        }
+    }
 
 
     private void Awake()
@@ -92,6 +105,10 @@ public class WebSocketClient : MonoBehaviour
         if (MSGTest.agv_id == "agv1")
         {
             agv1Message = message.String;
+            
+            
+
+
             newmessageArrviedAGV1 = true;
         }
         else if (MSGTest.agv_id == "agv2")

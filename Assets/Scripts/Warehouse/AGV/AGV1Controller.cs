@@ -272,6 +272,8 @@ public class AGV1Controller : MonoBehaviour
 
     public int currentStatus = 0;
 
+    AgvData agvData;
+
         
     private class AGVMessage
     {
@@ -289,6 +291,8 @@ public class AGV1Controller : MonoBehaviour
     void Start()
     {
         webSocketClient = FindObjectOfType<WebSocketClient>();
+
+        agvData = FindObjectOfType<AgvData>();
 
 
         if (webSocketClient == null)
