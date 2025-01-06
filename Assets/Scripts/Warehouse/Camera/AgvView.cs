@@ -665,6 +665,9 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
+using JetBrains.Annotations;
+using System.Runtime.CompilerServices;
 
 public class AgvView : MonoBehaviour
 {
@@ -679,6 +682,8 @@ public class AgvView : MonoBehaviour
     private GameObject currentFocusedAgv;
 
     private bool isFocusing = false;
+
+    private string statusupdate = "";
 
     void Start()
     {
@@ -827,7 +832,11 @@ public class AgvView : MonoBehaviour
 
     private string FormatJsonForDisplay(GameObject agv)
     {
+        // AgvData agvData = agv.GetComponent<AgvData>();
+
+        // get agvdata in corosponmding agv object
         AgvData agvData = agv.GetComponent<AgvData>();
+
         if (agvData == null)
         {
             Debug.LogError("AgvData component not found on AGV object!");
@@ -835,13 +844,42 @@ public class AgvView : MonoBehaviour
         }
 
         string agvMessage = agvData.GetAgvData();
+        // AgvData.AgvMessage message = JsonUtility.FromJson<AgvData.AgvMessage>(agvMessage);
         AgvData.AgvMessage message = JsonUtility.FromJson<AgvData.AgvMessage>(agvMessage);
 
-        string formattedText = $"AGV ID: {message.agv_id}\n" +
-                               $"Location: {message.agv_location}\n" +
-                               $"Segment: {message.agv_segment}\n" +
-                               $"Reading: {message.agv_status}\n" +
-                               $"Timestamp: {message.segment_timestamp}";
+        // Debug.Log(message.location);
+
+        
+        if (message.status == 0)
+        {
+            statusupdate = "AGV is idle";
+        }
+        else if (message.status == 1)
+        {
+            statusupdate = "AGV is moving";
+        }
+        else if (message.status == 2)
+        {
+            statusupdate = "AGV is loading";
+        }
+        else if (message.status == 3)
+        {
+            statusupdate = "AGV is unloading";
+        }
+        else if (message.status == 4)
+        {
+            statusupdate = "AGV is charging";
+        }
+        else
+        {
+            statusupdate = "AGV is idle";
+        }
+        
+
+        string formattedText = $"AGV ID : {message.agv_id}\n\n" +
+                               $"Location : ( {message.location[0]},{message.location[1]} ) \n\n" +          //$"Location AGV3: X = {message.location[0]}, Y = {message.location[1]}"
+                               $"Status : {statusupdate}\n\n";
+
 
         return formattedText;
     }
@@ -861,4 +899,21 @@ public class AgvView : MonoBehaviour
         mainCamera.transform.position = currentCameraPosition;  
         mainCamera.transform.LookAt(Vector3.zero); 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+
+
+
+

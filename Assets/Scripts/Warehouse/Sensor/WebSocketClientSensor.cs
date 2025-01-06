@@ -90,7 +90,7 @@ public class WebSocketClientSensor : MonoBehaviour
         //sensorMessage = message.String;
         MSGTest = JsonUtility.FromJson<SensorMessage>(message.String);
 
-        Debug.Log($"Sensor Type: {MSGTest.current_status}");
+        //Debug.Log($"Sensor Type: {MSGTest.current_status}");
 
 
 

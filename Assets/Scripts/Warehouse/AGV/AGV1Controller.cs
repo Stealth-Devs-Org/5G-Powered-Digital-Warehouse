@@ -292,7 +292,7 @@ public class AGV1Controller : MonoBehaviour
     {
         webSocketClient = FindObjectOfType<WebSocketClient>();
 
-        agvData = FindObjectOfType<AgvData>();
+        // agvData = FindObjectOfType<AgvData>();
 
 
         if (webSocketClient == null)

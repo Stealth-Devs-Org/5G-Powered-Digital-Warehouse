@@ -1,120 +1,110 @@
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
-
+using UnityEngine;
 
 public class AgvData : MonoBehaviour
 {
-
     public string object_agv_id;
-    public string object_agv_location;
+    public int[] object_agv_location;
     public string object_agv_segment;
     public double object_agv_status;
     public int object_segment_timestamp;
 
-        
-    string agvMessage;
 
-    
 
+    WebSocketClient webSocketClient;
     public class AgvMessage
     {
-        public string agv_id;      
-        public string agv_location;       
-        public string agv_segment;
-        public double agv_status;      
-        public int segment_timestamp;         
- 
+        public string agv_id;       // AGV ID
+        public int[] location;      // Location [x, y]
+        public int status;          // Status code
+
     }
 
-    AgvData agvData;
-    WebSocketClient webSocketClient;
     void Start()
     {
-        
-        webSocketClient = FindObjectOfType<WebSocketClient>();
-        
+        webSocketClient = FindAnyObjectByType<WebSocketClient>();
+        if (webSocketClient == null)
+        {
+            Debug.LogError("WebSocketClient not found in the scene!");
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-
-        
-        string message1 = webSocketClient.agv0Message;
-        string message2 = webSocketClient.agv1Message;
-        string message3 = webSocketClient.agv2Message;
-        string message4 = webSocketClient.agv3Message;
-
-        //conversto message 1 to json
-        AssignJsonData(message1);
-
-        // if name of the opbject is agv1 then assign the message to the object
-        if (gameObject.name == "AGV1")
+        if (webSocketClient != null)
         {
-            AssignJsonData(message1);
-        }
-        // if name of the opbject is agv2 then assign the message to the object
-        else if (gameObject.name == "AGV2")
-        {
-            AssignJsonData(message2);
-        }   
-        // if name of the opbject is agv3 then assign the message to the object
-        else if (gameObject.name == "AGV3")
-        {
-            AssignJsonData(message3);
-        }
-        // if name of the opbject is agv4 then assign the message to the object
-        else if (gameObject.name == "AGV4")
-        {
-            AssignJsonData(message4);
-        }
 
 
 
-
-
-
-        
-
-
-
-        
-        
-    }
-
+            if (gameObject.name == "AGV1")
+            {
+                AgvMessage message = JsonUtility.FromJson<AgvMessage>(webSocketClient.agv1Message);
+                object_agv_id = message.agv_id;
+                object_agv_location = message.location;
+                // object_agv_segment = message.segment.ToString();
+                object_agv_status = message.status;
+                // object_segment_timestamp = int.Parse(message.timestamp);
+            }
+            else if (gameObject.name == "AGV2")
+            {
+                AgvMessage message = JsonUtility.FromJson<AgvMessage>(webSocketClient.agv2Message);
+                object_agv_id = message.agv_id;
+                object_agv_location = message.location;
+                // object_agv_segment = message.segment.ToString();
+                object_agv_status = message.status;
+                // object_segment_timestamp = int.Parse(message.timestamp);
+            }
+            else if (gameObject.name == "AGV3")
+            {
+                AgvMessage message = JsonUtility.FromJson<AgvMessage>(webSocketClient.agv3Message);
+                object_agv_id = message.agv_id;
+                object_agv_location = message.location;
+                // object_agv_segment = message.segment.ToString();
+                object_agv_status = message.status;
+                // object_segment_timestamp = int.Parse(message.timestamp);
+            }
+            else if (gameObject.name == "AGV4")
+            {
+                AgvMessage message = JsonUtility.FromJson<AgvMessage>(webSocketClient.agv4Message);
+                object_agv_id = message.agv_id;
+                object_agv_location = message.location;
+                // object_agv_segment = message.segment.ToString();
+                object_agv_status = message.status;
+                // object_segment_timestamp = int.Parse(message.timestamp);
+            }
  
-    public void AssignJsonData(string agvMessage)
-    {
-        AgvMessage message = JsonUtility.FromJson<AgvMessage>(agvMessage);
-        object_agv_id = message.agv_id;
-        object_agv_location = message.agv_location;
-        object_agv_segment = message.agv_segment;
-        object_agv_status = message.agv_status;
-        object_segment_timestamp = message.segment_timestamp;
+            
+        }
 
     }
 
-   
+
+
+
+
+//     public void AssignJsonData(string agvMessage)
+//     {
+//         AGVMessage message = JsonUtility.FromJson<AGVMessage>(agvMessage);      
+//         object_agv_id = message.agv_id;
+//         object_agv_location = message.agv_location;
+//         object_agv_segment = message.agv_segment;
+//         object_agv_status = message.agv_status;
+//         object_segment_timestamp = message.segment_timestamp;
+//     }
+
     public string GetAgvData()
     {
-        AgvMessage message = new AgvMessage();
-        message.agv_id = object_agv_id;
-        message.agv_location = object_agv_location;
-        message.agv_segment = object_agv_segment;
-        message.agv_status = object_agv_status;
-        message.segment_timestamp = object_segment_timestamp;
-        
-        
+        AgvMessage message = new AgvMessage
+        {
+            agv_id = object_agv_id,
+            location = object_agv_location,
+    
+            status = (int)object_agv_status,
+            // timestamp = object_segment_timestamp.ToString()
+        };
 
-       
 
         return JsonUtility.ToJson(message);
     }
-
-
-
-
-
 }
