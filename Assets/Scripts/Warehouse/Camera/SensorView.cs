@@ -672,7 +672,7 @@ public class SensorView : MonoBehaviour
             currentSensorDetailUI = Instantiate(sensorDetailPrefab, guiCanva.transform);
             currentSensorDetailUI.transform.position = mainCamera.transform.position + mainCamera.transform.forward * 4;
             currentSensorDetailUI.transform.rotation = Quaternion.LookRotation(mainCamera.transform.forward);
-            currentSensorDetailUI.name = "SF Window";
+            currentSensorDetailUI.name = "SF WindowSensor";
         }
     }
 

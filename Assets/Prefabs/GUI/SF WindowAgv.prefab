@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 260175313171338249}
   - component: {fileID: 3466164799414312454}
   m_Layer: 0
-  m_Name: SF Window
+  m_Name: SF WindowAgv
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: -922.11, y: -537.18, z: 65.12}
-  m_LocalScale: {x: 1.214475, y: 1.9901377, z: 1.6646906}
+  m_LocalScale: {x: 0.87733364, y: 1.4376701, z: 1.202568}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6602578474352925439}
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6858abb4516aae344881bf286b3aac33, type: 3}
-  m_Color: {r: 0, g: 0.6825876, b: 1, a: 1}
+  m_Color: {r: 0.6539984, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sensor
+  m_text: AGV
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4292869895
-  m_fontColor: {r: 0.028301716, g: 1, b: 0.8756182, a: 1}
+  m_fontColor: {r: 0.8658921, g: 0.027450979, b: 1, a: 1}
   m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
@@ -525,7 +525,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967051
-  m_fontColor: {r: 0.043396115, g: 1, b: 0.99818844, a: 1}
+  m_fontColor: {r: 0.8525215, g: 0.043137252, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

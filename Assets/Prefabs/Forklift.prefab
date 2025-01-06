@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 7481702628396190027}
   m_Layer: 0
   m_Name: Forklift
-  m_TagString: Untagged
+  m_TagString: AGV
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,7 +149,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 47.41, y: 0, z: 12}
-  m_LocalScale: {x: 0.801448, y: 0.8014479, z: 0.801448}
+  m_LocalScale: {x: 0.80144805, y: 0.8014479, z: 0.80144805}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2120729941538554970}
