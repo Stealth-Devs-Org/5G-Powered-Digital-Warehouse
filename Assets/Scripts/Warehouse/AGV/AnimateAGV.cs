@@ -30,10 +30,10 @@ public class AnimateAGV : MonoBehaviour
 
     void Start()
     {
-        aGV1Controller = FindObjectOfType<AGV1Controller>();
-        aGV2Controller = FindObjectOfType<AGV2Controller>();
-        aGV3Controller = FindObjectOfType<AGV3Controller>();
-        aGV4Controller = FindObjectOfType<AGV4Controller>();
+        aGV1Controller = FindAnyObjectByType<AGV1Controller>();
+        aGV2Controller = FindAnyObjectByType<AGV2Controller>();
+        aGV3Controller = FindAnyObjectByType<AGV3Controller>();
+        aGV4Controller = FindAnyObjectByType<AGV4Controller>();
 
         animator = GetComponent<Animator>();
     }

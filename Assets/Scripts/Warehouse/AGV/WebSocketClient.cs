@@ -10,6 +10,8 @@ public class WebSocketClient : MonoBehaviour
     // Reference to the WebSocketConnection component
     public WebSocketConnection _connection;
 
+    
+
     public bool newmessageArrviedAGV1 = false;
     public bool newmessageArrviedAGV2 = false;
     public bool newmessageArrviedAGV3 = false;
@@ -34,17 +36,25 @@ public class WebSocketClient : MonoBehaviour
     public string agv4Message;
 
     // URL of the WebSocket server
-    public string _url = "ws://localhost:8765/agv"; // Replace with your WebSocket server URL
+    // public string _url = "ws://localhost:8765/agv"; // Replace with your WebSocket server URL
+    public string _url = "ws://localhost:8765/agv"; 
+    public string _url2 = "ws://192.168.43.177:8765/agv";
 
     private void start()
     {
-        agvData = FindObjectOfType<AgvData>();
+        agvData = FindAnyObjectByType<AgvData>();
+    
 
         if (agvData == null)
         {
             Debug.LogError("AgvData not found in the scene!");
         }
     }
+
+    // private void Update()
+    // {
+    //     _url = "ws://"+webSocketServerInput.IPAddress+":8765/agv";
+    // }
 
 
     private void Awake()
@@ -79,7 +89,8 @@ public class WebSocketClient : MonoBehaviour
         // Configure WebSocket
         _connection.DesiredConfig = new WebSocketConfig
         {
-            Url = _url,
+            Url = _url2,
+
             PingInterval = TimeSpan.FromSeconds(3), // Optional: Ping every 3 seconds
             PingMessage = new WebSocketMessage("ping") // Optional: Custom ping message
         };
@@ -88,6 +99,7 @@ public class WebSocketClient : MonoBehaviour
         _connection.Connect();
         Debug.Log("Connecting to WebSocket server...");
     }
+
 
     private void DisconnectFromServer()
     {
@@ -159,3 +171,13 @@ public class WebSocketClient : MonoBehaviour
     //     }
     // }
 }
+
+
+
+
+
+
+
+
+
+
