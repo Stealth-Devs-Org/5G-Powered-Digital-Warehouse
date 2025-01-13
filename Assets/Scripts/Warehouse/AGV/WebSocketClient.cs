@@ -38,7 +38,7 @@ public class WebSocketClient : MonoBehaviour
     // URL of the WebSocket server
     // public string _url = "ws://localhost:8765/agv"; // Replace with your WebSocket server URL
     public string _url = "ws://localhost:8765/agv"; 
-    public string _url2 = "ws://192.168.43.177:8765/agv";
+
 
     private void start()
     {
@@ -89,7 +89,7 @@ public class WebSocketClient : MonoBehaviour
         // Configure WebSocket
         _connection.DesiredConfig = new WebSocketConfig
         {
-            Url = _url2,
+            Url = _url,
 
             PingInterval = TimeSpan.FromSeconds(3), // Optional: Ping every 3 seconds
             PingMessage = new WebSocketMessage("ping") // Optional: Custom ping message
