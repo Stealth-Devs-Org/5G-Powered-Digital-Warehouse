@@ -4,5 +4,18 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/Backup/5G Powered DIgital Warehouse 3.unity
+    guid: 2265b12d5ec801947a54d4205036d6b0
+  - enabled: 1
+    path: Assets/EasyLoadingScreen/ExampleScene/Example.unity
+    guid: a7121f7f158c1ad40a8949a6f07d400a
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 4fe672f8e5df9464888c322185c1e777
+  - enabled: 1
+    path: Assets/Scenes/5G Powered DIgital Warehouse 4.unity
+    guid: 000a33ee764afaa41add2b8032c7660b
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
