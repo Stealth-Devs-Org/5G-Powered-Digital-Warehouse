@@ -2,13 +2,16 @@ using System;
 using UnityEngine;
 using MikeSchweitzer.WebSocket;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.IO;
 
 
 public class WebSocketClient : MonoBehaviour
 {
     // Reference to the WebSocketConnection component
     public WebSocketConnection _connection;
+    private string fileName = "IP_Addressdata.txt";
+    string filePath;
+    string dataRead;
 
     
 
@@ -37,12 +40,15 @@ public class WebSocketClient : MonoBehaviour
 
     // URL of the WebSocket server
     // public string _url = "ws://localhost:8765/agv"; // Replace with your WebSocket server URL
-    public string _url = "ws://localhost:8765/agv"; 
+    // public string _url = "ws://localhost:8765/agv";
+
+    public string url_; 
 
 
     private void start()
     {
         agvData = FindAnyObjectByType<AgvData>();
+        
     
 
         if (agvData == null)
@@ -58,7 +64,26 @@ public class WebSocketClient : MonoBehaviour
 
 
     private void Awake()
-    {
+    {   
+        filePath = Path.Combine(Application.dataPath, "../" + fileName);
+
+        if (File.Exists(filePath))
+        {
+            // Read the string from the file
+            dataRead = File.ReadAllText(filePath);
+            //Debug.Log("Data read from file: " + dataRead);
+            url_= "ws://"+dataRead+":8765/agv";
+            Debug.Log("URL is set to: " + url_);
+        }
+        else
+        {
+            Debug.LogWarning("File not found: " + filePath);
+        }
+
+        
+
+
+        
         if (_connection == null)
         {
             // Add WebSocketConnection component dynamically if not already added
@@ -89,7 +114,7 @@ public class WebSocketClient : MonoBehaviour
         // Configure WebSocket
         _connection.DesiredConfig = new WebSocketConfig
         {
-            Url = _url,
+            Url = url_,
 
             PingInterval = TimeSpan.FromSeconds(3), // Optional: Ping every 3 seconds
             PingMessage = new WebSocketMessage("ping") // Optional: Custom ping message

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using MikeSchweitzer.WebSocket;
+using System.IO;
 using System.Collections.Generic;
 
 
@@ -13,6 +14,10 @@ public class WebSocketClientSensor : MonoBehaviour
     public bool newmessageArrviedforSensorAirQ = false;
     public bool newmessageArrviedforSensorHumidity = false;
     public bool newmessageArrviedforSensorSmoke = false;
+
+    private string fileName = "IP_Addressdata.txt";
+    string filePath;
+    string dataRead;
 
 
     public class SensorMessage
@@ -31,11 +36,29 @@ public class WebSocketClientSensor : MonoBehaviour
 
 
     // URL of the WebSocket server
-    public string _url = "ws://localhost:8765/sensor"; // Replace with your WebSocket server URL
+    public string url_ ;  // "ws://localhost:8765/sensor"; // Replace with your WebSocket server URL
 
 
     private void Awake()
     {
+        filePath = Path.Combine(Application.dataPath, "../" + fileName);
+
+        if (File.Exists(filePath))
+        {
+            // Read the string from the file
+            dataRead = File.ReadAllText(filePath);
+            //Debug.Log("Data read from file: " + dataRead);
+            url_= "ws://"+dataRead+":8765/sensor";
+            Debug.Log("URL is set to: " + url_);
+        }
+        else
+        {
+            Debug.LogWarning("File not found: " + filePath);
+        }
+
+
+
+
         if (_connection == null)
         {
             // Add WebSocketConnection component dynamically if not already added
@@ -66,7 +89,7 @@ public class WebSocketClientSensor : MonoBehaviour
         // Configure WebSocket
         _connection.DesiredConfig = new WebSocketConfig
         {
-            Url = _url,
+            Url = url_,
             PingInterval = TimeSpan.FromSeconds(3), // Optional: Ping every 3 seconds
             PingMessage = new WebSocketMessage("ping") // Optional: Custom ping message
         };
