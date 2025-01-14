@@ -12,12 +12,6 @@ public class MainMenuButton : MonoBehaviour
             LoadScene(sceneToLoad);
         }
     }
-
-    public void OnButtonPress(string sceneName)
-    {
-        LoadScene(sceneName);
-    }
-
     private void LoadScene(string sceneName)
     {
         if (!string.IsNullOrEmpty(sceneName))
