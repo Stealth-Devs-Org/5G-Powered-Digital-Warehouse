@@ -172,7 +172,7 @@ using UnityEngine;
 
 public class SensorControllerTemperature : MonoBehaviour
 {
-    WebSocketClientSensor webSocketClientSensor;
+    WebSocketClientSensorTemp webSocketClientSensor;
 
     public GameObject TempSensorPrefab;     
     private GameObject SensorObject;     
@@ -192,7 +192,7 @@ public class SensorControllerTemperature : MonoBehaviour
 
     void Start()
     {
-        webSocketClientSensor = FindObjectOfType<WebSocketClientSensor>();
+        webSocketClientSensor = FindFirstObjectByType<WebSocketClientSensorTemp>();
 
         if (webSocketClientSensor == null)
         {
@@ -202,11 +202,11 @@ public class SensorControllerTemperature : MonoBehaviour
 
     void Update()
     {
-        if (webSocketClientSensor != null && webSocketClientSensor.sensorMessage != null && webSocketClientSensor.newmessageArrviedforSensorTemp)
+        if (webSocketClientSensor != null && webSocketClientSensor.sensorMessageTemp != null && webSocketClientSensor.newmessageArrviedforSensorTemp)
         {
             
             webSocketClientSensor.newmessageArrviedforSensorTemp = false;
-            sensorMessage = webSocketClientSensor.sensorMessage;
+            sensorMessage = webSocketClientSensor.sensorMessageTemp;
 
             SensorMessage message = JsonUtility.FromJson<SensorMessage>(sensorMessage);
 

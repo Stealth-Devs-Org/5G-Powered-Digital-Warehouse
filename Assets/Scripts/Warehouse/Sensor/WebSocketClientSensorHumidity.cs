@@ -5,13 +5,11 @@ using System.IO;
 using System.Collections.Generic;
 
 
-public class WebSocketClientSensorTemp : MonoBehaviour
+public class WebSocketClientSensorHumidity : MonoBehaviour
 {
     // Reference to the WebSocketConnection component
     public WebSocketConnection _connection;
 
-    public bool newmessageArrviedforSensorTemp = false;
-    public bool newmessageArrviedforSensorAirQ = false;
     public bool newmessageArrviedforSensorHumidity = false;
     
 
@@ -122,22 +120,9 @@ public class WebSocketClientSensorTemp : MonoBehaviour
 
 
 
-        if (MSGTest.sensor_type == "Temperature")
-        {
-            sensorMessageTemp = message.String;
-            newmessageArrviedforSensorTemp = true;
-            
-            
-            
-        }
-        else if (MSGTest.sensor_type == "AirQuality")
-        {
-            sensorMessageAirQ = message.String;
-            newmessageArrviedforSensorAirQ = true;
-            // Debug.Log($"Message received: {message.String}");
-            
-        }
-        else if (MSGTest.sensor_type == "Humidity")
+  
+        
+        if (MSGTest.sensor_type == "Humidity")
         {
             sensorMessageHumidity = message.String;
             newmessageArrviedforSensorHumidity = true;

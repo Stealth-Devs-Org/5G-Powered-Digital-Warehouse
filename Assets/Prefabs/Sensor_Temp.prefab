@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 386850720224223914}
   - component: {fileID: 4829677961820963817}
   m_Layer: 0
-  m_Name: Sensor
+  m_Name: Sensor_Temp
   m_TagString: TempSensor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 85dfd9cab681d2940a0b06a7b67e1082, type: 2}
+  - {fileID: 2100000, guid: c2b86199d9402234b91c2420b4c12b49, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -121,9 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 629cc0e4af3c29449b7bfb578ea42bf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensor_type: 
-  sensor_id: 
-  partition_id: 0
-  sensor_location: 
-  reading: 0
-  status: 0
+  object_sensor_type: 
+  object_sensor_id: 
+  object_partition_id: 0
+  object_sensor_location: 
+  object_reading: 0
+  object_status: 0

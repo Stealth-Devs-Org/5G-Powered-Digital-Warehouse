@@ -709,7 +709,7 @@ public class AgvView : MonoBehaviour
         }
 
         // Switch to the next AGV when '3' is pressed
-        if (Input.GetKeyDown(KeyCode.Alpha3) && AGVs.Count > 0  && !Input.GetKeyDown(KeyCode.Space) && !Input.GetKeyDown(KeyCode.Alpha2) && !Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha1) && AGVs.Count > 0  && !Input.GetKeyDown(KeyCode.Space) && !Input.GetKeyDown(KeyCode.Alpha2) && !Input.GetKeyDown(KeyCode.Alpha3)&& !Input.GetKeyDown(KeyCode.Alpha4)&& !Input.GetKeyDown(KeyCode.Alpha5))
         {
             currentAgvIndex = (currentAgvIndex + 1) % AGVs.Count;
 
@@ -723,7 +723,7 @@ public class AgvView : MonoBehaviour
             currentFocusCoroutine = StartCoroutine(FocusOnAgv(AGVs[currentAgvIndex].transform));
         }
         // If any other key is pressed, unfocus the camera and destroy the UI
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Alpha2)|| Input.GetKeyDown(KeyCode.Alpha3)|| Input.GetKeyDown(KeyCode.Alpha4)|| Input.GetKeyDown(KeyCode.Alpha5))
         {
             // Stop focusing the camera
             StopFocusing(mainCamera.transform.position);

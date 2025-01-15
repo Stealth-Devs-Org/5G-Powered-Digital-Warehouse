@@ -5192,6 +5192,8 @@ GameObject:
   - component: {fileID: 1500565342}
   - component: {fileID: 1500565344}
   - component: {fileID: 1500565345}
+  - component: {fileID: 1500565346}
+  - component: {fileID: 1500565347}
   m_Layer: 0
   m_Name: Websocket
   m_TagString: Untagged
@@ -5253,9 +5255,49 @@ MonoBehaviour:
   newmessageArrviedforSensorTemp: 0
   newmessageArrviedforSensorAirQ: 0
   newmessageArrviedforSensorHumidity: 0
-  newmessageArrviedforSensorSmoke: 0
-  sensorMessage: 
-  url_: 
+  WebSocketExtenstion: sensor_temperature
+  sensorMessageTemp: 
+  sensorMessageAirQ: 
+  sensorMessageHumidity: 
+  url_: localhost
+--- !u!114 &1500565346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500565340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e59c4f5ac875774c918544ea046faea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _connection: {fileID: 0}
+  newmessageArrviedforSensorAirQ: 0
+  WebSocketExtenstion: sensor_air_quality
+  sensorMessageTemp: 
+  sensorMessageAirQ: 
+  sensorMessageHumidity: 
+  url_: localhost
+--- !u!114 &1500565347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500565340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c742eeb6fbc32c64c8e70253f3146699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _connection: {fileID: 0}
+  newmessageArrviedforSensorHumidity: 0
+  WebSocketExtenstion: sensor_humidity
+  sensorMessageTemp: 
+  sensorMessageAirQ: 
+  sensorMessageHumidity: 
+  url_: localhost
 --- !u!1 &1508763628
 GameObject:
   m_ObjectHideFlags: 0
@@ -6185,9 +6227,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1742753529}
   - component: {fileID: 1742753528}
+  - component: {fileID: 1742753531}
+  - component: {fileID: 1742753530}
   m_Layer: 0
   m_Name: SensorController
-  m_TagString: Untagged
+  m_TagString: AirQualitySensor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6220,6 +6264,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1742753530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742753527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf692b954435e0148bca86731f4f82cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AirQualitySensorPrefab: {fileID: 6936889791018317288, guid: 4bede6e63c4bc394ea21f2f2f9eced43, type: 3}
+--- !u!114 &1742753531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742753527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3c2cb035cff0ef479c603dcf4c85dcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HumiditySensorPrefab: {fileID: 6936889791018317288, guid: d97d677fa83e9c240b87287aa809f979, type: 3}
 --- !u!1001 &1748383117
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7070,8 +7140,9 @@ GameObject:
   - component: {fileID: 2001503328}
   - component: {fileID: 2001503332}
   - component: {fileID: 2001503333}
+  - component: {fileID: 2001503337}
+  - component: {fileID: 2001503338}
   - component: {fileID: 2001503334}
-  - component: {fileID: 2001503335}
   - component: {fileID: 2001503336}
   m_Layer: 0
   m_Name: Camera
@@ -7345,18 +7416,6 @@ MonoBehaviour:
   AGVs: []
   currentAgvIndex: 0
   agvDetailPrefab: {fileID: 473687165228551991, guid: 8f358a0393b9b494da06729e8addae1c, type: 3}
---- !u!114 &2001503335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2001503327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e56818ed5475cc0489c97da85e4a04a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2001503336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7371,6 +7430,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IPAddress: 
   isIPSet: 0
+--- !u!114 &2001503337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001503327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fbe1bc917ab013428a8b00bf3fd4e10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraSpeed: 5
+  AirQSensors: []
+  currentSensorIndex: 0
+  sensorDetailPrefab: {fileID: 5453989096030120118, guid: 36af536458e37ee44987b85468be78fe, type: 3}
+--- !u!114 &2001503338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001503327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 294893cd2689c384e8668943cbe140e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraSpeed: 5
+  humiditySensors: []
+  currentSensorIndex: 0
+  sensorDetailPrefab: {fileID: 6964157174481230530, guid: 0f8b55a0c2860a848ac53efd2ad0a7e1, type: 3}
 --- !u!1 &2029377893
 GameObject:
   m_ObjectHideFlags: 0

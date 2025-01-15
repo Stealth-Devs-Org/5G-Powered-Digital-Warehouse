@@ -8,6 +8,8 @@ TagManager:
   - TempSensor
   - Details
   - AGV
+  - AirQualitySensor
+  - HumiditySensor
   layers:
   - Default
   - TransparentFX
