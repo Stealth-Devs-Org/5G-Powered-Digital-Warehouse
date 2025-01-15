@@ -33,9 +33,9 @@ public class WebSocketClientSensorAirQ : MonoBehaviour
     }
 
     private SensorMessage MSGTest;
-    public string sensorMessageTemp;
+
     public string sensorMessageAirQ;
-    public string sensorMessageHumidity;
+
 
 
     // URL of the WebSocket server

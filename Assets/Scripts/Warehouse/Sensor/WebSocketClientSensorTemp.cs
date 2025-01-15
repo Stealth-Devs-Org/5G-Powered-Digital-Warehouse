@@ -11,8 +11,7 @@ public class WebSocketClientSensorTemp : MonoBehaviour
     public WebSocketConnection _connection;
 
     public bool newmessageArrviedforSensorTemp = false;
-    public bool newmessageArrviedforSensorAirQ = false;
-    public bool newmessageArrviedforSensorHumidity = false;
+
     
 
     private string fileName = "IP_Addressdata.txt";
@@ -130,18 +129,7 @@ public class WebSocketClientSensorTemp : MonoBehaviour
             
             
         }
-        else if (MSGTest.sensor_type == "AirQuality")
-        {
-            sensorMessageAirQ = message.String;
-            newmessageArrviedforSensorAirQ = true;
-            // Debug.Log($"Message received: {message.String}");
-            
-        }
-        else if (MSGTest.sensor_type == "Humidity")
-        {
-            sensorMessageHumidity = message.String;
-            newmessageArrviedforSensorHumidity = true;
-        }
+
 
  
     

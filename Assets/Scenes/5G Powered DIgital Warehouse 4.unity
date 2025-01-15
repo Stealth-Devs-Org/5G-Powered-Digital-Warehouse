@@ -5253,8 +5253,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _connection: {fileID: 0}
   newmessageArrviedforSensorTemp: 0
-  newmessageArrviedforSensorAirQ: 0
-  newmessageArrviedforSensorHumidity: 0
   WebSocketExtenstion: sensor_temperature
   sensorMessageTemp: 
   sensorMessageAirQ: 
@@ -5275,9 +5273,7 @@ MonoBehaviour:
   _connection: {fileID: 0}
   newmessageArrviedforSensorAirQ: 0
   WebSocketExtenstion: sensor_air_quality
-  sensorMessageTemp: 
   sensorMessageAirQ: 
-  sensorMessageHumidity: 
   url_: localhost
 --- !u!114 &1500565347
 MonoBehaviour:
@@ -5294,8 +5290,6 @@ MonoBehaviour:
   _connection: {fileID: 0}
   newmessageArrviedforSensorHumidity: 0
   WebSocketExtenstion: sensor_humidity
-  sensorMessageTemp: 
-  sensorMessageAirQ: 
   sensorMessageHumidity: 
   url_: localhost
 --- !u!1 &1508763628
@@ -7459,7 +7453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraSpeed: 5
-  humiditySensors: []
+  HumiditySensors: []
   currentSensorIndex: 0
   sensorDetailPrefab: {fileID: 6964157174481230530, guid: 0f8b55a0c2860a848ac53efd2ad0a7e1, type: 3}
 --- !u!1 &2029377893

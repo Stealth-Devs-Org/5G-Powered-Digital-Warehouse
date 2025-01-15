@@ -7,7 +7,7 @@ public class HumiditySensorView : MonoBehaviour
 {
     private Camera mainCamera; // Reference to the main camera
     public float cameraSpeed = 5f; // Speed at which the camera moves to the target
-    public List<GameObject> humiditySensors = new List<GameObject>(); 
+    public List<GameObject> HumiditySensors = new List<GameObject>(); 
     public int currentSensorIndex = 0; // Keeps track of the current sensor to focus on
     private Coroutine currentFocusCoroutine; // Reference to the currently running coroutine
 
@@ -35,15 +35,15 @@ public class HumiditySensorView : MonoBehaviour
     {
         UpdateSensorList();
 
-        if (humiditySensors.Count == 0)
+        if (HumiditySensors.Count == 0)
         {
             return;
         }
 
         // Switch to the next sensor when '2' is pressed
-        if (Input.GetKeyDown(KeyCode.Alpha3) && humiditySensors.Count > 0  && !Input.GetKeyDown(KeyCode.Space) && !Input.GetKeyDown(KeyCode.Alpha5)&& !Input.GetKeyDown(KeyCode.Alpha4)&& !Input.GetKeyDown(KeyCode.Alpha2)&& !Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha3) && HumiditySensors.Count > 0  && !Input.GetKeyDown(KeyCode.Alpha2) && !Input.GetKeyDown(KeyCode.Space) && !Input.GetKeyDown(KeyCode.Alpha4)&&  !Input.GetKeyDown(KeyCode.Alpha1))
         {
-            currentSensorIndex = (currentSensorIndex + 1) % humiditySensors.Count;
+            currentSensorIndex = (currentSensorIndex + 1) % HumiditySensors.Count;
 
             // Stop the current coroutine (if any) before starting a new one
             if (currentFocusCoroutine != null)
@@ -52,17 +52,12 @@ public class HumiditySensorView : MonoBehaviour
             }
 
             // Start focusing the camera on the selected sensor
-            currentFocusCoroutine = StartCoroutine(FocusOnSensor(humiditySensors[currentSensorIndex].transform));
+            currentFocusCoroutine = StartCoroutine(FocusOnSensor(HumiditySensors[currentSensorIndex].transform));
         }
 
 
                 
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Alpha5)|| Input.GetKeyDown(KeyCode.Alpha4)|| Input.GetKeyDown(KeyCode.Alpha2)|| Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            // Stop focusing the camera
-            StopFocusing(mainCamera.transform.position);
-            // StopFocusing();
-        }
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Alpha4)|| Input.GetKeyDown(KeyCode.Alpha2)|| Input.GetKeyDown(KeyCode.Alpha1))
         {
             // Stop focusing the camera
             StopFocusing(mainCamera.transform.position);
@@ -76,14 +71,14 @@ public class HumiditySensorView : MonoBehaviour
 
         foreach (GameObject sensor in allSensors)
         {
-            if (!humiditySensors.Contains(sensor))
+            if (!HumiditySensors.Contains(sensor))
             {
-                humiditySensors.Add(sensor);
+                HumiditySensors.Add(sensor);
             }
         }
 
         // Remove null entries (in case sensors are destroyed)
-        humiditySensors.RemoveAll(sensor => sensor == null);
+        HumiditySensors.RemoveAll(sensor => sensor == null);
     }
 
     private IEnumerator FocusOnSensor(Transform sensorTransform)
@@ -192,22 +187,6 @@ public class HumiditySensorView : MonoBehaviour
         mainCamera.transform.LookAt(Vector3.zero); 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

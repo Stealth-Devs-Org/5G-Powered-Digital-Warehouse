@@ -41,7 +41,7 @@ public class AirQSensorView : MonoBehaviour
         }
 
         // Switch to the next sensor when '2' is pressed
-        if (Input.GetKeyDown(KeyCode.Alpha4) && AirQSensors.Count > 0  && !Input.GetKeyDown(KeyCode.Alpha2) && !Input.GetKeyDown(KeyCode.Space) && !Input.GetKeyDown(KeyCode.Alpha3)&& !Input.GetKeyDown(KeyCode.Alpha5)&& !Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha4) && AirQSensors.Count > 0  && !Input.GetKeyDown(KeyCode.Alpha2) && !Input.GetKeyDown(KeyCode.Space) && !Input.GetKeyDown(KeyCode.Alpha3)&&  !Input.GetKeyDown(KeyCode.Alpha1))
         {
             currentSensorIndex = (currentSensorIndex + 1) % AirQSensors.Count;
 
@@ -57,7 +57,7 @@ public class AirQSensorView : MonoBehaviour
 
 
                 
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Alpha3)|| Input.GetKeyDown(KeyCode.Alpha5)|| Input.GetKeyDown(KeyCode.Alpha2)|| Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Alpha3)|| Input.GetKeyDown(KeyCode.Alpha2)|| Input.GetKeyDown(KeyCode.Alpha1))
         {
             // Stop focusing the camera
             StopFocusing(mainCamera.transform.position);
