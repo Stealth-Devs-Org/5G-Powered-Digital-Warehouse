@@ -97,7 +97,7 @@ public class AGV2Controller : MonoBehaviour
     {
         isMoving = true; // Mark as moving
         float minSpeed = 1f; // Minimum speed
-        float maxSpeed = 12.0f; // Maximum speed
+        float maxSpeed = 10.0f; // Maximum speed
         float maxDistance = 15.0f; // Distance at which max speed is reached
         float stopThreshold = 0.1f; // Threshold for stopping
 
