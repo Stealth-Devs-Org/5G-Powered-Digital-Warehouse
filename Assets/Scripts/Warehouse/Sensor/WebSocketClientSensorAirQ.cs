@@ -5,17 +5,18 @@ using System.IO;
 using System.Collections.Generic;
 
 
-public class WebSocketClientSensor : MonoBehaviour
+public class WebSocketClientSensorAirQ : MonoBehaviour
 {
     // Reference to the WebSocketConnection component
     public WebSocketConnection _connection;
 
-    public bool newmessageArrviedforSensorTemp = false;
     public bool newmessageArrviedforSensorAirQ = false;
-    public bool newmessageArrviedforSensorHumidity = false;
-    public bool newmessageArrviedforSensorSmoke = false;
+   
+    
 
     private string fileName = "IP_Addressdata.txt";
+
+    public string WebSocketExtenstion;
     string filePath;
     string dataRead;
 
@@ -32,7 +33,9 @@ public class WebSocketClientSensor : MonoBehaviour
     }
 
     private SensorMessage MSGTest;
-    public string sensorMessage;
+
+    public string sensorMessageAirQ;
+
 
 
     // URL of the WebSocket server
@@ -48,8 +51,8 @@ public class WebSocketClientSensor : MonoBehaviour
             // Read the string from the file
             dataRead = File.ReadAllText(filePath);
             //Debug.Log("Data read from file: " + dataRead);
-            url_= "ws://"+dataRead+":8765/sensor";
-            Debug.Log("URL is set to: " + url_);
+            url_= "ws://"+dataRead+":8765/"+WebSocketExtenstion;
+            //Debug.Log("URL is set to: " + url_);
         }
         else
         {
@@ -118,34 +121,17 @@ public class WebSocketClientSensor : MonoBehaviour
 
 
 
-        if (MSGTest.sensor_type == "Temperature")
+
+        if (MSGTest.sensor_type == "AirQuality")
         {
-            sensorMessage = message.String;
-            newmessageArrviedforSensorTemp = true;
-            //Debug.Log($"Message received: {message.String}");
-            
-            
-        }
-        else if (MSGTest.sensor_type == "AirQuality")
-        {
-            sensorMessage = message.String;
+            sensorMessageAirQ = message.String;
             newmessageArrviedforSensorAirQ = true;
-            
-        }
-        else if (MSGTest.sensor_type == "Humidity")
-        {
-            sensorMessage = message.String;
-            newmessageArrviedforSensorHumidity = true;
-        }
-        else if (MSGTest.sensor_type == "Smoke")
-        {
-            sensorMessage = message.String;
-            newmessageArrviedforSensorSmoke = true;
+            // Debug.Log($"Message received: {message.String}");
             
         }
 
-        
-
+ 
+    
        
     }
 

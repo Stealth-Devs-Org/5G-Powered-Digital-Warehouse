@@ -14,11 +14,18 @@ public class LoadingScreenBarSystem : MonoBehaviour {
     AsyncOperation async;
     Image vignetteEfect;
 
+    public GameObject[] objectsToHide;
+
     public int sceneNo=0;
 
 
     public void loadingScreen (int sceneNo)
     {
+        if (objectsToHide.Length > 0)
+        {
+            for (int i = 0; i < objectsToHide.Length; i++)
+                objectsToHide[i].SetActive(false);
+        }
         this.gameObject.SetActive(true);
         StartCoroutine(Loading(sceneNo));
     }
