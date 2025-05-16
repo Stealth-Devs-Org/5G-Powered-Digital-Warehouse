@@ -2701,7 +2701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1e74b1d32bb1c44a50f3b8945850b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agvPrefab: {fileID: 293818481557989643, guid: b54b90764a3597c47949ec2c0b565105, type: 3}
+  agvPrefab: {fileID: 8731782404269961346, guid: 93e7a1959ff04dd4092e95fdcec393de, type: 3}
   currentStatus: 0
 --- !u!114 &676307068
 MonoBehaviour:
@@ -5967,6 +5967,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1664389339}
+  - component: {fileID: 1664389340}
   m_Layer: 0
   m_Name: EnvResources
   m_TagString: Untagged
@@ -5996,6 +5997,19 @@ Transform:
   - {fileID: 1580408140}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1664389340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664389338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 431d7a5096f875f4e94c8044896c6b73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetObject: {fileID: 2029377893}
 --- !u!1 &1695957928
 GameObject:
   m_ObjectHideFlags: 0
