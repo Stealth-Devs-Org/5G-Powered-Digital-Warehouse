@@ -13152,6 +13152,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2533368231634203647, guid: b9461f8182a7d544bb1d222ba05a1d8b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -120.05
+      objectReference: {fileID: 0}
     - target: {fileID: 2547167155545945000, guid: b9461f8182a7d544bb1d222ba05a1d8b, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -13311,6 +13315,10 @@ PrefabInstance:
     - target: {fileID: 2825779311108390679, guid: b9461f8182a7d544bb1d222ba05a1d8b, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2837715145574557306, guid: b9461f8182a7d544bb1d222ba05a1d8b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -105.25
       objectReference: {fileID: 0}
     - target: {fileID: 2852321696598538435, guid: b9461f8182a7d544bb1d222ba05a1d8b, type: 3}
       propertyPath: m_IsTrigger
@@ -15031,6 +15039,10 @@ PrefabInstance:
     - target: {fileID: 6117748187609452321, guid: b9461f8182a7d544bb1d222ba05a1d8b, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6127408413315309636, guid: b9461f8182a7d544bb1d222ba05a1d8b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.82
       objectReference: {fileID: 0}
     - target: {fileID: 6127431824591212559, guid: b9461f8182a7d544bb1d222ba05a1d8b, type: 3}
       propertyPath: m_IsTrigger
